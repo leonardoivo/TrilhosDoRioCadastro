@@ -10,9 +10,18 @@ public function Redirecionar($pagina){
 }
 
 public function RedirecionarParaTipoPag($pagina,$cpf){
-    $paginaComid=$pagina.'?cpf='.$cpf;
-
-    header("Location: {$paginaComid}");
+    $content = http_build_query(array(
+        'cpf' => $cpf),
+    ));
+    $context = stream_context_create(array(
+        'http' => array(
+            'header' => "Content-Type: application/x-www-form-urlencoded\r\n".
+                        "Content-Length: ".strlen($content)."\r\n".
+                        "User-Agent:MyAgent/1.0\r\n",
+            'method'  => 'POST',
+            'content' => $content,
+        )
+    ));
 }
 
 public function acesso($login,$senha){

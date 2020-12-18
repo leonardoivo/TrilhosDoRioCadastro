@@ -11,7 +11,7 @@ $associado = new ManterBL();
 
 
 $pagina="CadDadosBancarios.php";
-$cpf=empty($_REQUEST['cpf'])?0:$_REQUEST['cpf'];
+$cpf=empty($_POST['cpf'])?0:$_POST['cpf'];
 $idbanco=0;
 $id_associado=empty($_REQUEST['id_associado'])?0:$_REQUEST['id_associado'];
 $tipoPagamentoenvio=empty($_REQUEST['envio'])?0:$_REQUEST['envio'];
