@@ -1,0 +1,106 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.10.1deb1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tempo de Geração: 20/03/2019 às 21h55min
+-- Versão do Servidor: 5.7.25
+-- Versão do PHP: 7.0.33-0ubuntu0.16.04.2
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Banco de Dados: `TrilhosDoRioCadastro`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cadastroAssociado`
+--
+
+CREATE TABLE IF NOT EXISTS `cadastroAssociado` (
+  `id_associado` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `sobrenome` varchar(200) DEFAULT NULL,
+  `data_De_nascimento` date DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `telefone` varchar(40) DEFAULT NULL,
+  `id_origem` int(11) DEFAULT NULL,
+  `endereco` varchar(200) DEFAULT NULL,
+  `cep` varchar(10) DEFAULT NULL,
+  `Bairro` varchar(200) DEFAULT NULL,
+  `Cidade` varchar(200) DEFAULT NULL,
+  `Estado` varchar(2) DEFAULT NULL,
+  `data_De_cadastro` date DEFAULT NULL,
+  `pais` varchar(200) DEFAULT NULL,
+  `data_De_desligamento` date DEFAULT NULL,
+  `forma_de_doacao` varchar(60) DEFAULT NULL,
+  `numero` int(11) DEFAULT NULL,
+  `complemento` int(11) DEFAULT NULL,
+  `cpf` varchar(11) DEFAULT NULL,
+  `interesses` varchar(200) DEFAULT NULL,
+  `naturalidade` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id_associado`),
+  KEY `fk_OrigemAssociado` (`id_origem`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Extraindo dados da tabela `cadastroAssociado`
+--
+
+INSERT INTO `cadastroAssociado` (`id_associado`, `nome`, `sobrenome`, `data_De_nascimento`, `email`, `telefone`, `id_origem`, `endereco`, `cep`, `Bairro`, `Cidade`, `Estado`, `data_De_cadastro`, `pais`, `data_De_desligamento`, `forma_de_doacao`, `numero`, `complemento`, `cpf`, `interesses`, `naturalidade`) VALUES
+(1, 'leonardo', 'dsd', '2019-03-19', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, '', NULL, NULL, 23, 123, '05248801745', NULL, 'ww'),
+(2, 'leonardo', 'dsd', '2019-03-19', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, '', NULL, NULL, 23, 123, '0332434', ',Pesquisa,Historia,ExpedicÃµes', 'ww'),
+(3, 'carlos', 'dsd', '2019-03-20', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, 'bras', NULL, NULL, 23, 123, '3443434', ',Historia,ExpedicÃµes', 'ww'),
+(4, 'carlos', 'dsd', '2019-03-20', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, 'bras', NULL, NULL, 23, 123, '4555', ',Historia,ExpedicÃµes', 'ww'),
+(5, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Rua Ministro Alfredo ValadÃ£o', '22031050', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '1111111111', ',ExpedicÃµes', ''),
+(6, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '434444', ',ExpedicÃµes', ''),
+(7, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '555555666', ',ExpedicÃµes', ''),
+(8, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '666555', ',ExpedicÃµes', ''),
+(9, 'teste', 'teste', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 22, 33, '23233323323', ',ExpedicÃµes', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Interesses`
+--
+
+CREATE TABLE IF NOT EXISTS `Interesses` (
+  `id_interesse` int(11) NOT NULL AUTO_INCREMENT,
+  `interesse` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id_interesse`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `OrigemAssociado`
+--
+
+CREATE TABLE IF NOT EXISTS `OrigemAssociado` (
+  `id_origem` int(11) NOT NULL AUTO_INCREMENT,
+  `Origem` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id_origem`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Restrições para as tabelas dumpadas
+--
+
+--
+-- Restrições para a tabela `cadastroAssociado`
+--
+ALTER TABLE `cadastroAssociado`
+  ADD CONSTRAINT `fk_OrigemAssociado` FOREIGN KEY (`id_origem`) REFERENCES `OrigemAssociado` (`id_origem`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
