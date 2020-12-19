@@ -11,7 +11,7 @@ public function Redirecionar($pagina){
 
 public function RedirecionarParaTipoPag($pagina,$cpf){
     $content = http_build_query(array(
-        'cpf' => $cpf),
+     'cpf' => '32'
     ));
     $context = stream_context_create(array(
         'http' => array(
@@ -22,6 +22,7 @@ public function RedirecionarParaTipoPag($pagina,$cpf){
             'content' => $content,
         )
     ));
+    
 }
 
 public function acesso($login,$senha){
