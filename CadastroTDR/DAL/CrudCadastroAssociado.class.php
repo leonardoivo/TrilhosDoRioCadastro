@@ -135,7 +135,7 @@ class CrudCadastroAssociado extends Crud{
 
 
         public function BuscarAssociadoPorID($id_associado){
-            $resultado=$this->conexao->query("select * from CadastroAssociado where id_associado={$id_associado}");
+            $resultado=$this->conexao->query("select * from cadastroAssociado where id_associado={$id_associado}");
             $CadastroAssociado = new CadastroAssociadoLO();
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
@@ -198,9 +198,9 @@ class CrudCadastroAssociado extends Crud{
            $this->efetivar->bindParam("interesses", $CadastroAssociadoDT->interesses);  
            $this->efetivar->bindParam("naturalidade", $CadastroAssociadoDT->naturalidade);          
            $this->efetivar->execute();
-           echo "\nPDOStatement::errorInfo():\n";
+           //echo "\nPDOStatement::errorInfo():\n";
            $arr = $this->efetivar->errorInfo();
-           print_r($arr);
+           //print_r($arr);
 
        
 
@@ -230,15 +230,20 @@ class CrudCadastroAssociado extends Crud{
         $this->efetivar->bindParam("naturalidade", $CadastroAssociadoDT->naturalidade); 
         $this->efetivar->bindParam("telefone", $CadastroAssociadoDT->telefone);    
         $this->efetivar->execute();
+        echo "\nPDOStatement::errorInfo():\n";
+           $arr = $this->efetivar->errorInfo();
+           print_r($arr);
     
     }
     
     public function ExcluirCadastroAssociado($id_associado){
     
-        $this->efetivar=$this->conexao->prepare("delete from  CadastroAssociado where id_associado=?");
+        $this->efetivar=$this->conexao->prepare("delete from cadastroAssociado where id_associado=?");
         $this->efetivar->bindValue(1,$id_associado);
         $this->efetivar->execute();
-    
+        // echo "\nPDOStatement::errorInfo():\n";
+        // $arr = $this->efetivar->errorInfo();
+        // print_r($arr);
     
     }
     

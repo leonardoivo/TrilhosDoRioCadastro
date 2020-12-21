@@ -65,7 +65,7 @@ CPF:<? echo $cpfUser; ?></td>
 
 
 </table>
-<a href="./View/Associados.php">Voltar</a>
+<a href="Associados.php">Voltar</a>
 
 </body>
 </html>

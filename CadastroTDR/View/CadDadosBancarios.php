@@ -28,7 +28,9 @@ if(isset($cpf)&&($id_associado==0)){
 
 <!DOCTYPE html>
 <head>
-
+<meta charset="iso-8859-1">
+    <link rel="stylesheet" href="style.css" media="all" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>
 <body>

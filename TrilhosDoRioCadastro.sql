@@ -3,12 +3,14 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 15/12/2020 às 00h35min
+-- Tempo de Geração: 20/12/2020 às 14h18min
 -- Versão do Servidor: 8.0.22
 -- Versão do PHP: 7.3.24-3+ubuntu16.04.1+deb.sury.org+1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -233,14 +235,13 @@ CREATE TABLE IF NOT EXISTS `cadastroAssociado` (
   `naturalidade` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id_associado`),
   KEY `fk_OrigemAssociado` (`id_origem`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Extraindo dados da tabela `cadastroAssociado`
 --
 
 INSERT INTO `cadastroAssociado` (`id_associado`, `nome`, `sobrenome`, `data_De_nascimento`, `email`, `telefone`, `id_origem`, `endereco`, `cep`, `Bairro`, `Cidade`, `Estado`, `data_De_cadastro`, `pais`, `data_De_desligamento`, `forma_de_doacao`, `numero`, `complemento`, `cpf`, `interesses`, `naturalidade`) VALUES
-(1, 'leonardo', 'dsd', '2019-03-19', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, '', NULL, NULL, 23, 123, '05248801745', NULL, 'ww'),
 (2, 'leonardo', 'dsd', '2019-03-19', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, '', NULL, NULL, 23, 123, '0332434', ',Pesquisa,Historia,ExpedicÃµes', 'ww'),
 (3, 'carlos', 'dsd', '2019-03-20', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, 'bras', NULL, NULL, 23, 123, '3443434', ',Historia,ExpedicÃµes', 'ww'),
 (4, 'carlos', 'dsd', '2019-03-20', '233', NULL, NULL, 'dd', '3232', 'wqqw', '323', '33', NULL, 'bras', NULL, NULL, 23, 123, '4555', ',Historia,ExpedicÃµes', 'ww'),
@@ -248,23 +249,16 @@ INSERT INTO `cadastroAssociado` (`id_associado`, `nome`, `sobrenome`, `data_De_n
 (6, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '434444', ',ExpedicÃµes', ''),
 (7, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '555555666', ',ExpedicÃµes', ''),
 (8, 'fabio', '', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 33, 333, '666555', ',ExpedicÃµes', ''),
-(9, 'teste', 'teste', '2019-03-19', '', NULL, NULL, 'Avenida Nossa Senhora de Copacabana', '22031000', 'Copacabana', 'Rio de Janeiro', 'RJ', NULL, '', NULL, NULL, 22, 33, '23233323323', ',ExpedicÃµes', ''),
 (14, 'novo', 'teste', '2020-12-07', 'teste@teste', '5455454545455', 1, 'Rua Aritiba', '21765070', 'Realengo', 'Rio de Janeiro', 'RJ', '2020-12-06', 'Brasil', '2020-12-06', '0', 964, 1, '345345345', 'TESTE', 'RJ'),
 (15, 'Mais um', 'teste', '2020-12-07', 'teste@teste', '545545334545455', 1, 'Rua Figueiredo Magalhães', '22031011', 'Copacabana', 'Rio de Janeiro', 'RJ', '2020-12-06', 'Brasil', '2020-12-06', '0', 964, 1, '24534534533', 'TESTE', 'RJ'),
-(16, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-06', NULL, '2020-12-06', '0', NULL, NULL, NULL, 'TESTE', NULL),
-(17, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-06', NULL, '2020-12-06', '0', NULL, NULL, NULL, 'TESTE', NULL),
-(18, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-06', NULL, '2020-12-06', '0', NULL, NULL, NULL, 'TESTE', NULL),
-(19, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-06', NULL, '2020-12-06', '0', NULL, NULL, NULL, 'TESTE', NULL),
 (20, 'Mais um 2', 'teste', '2020-12-07', 'teste@teste', '545545334545455', 1, 'Rua Figueiredo Magalhães', '22031011', 'Copacabana', 'Rio de Janeiro', 'RJ', '2020-12-06', 'Brasil', '2020-12-06', '0', 964, 1, '24534534533', 'TESTE', 'RJ'),
 (21, 'Mais um 2', 'teste', '2020-12-07', 'teste@teste', '545545334545455', 1, 'Rua Figueiredo Magalhães', '22031011', 'Copacabana', 'Rio de Janeiro', 'RJ', '2020-12-06', 'Brasil', '2020-12-06', '0', 964, 1, '24534534533', 'TESTE', 'RJ'),
-(22, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-11', NULL, '2020-12-11', '0', NULL, NULL, NULL, 'TESTE', NULL),
 (23, 'ELTON ', 'SUBTIL BORGES', '1993-10-30', 'teste@teste', '21222222', 1, 'RUA VALDEMAR MARCANTONIO', '95200-000', 'Vitoria', 'Vacaria', 'RS', '2020-12-12', 'Brasil', '2020-12-12', '0', 316, 0, '03249765007', 'TESTE', 'RS'),
 (24, 'MARILIA ', 'PLUCINSKI CARDOSO DANTAS', '1977-09-04', 'teste@teste', '21222222', 1, 'Avenida da Azenha', '90160003', 'Azenha', 'Porto Alegre', 'RS', '2020-12-12', 'Brasil', '2020-12-12', '0', 316, 101, '03249765007', 'TESTE', 'RS'),
 (25, 'NATALIA CAROLINA', ' BEAL MIROVSKI', '1995-04-25', 'nat@teste.com', '512232323333', 1, 'Rua Marcelo Gama', '90540040', 'São João', 'Porto Alegre', 'RS', '2020-12-13', 'Brasil', '2020-12-13', '0', 924, 0, '01886950016', 'TESTE', 'Gaucha'),
-(26, 'teste', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-14', NULL, '2020-12-14', '0', NULL, 0, NULL, 'TESTE', NULL),
-(27, 'teste', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-14', NULL, '2020-12-14', '0', NULL, 0, NULL, 'TESTE', NULL),
-(28, 'teste', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-14', NULL, '2020-12-14', '0', NULL, 0, NULL, 'TESTE', NULL),
-(29, 'teste', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-14', NULL, '2020-12-14', '0', NULL, 0, NULL, 'TESTE', NULL);
+(30, 'MAXIMIANO', 'SALDANHA', '1930-07-02', 'maximiliano@teste', NULL, 1, 'Avenida Doutor Eurípedes Brasil Milano', '97542280', 'Centro', 'Alegrete', 'RS', '2020-12-19', 'Brasil', '2020-12-19', '0', 1308, 0, '10375627049', 'TESTE', 'RS'),
+(31, 'MAXIMIANO', 'SALDANHA', '1930-07-02', 'maximiliano@teste', NULL, 1, 'Avenida Doutor Eurípedes Brasil Milano', '97542280', 'Centro', 'Alegrete', 'RS', '2020-12-19', 'Brasil', '2020-12-19', '0', 1308, 0, '10375627049', 'TESTE', 'RS'),
+(33, 'JOSILIANE ', 'MEIRELES SONNEMANN', '1994-02-01', 'josilane@teste', '513323323', 1, 'R. Antônio José Centeno', '96180000', 'CENTRO', 'CentenoCamaquã', 'RS', '2020-12-19', 'Brasil', '2020-12-19', '0', 373, 0, '02943142026', 'TESTE', 'RS');
 
 -- --------------------------------------------------------
 
@@ -419,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `sobrenome` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `fk_usuarioPerfil` (`id_perfil`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `usuarios`

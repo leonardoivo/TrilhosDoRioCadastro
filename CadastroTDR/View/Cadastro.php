@@ -5,7 +5,7 @@ use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
 require '../autoloader.php';
 
-$pagina="CadDadosBancarios.php";
+$pagina='http://localhost/TrilhosDoRioCadastro/CadastroTDR/View/CadDadosBancarios.php';
 $Redirecionamento = new ControleAcesso();
 
 

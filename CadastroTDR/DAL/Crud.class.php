@@ -8,6 +8,7 @@ use \PDO;
    protected   $banco='TrilhosDoRioCadastro';
    protected   $usuariodb='root';
    protected   $senhadb='784512';
+  // protected   $senhadb='#NovoCadastroTDR01' TDRCadTeste1  u753388672_TDRCad	u753388672_root;
    protected   $tabela="";
  
   public function __construct()
