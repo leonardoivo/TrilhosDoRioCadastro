@@ -2,7 +2,7 @@
 use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
 use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
-require '../autoloader.php';
+require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();
 $id_associado=$_REQUEST['id_associado'];
@@ -50,9 +50,9 @@ foreach ($ListAssociados->getCadastroAssociados() as  $associado) {
 ?>
 <!DOCTYPE html>
 <head>
-<script src="BuscaEndereco.js?>"></script>
+<script src="js/BuscaEndereco.js?>"></script>
 <meta charset="iso-8859-1?>">
-    <link rel="stylesheet" href="style.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js?>"></script>
 
 </head>

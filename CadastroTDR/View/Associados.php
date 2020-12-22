@@ -4,7 +4,7 @@ ob_start();
 use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
 use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
-require '../autoloader.php';
+require '../StartLoader/autoloader.php';
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();

@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
 <head>
-<script src="BuscaEndereco.js"></script>
+<script src="js/BuscaEndereco.js"></script>
 <meta charset="iso-8859-1">
-    <link rel="stylesheet" href="style.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>

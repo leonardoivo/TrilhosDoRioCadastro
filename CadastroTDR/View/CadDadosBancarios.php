@@ -2,7 +2,7 @@
 use TrilhosDorioCadastro\DTO\{CadastroAssociadoDTO as CadastroDTO,CartaoCreditoDTO,AgenciaBancariaDTO,BancoDTO,TipoPagamentoDTO,ContaDTO};
 use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,CartaoCreditoLO,BancoLO,AgenciaBancariaLO,TipoPagamentoLO,ContaLO};
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso, ManterAssociado, ManterPagamento};
-require '../autoloader.php';
+require '../StartLoader/autoloader.php';
 
 
 $Redirecionamento = new ControleAcesso();
@@ -29,7 +29,7 @@ if(isset($cpf)&&($id_associado==0)){
 <!DOCTYPE html>
 <head>
 <meta charset="iso-8859-1">
-    <link rel="stylesheet" href="style.css" media="all" />
+    <link rel="stylesheet" href="css/style.css" media="all" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 </head>

@@ -1,5 +1,4 @@
 <?php
-include("../config.php");
 session_start();
 ob_start();
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;

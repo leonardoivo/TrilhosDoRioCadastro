@@ -46,11 +46,19 @@ class CrudUsuarios extends Crud{
         }
         public function ConfirmaLogin($login,$senha){
             $retorno=false;
-            $resultado=$this->conexao->query("select * from usuarios where cpf={$login} and senha={$senha}");
-            $quantidade=count($resultado->fetchAll());
+         
+            $this->efetivar=$this->conexao->prepare("select * from usuarios where cpf=:cpf and senha=:senha");
+            $this->efetivar->bindValue("cpf",$login);
+            $this->efetivar->bindValue("senha",$senha);
+
+            $this->efetivar->execute();
+            $this->efetivar->RowCount();
+
+            $quantidade=$this->efetivar->RowCount();
             if($quantidade==1){
-             $retorno=true; 
-             }
+                 $retorno=true; 
+               }
+            
          return $retorno;
         }
     

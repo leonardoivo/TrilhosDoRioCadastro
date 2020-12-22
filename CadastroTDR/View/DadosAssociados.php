@@ -2,7 +2,7 @@
 use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
 use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
-require '../autoloader.php';
+require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();
 $cpf=$_REQUEST['cpf'];
