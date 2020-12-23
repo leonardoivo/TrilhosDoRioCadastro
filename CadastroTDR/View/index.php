@@ -2,9 +2,10 @@
 
 <?php
 session_start();
-$usuario=$_SESSION["usuario"];
+$usuario=null;
+$usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
 ob_start();
-if(isset($usuario)){
+if($usuario>0){
 $pagina="<!DOCTYPE html>
 <html>
 <head>

@@ -10,8 +10,8 @@ function sendMail($de,$para,$mensagem,$assunto)
       $mail->Host       = 'smtp.gmail.com';     
       $mail->SMTPSecure = "tls";                #remova se nao usar gmail
 	  $mail->Port       = 587;                  #remova se nao usar gmail
-      $mail->Username   = 'leonardo.ivo22@gmail.com'; 
-      $mail->Password   = 'afg784512';
+      $mail->Username   = 'email@gmail.com'; 
+      $mail->Password   = 'senha';
       $mail->AddAddress($para);
 	  $mail->AddReplyTo($de);
       $mail->SetFrom($de);
