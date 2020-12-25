@@ -25,9 +25,13 @@ foreach($result as $b){
     //echo $b['code'];
 //echo $b->XmlDBE."<br/>";
 $resultado=$b->XmlDBE;
+
+$xml=simplexml_load_string($resultado) or die("Error: Cannot create object");
+print_r($xml);
+
     }
 
-    echo $resultado;
+   // echo $resultado;
 
 //echo $result['ServiceWs09Result']['XmlDBE'];
 // $client = new SoapClient('http://regin.juceb.ba.gov.br/wsrfbregin/ServiceReginRFB.asmx?wsdl');
@@ -37,5 +41,6 @@ $resultado=$b->XmlDBE;
 
 
 // }
+
 
 ?>
