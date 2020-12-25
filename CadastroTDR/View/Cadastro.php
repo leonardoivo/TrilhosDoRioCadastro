@@ -6,9 +6,9 @@ use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
 use TrilhosDorioCadastro\Common\EnvioEmail;
 require '../StartLoader/autoloader.php';
 
-$pagina='CadDadosBancarios.php';
+$pagina='http://localhost/TrilhosDoRioCadastro/CadastroTDR/View/CadDadosBancarios.php';
 $Redirecionamento = new ControleAcesso();
-
+$remetente="boasvindas@trilhosdorio.com.br";
 
 $cadastroDT = new CadastroDTO();
  $p = $GLOBALS['_'.$_SERVER['REQUEST_METHOD']];
@@ -33,9 +33,10 @@ $cadastroDT = new CadastroDTO();
    $cadastroDT->cpf=$_POST['cpf'];
    $cadastroDT->interesses= "TESTE" ;//$_POST['interesses'];
    $cadastroDT->naturalidade=$_POST['Naturalidade'];
+   $cadastroDT->idTipoPagamento=0;
    $EfetivarCadastro = new ManterBL();
    $EfetivarCadastro->CadastrarAssociado($cadastroDT);
-   $enviarEmail = new EnvioEmail($cadastroDT->email,$cadastroDT->email,'teste','Teste de envio');
+   $enviarEmail = new EnvioEmail($remetente,$cadastroDT->email,'Seja muito bem vindo a Trilhos do Rio','E um Prazer ter você como associado');
    $enviarEmail->sendMail();
    $Redirecionamento->RedirecionarParaTipoPag($pagina,$_POST['cpf']);
 

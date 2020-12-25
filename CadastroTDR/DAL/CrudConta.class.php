@@ -1,8 +1,8 @@
 <?php
 namespace TrilhosDorioCadastro\DAL{
 use TrilhosDorioCadastro\DAL\Crud;
-use TrilhosDorioCadastro\DTO\ContaDTO;
-use TrilhosDorioCadastro\LO\ContaLO;
+use TrilhosDorioCadastro\DTO\{ContaDTO,DadoBancarioJV_DTO};
+use TrilhosDorioCadastro\LO\{ContaLO,DadoBancarioJV_LO};
 use \ArrayObject;
 use \PDO;
 
@@ -57,7 +57,25 @@ class CrudConta extends Crud{
             return $Conta;
             }
         
-        
+        public function ListarDadosBancarios($id_associado){
+         
+           $resultado=$this->conexao->query("select c.idconta idconta,bc.codigobancario codigobancario,bc.nomebanco nomebanco,ag.numeroagencia numeroagencia,c.tipoconta tipoconta,c.numeroconta numeroconta,c.digitoconta digitoconta from conta c inner join agenciabancaria ag on c.idagencia=ag.idagencia inner join banco bc on ag.idbanco=bc.idbanco where c.id_associado={$id_associado}");
+           $DadosBancarios = new DadoBancarioJV_LO();
+           while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+            $DadosBancarioDT = new DadoBancarioJV_DTO();
+            $DadosBancarioDT->idconta=$linha['idconta'];
+            $DadosBancarioDT->codigobancario=$linha['codigobancario'];
+            $DadosBancarioDT->nomebanco=$linha['nomebanco'];
+            $DadosBancarioDT->numeroagencia=$linha['numeroagencia'];
+            $DadosBancarioDT->tipoconta=$linha['tipoconta'];
+            $DadosBancarioDT->numeroconta=$linha['numeroconta'];
+            $DadosBancarioDT->digitoconta=$linha['digitoconta'];
+            $DadosBancarios->add($DadosBancarioDT);
+           }
+           
+           return $DadosBancarios;
+
+        }
     
     
     public function GravarConta(ContaDTO $ContaDT)

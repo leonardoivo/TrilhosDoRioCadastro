@@ -68,7 +68,26 @@ namespace TrilhosDorioCadastro\DAL{
                     return $CartaoCredito;
                     }
                 
+                    public function ListarCartaoCreditoPorAssociado($id_associado){
         
+                        $resultado=$this->conexao->query("select * from CartaoCredito where id_associado={$id_associado}");
+                         $CartaoCredito = new CartaoCreditoLO();
+                        while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+                        {
+                            $CartaoCreditoDT= new CartaoCreditoDTO();
+                            $CartaoCreditoDT->idCartao=$linha['idCartao'];
+                            $CartaoCreditoDT->bandeira=$linha['bandeira'];
+                            $CartaoCreditoDT->numeroCartao=$linha['numeroCartao'];
+                            $CartaoCreditoDT->Titular=$linha['Titular'];
+                            $CartaoCreditoDT->dataDeValidade=$linha['dataDeValidade'];
+                            $CartaoCreditoDT->codigo=$linha['codigo'];
+                            $CartaoCreditoDT->codigo=$linha['id_associado'];
+                            $CartaoCredito->add($CartaoCreditoDT);
+                
+                        }
+                        return $CartaoCredito;
+                        }
+                    
         
         public function GravarCartaoCredito(CartaoCreditoDTO $CartaoCreditoDT)
         {

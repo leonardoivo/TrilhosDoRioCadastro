@@ -23,6 +23,7 @@ public      $complemento;
 public      $cpf; 
 public      $interesses; 
 public      $naturalidade;
+public      $idTipoPagamento;
 
 }
 

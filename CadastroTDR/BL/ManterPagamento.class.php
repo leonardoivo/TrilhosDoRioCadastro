@@ -2,8 +2,8 @@
 namespace TrilhosDorioCadastro\BL{
 
 use TrilhosDorioCadastro\DAL\{CrudConta,CrudBanco,CrudAgenciaBancaria,CrudCartaoCredito,CrudCadastroAssociado,CrudTipoPagamento};
-use TrilhosDorioCadastro\DTO\{BancoDTO,AgenciaBancariaDTO,ContaDTO,CartaoCreditoDTO,CadastroAssociadoDTO,TipoPagamentoDTO};
-use TrilhosDorioCadastro\LO\{BancoLO,AgenciaBancariaLO,ContaLO,CartaoCreditoLO,CadastroAssociadoLO, TipoPagamentoLO, TipoPagamentoLOS};
+use TrilhosDorioCadastro\DTO\{BancoDTO,AgenciaBancariaDTO,ContaDTO,CartaoCreditoDTO,CadastroAssociadoDTO,TipoPagamentoDTO,DadoBancarioJV_DTO};
+use TrilhosDorioCadastro\LO\{BancoLO,AgenciaBancariaLO,ContaLO,CartaoCreditoLO,CadastroAssociadoLO, TipoPagamentoLO,DadoBancarioJV_LO};
 
 class ManterPagamento{
 private $idbanco;
@@ -169,6 +169,13 @@ function BuscarCartaoID($idcartao){
 
     return $LCartaoCred;
 }
+
+function BuscarCartaoPorAssociado($id_associado){
+    $CartaoCred = new CrudCartaoCredito();
+    $LCartaoCred = new CartaoCreditoLO();
+    $LCartaoCred= $CartaoCred->ListarCartaoCreditoPorAssociado($id_associado);
+    return $LCartaoCred;
+}
 function BuscarCartaoPorBandeira($bandeira){
     $CartaoCred = new CrudCartaoCredito();
     $LCartaoCred = new CartaoCreditoLO();
@@ -211,7 +218,12 @@ public function ListarTiposPagamentosPorID($idtipopagamento){
     return $ListTipoPagamento;
     }
     
-
+ public function ListarDadosBancariosPorID($id_associado){
+   $dadoBancario = new CrudConta();
+   $ListDadosBancarios = new DadoBancarioJV_LO();
+   $ListDadosBancarios= $dadoBancario->ListarDadosBancarios($id_associado);
+   return $ListDadosBancarios;
+ }
 
 
 public function CadastrarDadosPagamento($tipopagamento){

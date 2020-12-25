@@ -46,7 +46,9 @@ class CrudCadastroAssociado extends Crud{
             $CadastroAssociadoDT->forma_de_doacao=$linha['forma_de_doacao'];     
             $CadastroAssociadoDT->cpf=$linha['cpf'];     
             $CadastroAssociadoDT->interesses=$linha['interesses'];     
-            $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];     
+            $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];  
+            $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
+   
             $CadastroAssociado->add($CadastroAssociadoDT);
         }
         return $CadastroAssociado;
@@ -77,7 +79,9 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->forma_de_doacao=$linha['forma_de_doacao'];     
                $CadastroAssociadoDT->cpf=$linha['cpf'];     
                $CadastroAssociadoDT->interesses=$linha['interesses'];     
-               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];     
+               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];  
+               $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
+   
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
            return $CadastroAssociado;
@@ -110,7 +114,9 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->forma_de_doacao=$linha['forma_de_doacao'];     
                $CadastroAssociadoDT->cpf=$linha['cpf'];     
                $CadastroAssociadoDT->interesses=$linha['interesses'];     
-               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];     
+               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];    
+               $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
+ 
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
            return $CadastroAssociado;
@@ -160,8 +166,9 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->cpf=$linha['cpf'];     
                $CadastroAssociadoDT->interesses=$linha['interesses'];     
                $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];   
-               $CadastroAssociadoDT->naturalidade=$linha['telefone'];     
-  
+               $CadastroAssociadoDT->naturalidade=$linha['telefone'];    
+               $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
+               
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
            return $CadastroAssociado;
@@ -196,7 +203,9 @@ class CrudCadastroAssociado extends Crud{
            $this->efetivar->bindParam("forma_de_doacao",$CadastroAssociadoDT->forma_de_doacao);
            $this->efetivar->bindParam("cpf", $CadastroAssociadoDT->cpf);    
            $this->efetivar->bindParam("interesses", $CadastroAssociadoDT->interesses);  
-           $this->efetivar->bindParam("naturalidade", $CadastroAssociadoDT->naturalidade);          
+           $this->efetivar->bindParam("naturalidade", $CadastroAssociadoDT->naturalidade); 
+           $this->efetivar->bindParam("idTipoPagamento", $CadastroAssociadoDT->idTipoPagamento); 
+         
            $this->efetivar->execute();
            //echo "\nPDOStatement::errorInfo():\n";
            $arr = $this->efetivar->errorInfo();
@@ -228,7 +237,9 @@ class CrudCadastroAssociado extends Crud{
         $this->efetivar->bindParam("cpf", $CadastroAssociadoDT->cpf);    
         $this->efetivar->bindParam("interesses", $CadastroAssociadoDT->interesses);  
         $this->efetivar->bindParam("naturalidade", $CadastroAssociadoDT->naturalidade); 
-        $this->efetivar->bindParam("telefone", $CadastroAssociadoDT->telefone);    
+        $this->efetivar->bindParam("telefone", $CadastroAssociadoDT->telefone); 
+        $this->efetivar->bindParam("idTipoPagamento", $CadastroAssociadoDT->idTipoPagamento); 
+   
         $this->efetivar->execute();
         echo "\nPDOStatement::errorInfo():\n";
            $arr = $this->efetivar->errorInfo();
