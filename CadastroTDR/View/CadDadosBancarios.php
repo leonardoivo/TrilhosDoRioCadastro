@@ -48,8 +48,10 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
 $meio="";
 echo "<select name=\"tipoPagamento\" onchange=\"this.form.submit()\" onchange=\"this.form.submit()\">";
 foreach($listTipoPag->getTipoPagamentos() as $k=>$tipoPag){
+?>
+    <option value="<? echo $tipoPag->idTipoPagamento ?>" <?=($tipoPag->idTipoPagamento == 1)?'selected':''?> ><? echo $tipoPag->nomeTipoPag;?></option> 
 
-    echo "<option value=\"$tipoPag->idTipoPagamento\" >".$tipoPag->nomeTipoPag."</option>"; 
+<?
 
 $meio=$tipoPag->idTipoPagamento;
 
@@ -65,7 +67,7 @@ echo "</select>";?>
     echo "<tr><td><input type=\"hidden\" name=\"id_associado\" value=\"{$id_associado}\"></td>";
 
 switch($tipoPagamento){
-case 1:
+case 2:
     echo "<th>Debito em conta</th>";
     echo "<tr><td><input type=\"hidden\" name=\"envio\" value=\"{$tipoPagamento}\"></td>";
 
@@ -88,7 +90,7 @@ case 1:
     echo "<td>Digito:<input type=\"text\" name=\"digito\"></td></tr>";
 
 break;
-case 2:
+case 3:
    // $tipoPagamento=2;
    // $tipoPagamentoenvio=$tipoPagamento;    
     echo "<th>Cartao de Credito</th>";

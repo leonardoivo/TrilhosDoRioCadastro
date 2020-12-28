@@ -23,7 +23,7 @@ echo "<table border=1>
 	<tr><th>Associados cadastrados</th></tr>";
 $ListAssociados=$AssociadosLt->ListarAssociados();
 foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
-    echo "<tr><td> <a href=\"DadosAssociados.php?cpf=".$associado->cpf."\">".$associado->nome." ".$associado->sobrenome."</a></td>";
+    echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\">".$associado->nome." ".$associado->sobrenome."</a></td>";
 //         // if(VerAcesso($usuario,$link)==true){
          echo "<td> <a href=\"editarDadosAssociados.php?id_associado=". $associado->id_associado."\">Editar</a></td>";
          echo " <td> <a href=\"Associados.php?id_associado=".$associado->id_associado."& exclusao=true\"> Apagar</a></td>";

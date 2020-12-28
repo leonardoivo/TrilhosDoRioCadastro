@@ -27,5 +27,6 @@ public function del(DadoBancarioJV_DTO $DadoBancario)
     {
         return $this->DadoBancarios->offsetExists($DadoBancario);
     }
-
+}
+}
 ?>

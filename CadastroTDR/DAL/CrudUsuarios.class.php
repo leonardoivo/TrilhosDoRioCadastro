@@ -22,7 +22,7 @@ class CrudUsuarios extends Crud{
     
     public function ListarUsuarios(){
     
-        $resultado=$this->conexao->query("select * from Usuarios");
+        $resultado=$this->conexao->query("select * from usuarios");
          $Usuarios = new UsuariosLO();
         while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
         {
@@ -63,9 +63,82 @@ class CrudUsuarios extends Crud{
         }
     
     
+        public function ListarUsuarioPorID($id_usuario){
+    
+            $resultado=$this->conexao->query("select * from usuarios where id_usuario={$id_usuario}");
+             $Usuarios = new UsuariosLO();
+            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+            {
+                $UsuariosDT= new UsuariosDTO();
+                $UsuariosDT->id_usuario=$linha['id_usuario'];
+                $UsuariosDT->cpf=$linha['cpf'];
+                $UsuariosDT->nome=$linha['nome'];
+                $UsuariosDT->id_perfil=$linha['id_perfil'];
+                $UsuariosDT->email=$linha['email'];
+                $UsuariosDT->login=$linha['login'];     
+                $UsuariosDT->senha=$linha['senha'];     
+                $UsuariosDT->celular=$linha['celular'];     
+                $UsuariosDT->situacao=$linha['situacao'];     
+                $UsuariosDT->sobrenome=$linha['sobrenome'];     
+                $Usuarios->add($UsuariosDT);
+          
+    
+    
+            }
+            return $Usuarios;
+            }
+
+            public function ListarUsuarioPorCPF($cpf){
+    
+                $resultado=$this->conexao->query("select * from usuarios where cpf={$cpf}");
+                 $Usuarios = new UsuariosLO();
+                while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+                {
+                    $UsuariosDT= new UsuariosDTO();
+                    $UsuariosDT->id_usuario=$linha['id_usuario'];
+                    $UsuariosDT->cpf=$linha['cpf'];
+                    $UsuariosDT->nome=$linha['nome'];
+                    $UsuariosDT->id_perfil=$linha['id_perfil'];
+                    $UsuariosDT->email=$linha['email'];
+                    $UsuariosDT->login=$linha['login'];     
+                    $UsuariosDT->senha=$linha['senha'];     
+                    $UsuariosDT->celular=$linha['celular'];     
+                    $UsuariosDT->situacao=$linha['situacao'];     
+                    $UsuariosDT->sobrenome=$linha['sobrenome'];     
+                    $Usuarios->add($UsuariosDT);
+              
+        
+        
+                }
+                return $Usuarios;
+                }
+    
+                public function ListarUsuarioNome($nome){
+    
+                    $resultado=$this->conexao->query("select * from usuarios where nome like '%{$nome}%'");
+                     $Usuarios = new UsuariosLO();
+                    while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+                    {
+                        $UsuariosDT= new UsuariosDTO();
+                        $UsuariosDT->id_usuario=$linha['id_usuario'];
+                        $UsuariosDT->cpf=$linha['cpf'];
+                        $UsuariosDT->nome=$linha['nome'];
+                        $UsuariosDT->id_perfil=$linha['id_perfil'];
+                        $UsuariosDT->email=$linha['email'];
+                        $UsuariosDT->login=$linha['login'];     
+                        $UsuariosDT->senha=$linha['senha'];     
+                        $UsuariosDT->celular=$linha['celular'];     
+                        $UsuariosDT->situacao=$linha['situacao'];     
+                        $UsuariosDT->sobrenome=$linha['sobrenome'];     
+                        $Usuarios->add($UsuariosDT);
+                  
+                    }
+                    return $Usuarios;
+                    }
+
     public function GravarUsuarios(UsuariosDTO $UsuariosDT)
     {
-    $this->efetivar=$this->conexao->prepare("insert into Usuarios (nome_Usuarios,id_patrimonio,Descricao,DataDeCriacao) values (:nome_Usuarios,:id_patrimonio,:Descricao,:DataDeCriacao)");
+    $this->efetivar=$this->conexao->prepare("INSERT INTO usuarios( cpf, nome, id_perfil, email, login, senha, celular, situacao, sobrenome) VALUES (:cpf,:nome, :id_perfil, :email, :login, :senha, :celular, :situacao, :sobrenome)");
     $this->efetivar->bindValue("cpf",$UsuariosDT->cpf);
     $this->efetivar->bindValue("nome", $UsuariosDT->nome);
     $this->efetivar->bindValue("id_perfil",$UsuariosDT->id_perfil);
@@ -76,11 +149,14 @@ class CrudUsuarios extends Crud{
     $this->efetivar->bindValue("situacao",$UsuariosDT->situacao);
     $this->efetivar->bindValue("sobrenome",$UsuariosDT->sobrenome);
     $this->efetivar->execute();
+    echo "\nPDOStatement::errorInfo():\n";
+    $arr = $this->efetivar->errorInfo();
+    print_r($arr);
     
     }
     
     public function AlterarUsuarios(UsuariosDTO $UsuariosDT,$id_usuario){
-        $this->efetivar=$this->conexao->prepare("update Usuarios set nome_Usuarios=:nome_Usuarios,id_patrimonio=:id_patrimonio,Descricao=:Descricao,DataDeCriacao=:DataDeCriacao where id_Usuarios=:id_Usuarios");
+        $this->efetivar=$this->conexao->prepare("UPDATE usuarios SET cpf=:cpf,nome=:nome,id_perfil=:id_perfil,email=:email,login=:login,senha=:senha,celular=:celular,situacao=:situacao,sobrenome=:sobrenome WHERE id_usuario=:idusuario");
         $this->efetivar->bindValue("id_usuario",$id_usuario);
         $this->efetivar->bindValue("cpf",$UsuariosDT->cpf);
         $this->efetivar->bindValue("nome", $UsuariosDT->nome);
@@ -92,12 +168,15 @@ class CrudUsuarios extends Crud{
         $this->efetivar->bindValue("situacao",$UsuariosDT->situacao);
         $this->efetivar->bindValue("sobrenome",$UsuariosDT->sobrenome);
         $this->efetivar->execute();
+        echo "\nPDOStatement::errorInfo():\n";
+        $arr = $this->efetivar->errorInfo();
+        print_r($arr);
     
     }
     
     public function ExcluirUsuarios($id_usuario){
     
-        $this->efetivar=$this->conexao->prepare("delete from  Usuarios where id_usuario=?");
+        $this->efetivar=$this->conexao->prepare("delete from  usuarios where id_usuario=?");
         $this->efetivar->bindValue(1,$id_usuario);
         $this->efetivar->execute();
     

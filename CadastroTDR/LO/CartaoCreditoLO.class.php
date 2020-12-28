@@ -15,7 +15,7 @@ public function add(CartaoCreditoDTO $CartaoCredito)
         //$this->CartaoCreditos->offsetSet($CartaoCredito->getTitulo(),$CartaoCredito); //Função porfora77
         $this->CartaoCreditos->append($CartaoCredito); //adiciona um indice automatico
     }
-    public function getCartaoCreditos(){
+    public function getCartaoCredito(){
 
         return $this->CartaoCreditos;
     }

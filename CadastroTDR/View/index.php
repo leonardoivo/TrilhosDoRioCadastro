@@ -14,7 +14,7 @@ $pagina="<!DOCTYPE html>
 <img src=\"img/titulo01.png\" >
 <nav>
 <a href=\"Associados.php\">Ver Associados</a>
-<a href=\"\">Usuarios</a>
+<a href=\"ListarUsuarios.php\">Usuarios</a>
 <a href=\"index.php?saida=1\" onclick='location.replace(\"../login.html\")'>Sair</a>
 </nav></body>
 </html>";

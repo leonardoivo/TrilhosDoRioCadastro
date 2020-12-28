@@ -1,11 +1,18 @@
 <?php
-use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
-use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
-use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
+use TrilhosDorioCadastro\DTO\{CadastroAssociadoDTO as CadastroDTO,DadoBancarioJV_DTO,CartaoCreditoDTO,BancoDTO,TipoPagamentoDTO};
+use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,DadoBancarioJV_LO,CartaoCreditoLO,BancoLO,TipoPagamentoLO};
+use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,ManterPagamento};
 require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();
+$AssociadosLt = new ManterBL();
+$ListAssociados = new CadastroLO();
+$DadoPagamento = new ManterPagamento();
+$ListdadoCard = new CartaoCreditoLO();
+$listTipoPag= new TipoPagamentoLO();
+$listBanco= new BancoLO();
 $id_associado=$_REQUEST['id_associado'];
+$cpf=0;
 $cpfUser="";
 $nome="";
 $numero="";
@@ -21,12 +28,12 @@ $DataDeNascimento="";
 $Naturalidade="";
 $Email="";
 $Telefone="";
+$idTipoPagamento=0;
 
-$AssociadosLt = new ManterBL();
-$ListAssociados = new CadastroLO();
+
 $ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
-foreach ($ListAssociados->getCadastroAssociados() as  $associado) {
-    
+foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
+   
    $cpfUser=$associado->cpf;
    $nome=$associado->nome;
    $numero=$associado->numero;
@@ -42,12 +49,15 @@ foreach ($ListAssociados->getCadastroAssociados() as  $associado) {
    $Naturalidade=$associado->naturalidade;
    $Email=$associado->email;
    $Telefone=$associado->complemento;
-
+   $idTipoPagamento=$associado->idTipoPagamento;
+   $id_associado=$associado->id_associado;
   }
 
 
 
+
 ?>
+
 <!DOCTYPE html>
 <head>
 <script src="js/BuscaEndereco.js?>"></script>
@@ -81,7 +91,86 @@ CPF:<input type="text" id="campoCPF" maxlength="11" name="cpf" value="<? echo $c
 	  <label>Historia: <input type="checkbox" name="interesses[]" value="Historia"/> </label>
 	  <label>Expedicões: <input type="checkbox" name="interesses[]" value="Expedicões" checked="checked"/> </label>
 	  </fieldset></td></tr>
-      <tr><td><div class="my_content_container "><input type="submit" value="cadastrar"></div></td> <td><input type="button" onclick="location.href='Associados.php';" value="Voltar" /></td></tr>
+    <tr><td>
+
+<?
+
+$listTipoPag=$DadoPagamento->ListarTiposPagamentos();
+$meio="";
+echo "<select name=\"tipoPagamento\" onchange=\"this.form.submit()\" onchange=\"this.form.submit()\">";
+foreach($listTipoPag->getTipoPagamentos() as $tipoPag){
+?>
+    <option value="<? echo $tipoPag->idTipoPagamento ?>" <?=($tipoPag->idTipoPagamento == $idTipoPagamento )?'selected':''?> ><? echo $tipoPag->nomeTipoPag;?></option> 
+
+<?
+
+$meio=$tipoPag->idTipoPagamento;
+
+    
+}
+echo "</select>";
+echo "</tr></td>";
+
+switch($idTipoPagamento){
+  case 1:
+    echo "sem dados financeiros cadastrados";
+    break;
+  case 2:
+  
+  $listDadoBancario = new DadoBancarioJV_LO();
+  $listDadoBancario= $DadoPagamento->ListarDadosBancariosPorID($id_associado);
+  foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
+
+
+    echo "<th>Debito em conta</th>";
+    echo "<tr><td><input type=\"hidden\" name=\"envio\" value=\"{$idTipoPagamento}\"></td>";
+
+    echo "<tr><td>Banco:";
+    $listBanco=$DadoPagamento->ListarTodosOsBancos();
+    
+    echo "<select name=\"banco\"  >";
+    foreach($listBanco->getBancos() as $banco){
+      ?>
+      <option value= "<?echo $banco->idbanco; ?>" <?=($banco->nomebanco == $dadobancarioDT->nomebanco)?'selected':'' ?> ><? echo $banco->nomebanco;?></option>"; 
+
+      <?
+    }
+    echo "</select> </td>";
+    echo" <td>  <fieldset>";
+
+   if($dadobancarioDT->tipoconta){
+    echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" checked >";
+     echo"Poupança<input type=\"radio\" name=\"tipoconta\" id=\"2\" value=\"2\" >";
+   }
+   else{
+     echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" >";
+     echo"Poupança<input type=\"radio\" name=\"tipoconta\" id=\"2\" value=\"2\" checked>";
+   }
+   echo" </fieldset></td></tr>";
+    echo "<td>Agencia:<input type=\"text\" name=\"agencia\" value=\"{$dadobancarioDT->numeroagencia}\"></td>";
+    echo "<td>Conta:<input type=\"text\" name=\"conta\"  value=\"{$dadobancarioDT->numeroconta}\"></td>";
+    echo "<td>Digito:<input type=\"text\" name=\"digito\" value=\"{$dadobancarioDT->digitoconta}\"></td></tr>";
+  }
+     break;
+  case 3:
+    $ListdadoCard = $DadoPagamento->BuscarCartaoPorAssociado($id_associado);
+    foreach($ListdadoCard->getCartaoCredito() as $dadosCartaoDT){
+      echo "<th>Cartao de Credito</th>";
+      echo "<tr><td>bandeira:<input type=\"text\" name=\"bandeira\" value=\"{$dadosCartaoDT->bandeira}\"></td>";
+      echo "<td>numeroCartao:<input type=\"text\" name=\"numeroCartao\" value=\"{$dadosCartaoDT->numeroCartao}\"></td>";
+      echo "<td>Titular:<input type=\"text\" name=\"Titular\" value=\"{$dadosCartaoDT->Titular}\"></td>";
+      echo "<td>dataDeValidade:<input type=\"text\" name=\"dataDeValidade\" value=\"{$dadosCartaoDT->dataDeValidade}\"></td></tr>";
+      echo "<td>codigo:<input type=\"text\" name=\"codigo\" value=\"{$dadosCartaoDT->codigo}\"></td></tr>";
+    }
+   
+     break;
+  case 4:
+     break;
+  case 5:
+     break;
+  }
+?>
+    <tr><td><div class="my_content_container "><input type="submit" value="cadastrar"></div></td> <td><input type="button" onclick="location.href='Associados.php';" value="Voltar" /></td></tr>
 </table>
 
 </form>

@@ -5,9 +5,9 @@ use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,ManterPa
 require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();
-$cpf=$_REQUEST['cpf'];
+$id_associado=$_REQUEST['id_associado'];
+$cpf=0;
 $cpfUser="";
-$id_associado=0;
 $nome="";
 $numero="";
 $bairro="";
@@ -27,7 +27,7 @@ $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $DadoPagamento = new ManterPagamento();
 
-$ListAssociados=$AssociadosLt->ListarAssociadoPorCPF($cpf);
+$ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
 foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
    
    $cpfUser=$associado->cpf;
@@ -83,7 +83,7 @@ foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
   echo"Corrente";
  }
  else{
-  echo "Poupança<input";
+  echo "Poupança";
  }
  echo" </fieldset></td></tr>";
   echo "<td>Agencia:{$dadobancarioDT->numeroagencia}</td>";

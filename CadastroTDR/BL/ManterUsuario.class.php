@@ -12,6 +12,40 @@ use TrilhosDorioCadastro\LO\{UsuariosLO,PerfilLO};
             return  $Lusuarios;
             
             }
+            public function ListaUsuarioPorID($id_usuario){
+              $usuarios = new CrudUsuarios();
+              $Lusuarios = new UsuariosLO();
+              $Lusuarios = $usuarios->ListarUsuarioPorID($id_usuario);
+              
+              return  $Lusuarios;
+              
+              }
+
+              public function ListaUsuarioPorCPF($cpf){
+                $usuarios = new CrudUsuarios();
+                $Lusuarios = new UsuariosLO();
+                $Lusuarios = $usuarios->ListarUsuarioPorCPF($cpf);
+                
+                return  $Lusuarios;
+                
+                }
+
+
+
+                public function ListaUsuarioNome($nome){
+                  $usuarios = new CrudUsuarios();
+                  $Lusuarios = new UsuariosLO();
+                  $Lusuarios = $usuarios->ListarUsuarioNome($nome);
+                  
+                  return  $Lusuarios;
+                  
+                  }
+
+
+
+
+
+
     public function CadastrarUsuarios(UsuariosDTO $usuario){
       $crUsuario = new CrudUsuarios();
       $crUsuario->GravarUsuarios($usuario);

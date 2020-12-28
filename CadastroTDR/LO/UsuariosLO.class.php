@@ -13,11 +13,11 @@ function  __construct()
 public function add(UsuariosDTO $Usuarios)
     {
         //$this->Usuarioss->offsetSet($Usuarios->getTitulo(),$Usuarios); //Função porfora77
-        $this->Usuarioss->append($Usuarios); //adiciona um indice automatico
+        $this->Usuarios->append($Usuarios); //adiciona um indice automatico
     }
-    public function getUsuarioss(){
+    public function getUsuarios(){
 
-        return $this->Usuarioss;
+        return $this->Usuarios;
     }
     public function del(UsuariosDTO $Usuarios)
     {
