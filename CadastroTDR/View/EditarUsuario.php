@@ -47,7 +47,7 @@ foreach ($ListUsuarios->getUsuarios()as  $usuario) {
 <img src="img/titulo01.png" >
 	<h1>Cadastro</h1>
 <div class="container?>">
-<form name="cadastrar" method="post" action="Cadastro.php?>">
+<form name="cadastrar" method="post" action="cadastroUser.php?>">
 <table   cellspacing="0" cellpadding="0?>">
 <tr>
 	<td>
