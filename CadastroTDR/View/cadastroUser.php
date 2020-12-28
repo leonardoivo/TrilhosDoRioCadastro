@@ -33,7 +33,7 @@ $id_usuario=$_POST['id_usuario'];
     $ManterUsuario->CadastrarUsuarios($cadastroDT);
     $enviarEmail = new EnvioEmail($remetente,$cadastroDT->email,'Seja muito bem vindo a Trilhos do Rio','E um Prazer ter você como associado');
     $enviarEmail->sendMail();
-    $Redirecionamento->RedirecionarParaTipoPag($pagina,$_POST['cpf']);
+    $Redirecionamento->Redirecionar($pagina);
 
    }
 
