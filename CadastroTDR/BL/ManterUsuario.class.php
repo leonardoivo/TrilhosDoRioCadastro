@@ -3,32 +3,33 @@ namespace TrilhosDorioCadastro\BL{
 use TrilhosDorioCadastro\DAL\{CrudUsuarios,CrudPerfil};
 use TrilhosDorioCadastro\DTO\{UsuariosDTO,PerfilDTO};
 use TrilhosDorioCadastro\LO\{UsuariosLO,PerfilLO};
-    class ManterUsuario{
-        public function ListaUsuarios(){
-            $usuarios = new CrudUsuarios();
-            $Lusuarios = new UsuariosLO();
-            $Lusuarios = $usuarios->ListarUsuarios();
-            
-            return  $Lusuarios;
-            
-            }
-            public function ListaUsuarioPorID($id_usuario){
-              $usuarios = new CrudUsuarios();
-              $Lusuarios = new UsuariosLO();
-              $Lusuarios = $usuarios->ListarUsuarioPorID($id_usuario);
-              
-              return  $Lusuarios;
-              
-              }
+class ManterUsuario{
 
-              public function ListaUsuarioPorCPF($cpf){
-                $usuarios = new CrudUsuarios();
-                $Lusuarios = new UsuariosLO();
-                $Lusuarios = $usuarios->ListarUsuarioPorCPF($cpf);
+  public function ListaUsuarios(){
+    $usuarios = new CrudUsuarios();
+    $Lusuarios = new UsuariosLO();
+    $Lusuarios = $usuarios->ListarUsuarios();
+            
+    return  $Lusuarios;
+            
+    }
+    public function ListaUsuarioPorID($id_usuario){
+      $usuarios = new CrudUsuarios();
+      $Lusuarios = new UsuariosLO();
+      $Lusuarios = $usuarios->ListarUsuarioPorID($id_usuario);
+              
+      return  $Lusuarios;
+              
+    }
+
+     public function ListaUsuarioPorCPF($cpf){
+      $usuarios = new CrudUsuarios();
+      $Lusuarios = new UsuariosLO();
+      $Lusuarios = $usuarios->ListarUsuarioPorCPF($cpf);
                 
-                return  $Lusuarios;
+       return  $Lusuarios;
                 
-                }
+       }
 
 
 
@@ -41,8 +42,21 @@ use TrilhosDorioCadastro\LO\{UsuariosLO,PerfilLO};
                   
                   }
 
+                  public function ListaUsuariosComPaginacao($paginaCorrente,$linhasPorPagina){
+                    $usuarios = new CrudUsuarios();
+                    $Lusuarios = new UsuariosLO();
+                    $Lusuarios = $usuarios->ListarUsuariosComPaginacao($paginaCorrente,$linhasPorPagina);
+                    
+                    return  $Lusuarios;
+                    
+                    }
 
-
+                    public function ListarTotais(){
+                      $totais=0;
+                      $ListarTotal = new CrudUsuarios();
+                      $totais=$ListarTotal->ObterTotalUsuarios();
+                      return $totais;
+                      }
 
 
 

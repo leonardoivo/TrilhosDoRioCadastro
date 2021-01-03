@@ -29,6 +29,8 @@ $Naturalidade="";
 $Email="";
 $Telefone="";
 $idTipoPagamento=0;
+$nomePai="";
+$nomeMae="";
 
 
 $ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
@@ -51,47 +53,157 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
    $Telefone=$associado->complemento;
    $idTipoPagamento=$associado->idTipoPagamento;
    $id_associado=$associado->id_associado;
+   $nomePai=$associado->nomePai;
+   $nomeMae=$associado->nomeMae;
   }
 
 
 
 
 ?>
-
 <!DOCTYPE html>
+<html>
 <head>
-<script src="js/BuscaEndereco.js?>"></script>
-<meta charset="iso-8859-1?>">
-    <link rel="stylesheet" href="css/style.css" media="all" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js?>"></script>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<!-- CSS-->
+   <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+
+    <script src="js/BuscaEndereco.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
-<body>
-<html>
-<img src="img/titulo01.png" >
-	<h1>Cadastro</h1>
-<div class="container?>">
-<form name="cadastrar" method="post" action="Cadastro.php?>">
-<table   cellspacing="0" cellpadding="0?>">
-<tr>
-	<td>
-CPF:<input type="text" id="campoCPF" maxlength="11" name="cpf" value="<? echo $cpfUser;?>"></td>
-<td>CEP: <input type="text" name="cep" id="campoCEP" value="<? echo $CEP;?>" onblur="pesquisacep(this.value);" ></td>
-</tr>
-<tr><td>Nome:<input type="text" name="nome" value="<? echo $nome;?>"></td><td> Sobrenome: <input type="text" name="sobrenome" value="<? echo $sobrenome;?>"></td></tr>
-<tr><td>Endereço:<input type="text" name="endereco" id="endereco" value="<? echo $Endereco;?>"></td><td>Numero:<input type="text" id="campoNumero" name="numero" value="<? echo $numero;?>"></td><td> Complemento: <input type="text" id="campoComplemento" name="Complemento" value="<? echo $Complemento;?>"></td></tr>
-<tr><td> Bairro:<input type="text" name="bairro" id="bairro" value="<? echo $bairro;?>"></td><td>Cidade: <input type="text" name="cidade" id="cidade" value="<? echo $cidade;?>"> </td><td>Estado: <input type="text" name="uf" id="uf" value="<? echo $estado;?>"> </td><td>Pais: <input type="text" name="Pais" value="<? echo $Pais;?>"> </td></tr>
-<tr><td>Data de Nascimento <input type="date" name="dataNascimento" value="<? echo $DataDeNascimento;?>"></td><td> Naturalidade: <input type="text" id="campoNaturalidade" name="Naturalidade" value="<? echo $Naturalidade;?>"> </td></tr>
-<tr><td>Email:<input type="text" name="email" value="<? echo $Email?>"></td></tr>
+    <img src="img/titulo01.png">
+    <input type="hidden" name="editar" value="true">
+
+ <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+   <a class="navbar-brand" href="index.php">Home</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+     <ul class="navbar-nav mr-auto">
+     <li class="nav-item active">
+         <a class="nav-link" href="CadastroIn.html" onclick='location.replace("CadastroIn.html")'>Cadastrar Novo Associado</a>
+       </li>
+     <li class="nav-item active">
+         <a class="nav-link" href="Associados.php" onclick='location.replace("Associados.php")'>voltar</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="Associados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
+       </li>   
+     </ul>   
+   </div>
+ </nav>  
+    <h2>Alterar Associado</h2>
+<div class="container">
+<form name="cadastrar" method="post" action="Cadastro.php"  id="Cadastro" onsubmit="validaFormAssociado(); return false;">
+<input type="hidden" name="id_associado" value="<? echo $id_associado;?>">
+<input type="hidden" name="editar" value="true">
+
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="inputCPF">CPF</label>
+      <input type="text" class="form-control" id="cpf"  value="<? echo $cpfUser;?>" name="cpf">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputNome">Nome</label>
+      <input type="text" class="form-control" id="inputNome" name="nome" value="<? echo $nome;?>" placeholder="Nome" name="nome">
+    </div>
+      <div class="form-group col-md-6">
+      <label for="inputSobrenome">Sobrenome</label>
+      <input type="text" class="form-control" id="inputSobrenome"  name="sobrenome" value="<? echo $sobrenome;?>" placeholder="Sobrenome">
+    </div>
+     <div class="form-group col-md-2">
+      <label for="inputDataNascimento">Data de Nascimento</label>
+      <input type="date" class="form-control" name="dataNascimento" value="<? echo $DataDeNascimento;?>" id="inputDataNascimento">
+    </div>
+     </div>
+       <div class="form-row">
+
+      <div class="form-group col-md-1">
+      <label for="inputNaturalidade">Naturalidade</label>
+      <input type="text" class="form-control"  name="Naturalidade" value="<? echo $Naturalidade;?>" id="inputNaturalidade">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" name="email" value="<? echo $Email?>" placeholder="Email">
+    </div>
+     <div class="form-group col-md-2">
+      <label for="inputTelefone">Telefone</label>
+      <input type="text" class="form-control" name="telefone" value="<? echo $Telefone;?>" id="inputTelefone">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputMae">Nome da mãe</label>
+      <input type="text" class="form-control" id="inputMae" name="mae" placeholder="Nome da mãe" value="<? echo $nomeMae;?>">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputMae">Nome do Pai</label>
+      <input type="text" class="form-control" id="inputPai" name="pai" placeholder="Nome do pai" value="<? echo $nomePai;?>">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputCEP">CEP</label>
+      <input type="text" class="form-control" id="inputCEP" name="cep"  value="<? echo $CEP;?>" onblur="pesquisacep(this.value);">
+    </div>
+  <div class="form-group  col-md-6">
+    <label for="inputAddress">Endereço</label>
+    <input type="text" class="form-control" id="endereco" value="<? echo $Endereco;?>" name="endereco">
+  </div>
+  <div class="form-group col-md-1">
+      <label for="inputNumero">Numero</label>
+      <input type="text" class="form-control"  name="numero" value="<? echo $numero;?>" id="inputNumero">
+  </div>
+  <div class="form-group col-md-1">
+      <label for="inputComplemento">Complemento</label>
+      <input type="text" class="form-control" name="Complemento" value="<? echo $Complemento;?>" id="inputComplemento">
+   </div>
+ </div>  
+  <div class="form-group col-md-6">
+    <label for="inputBairro">Bairro</label>
+    <input type="text" class="form-control" id="bairro" name="bairro" value="<? echo $bairro;?>">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Cidade</label>
+      <input type="text" class="form-control" name="cidade" value="<? echo $cidade;?>" id="cidade">
+    </div>
+    <div class="form-group col-md-1">
+      <label for="inputEstado">Estado</label>
+     <input type="text" id="uf" name="uf" value="<? echo $estado;?>" class="form-control">
+
+    </div> 
+    <div class="form-group col-md-2">
+      <label for="inputPais">Pais</label>
+      <input type="text" class="form-control" name="Pais"   value="<? echo $Pais;?>" id="inputPais">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="interesses[]" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Pesquisa
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="interesses[]" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Historia
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox"name="interesses[]"  id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Expedicões
+      </label>
+    </div>
+   </div>
+   
+
+ </div>
 
 
-<tr><td>Telefone:<input type="text" name="campoTelefone" value="<? echo $Telefone;?>"></td></tr>
-<tr><td>  <fieldset>
-	  <label>Pesquisa: <input type="checkbox" name="interesses[]" value="Pesquisa"/> </label>
-	  <label>Historia: <input type="checkbox" name="interesses[]" value="Historia"/> </label>
-	  <label>Expedicões: <input type="checkbox" name="interesses[]" value="Expedicões" checked="checked"/> </label>
-	  </fieldset></td></tr>
-    <tr><td>
 
 <?
 
@@ -109,7 +221,7 @@ $meio=$tipoPag->idTipoPagamento;
     
 }
 echo "</select>";
-echo "</tr></td>";
+echo "";
 
 switch($idTipoPagamento){
   case 1:
@@ -122,10 +234,10 @@ switch($idTipoPagamento){
   foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
 
 
-    echo "<th>Debito em conta</th>";
-    echo "<tr><td><input type=\"hidden\" name=\"envio\" value=\"{$idTipoPagamento}\"></td>";
+    echo "<h3>Debito em conta</h3>";
+    echo "<input type=\"hidden\" name=\"envio\" value=\"{$idTipoPagamento}\">";
 
-    echo "<tr><td>Banco:";
+    echo "Banco:";
     $listBanco=$DadoPagamento->ListarTodosOsBancos();
     
     echo "<select name=\"banco\"  >";
@@ -135,8 +247,8 @@ switch($idTipoPagamento){
 
       <?
     }
-    echo "</select> </td>";
-    echo" <td>  <fieldset>";
+    echo "</select> ";
+    echo"   <fieldset>";
 
    if($dadobancarioDT->tipoconta){
     echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" checked >";
@@ -146,21 +258,21 @@ switch($idTipoPagamento){
      echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" >";
      echo"Poupança<input type=\"radio\" name=\"tipoconta\" id=\"2\" value=\"2\" checked>";
    }
-   echo" </fieldset></td></tr>";
-    echo "<td>Agencia:<input type=\"text\" name=\"agencia\" value=\"{$dadobancarioDT->numeroagencia}\"></td>";
-    echo "<td>Conta:<input type=\"text\" name=\"conta\"  value=\"{$dadobancarioDT->numeroconta}\"></td>";
-    echo "<td>Digito:<input type=\"text\" name=\"digito\" value=\"{$dadobancarioDT->digitoconta}\"></td></tr>";
+   echo" </fieldset>";
+    echo "Agencia:<input type=\"text\" name=\"agencia\" value=\"{$dadobancarioDT->numeroagencia}\">";
+    echo "Conta:<input type=\"text\" name=\"conta\"  value=\"{$dadobancarioDT->numeroconta}\">";
+    echo "Digito:<input type=\"text\" name=\"digito\" value=\"{$dadobancarioDT->digitoconta}\">";
   }
      break;
   case 3:
     $ListdadoCard = $DadoPagamento->BuscarCartaoPorAssociado($id_associado);
     foreach($ListdadoCard->getCartaoCredito() as $dadosCartaoDT){
-      echo "<th>Cartao de Credito</th>";
-      echo "<tr><td>bandeira:<input type=\"text\" name=\"bandeira\" value=\"{$dadosCartaoDT->bandeira}\"></td>";
-      echo "<td>numeroCartao:<input type=\"text\" name=\"numeroCartao\" value=\"{$dadosCartaoDT->numeroCartao}\"></td>";
-      echo "<td>Titular:<input type=\"text\" name=\"Titular\" value=\"{$dadosCartaoDT->Titular}\"></td>";
-      echo "<td>dataDeValidade:<input type=\"text\" name=\"dataDeValidade\" value=\"{$dadosCartaoDT->dataDeValidade}\"></td></tr>";
-      echo "<td>codigo:<input type=\"text\" name=\"codigo\" value=\"{$dadosCartaoDT->codigo}\"></td></tr>";
+      echo "<h3>Cartao de Credito</h3>";
+      echo "bandeira:<input type=\"text\" name=\"bandeira\" value=\"{$dadosCartaoDT->bandeira}\">";
+      echo "numeroCartao:<input type=\"text\" name=\"numeroCartao\" value=\"{$dadosCartaoDT->numeroCartao}\">";
+      echo "Titular:<input type=\"text\" name=\"Titular\" value=\"{$dadosCartaoDT->Titular}\">";
+      echo "dataDeValidade:<input type=\"text\" name=\"dataDeValidade\" value=\"{$dadosCartaoDT->dataDeValidade}\">";
+      echo "codigo:<input type=\"text\" name=\"codigo\" value=\"{$dadosCartaoDT->codigo}\">";
     }
    
      break;
@@ -170,11 +282,10 @@ switch($idTipoPagamento){
      break;
   }
 ?>
-    <tr><td><div class="my_content_container "><input type="submit" value="cadastrar"></div></td> <td><input type="button" onclick="location.href='Associados.php';" value="Voltar" /></td></tr>
-</table>
-
+   <div class="form-row">
+      <button type="submit" class="btn  btn-dark">Confirmar Edição</button>
+   </div>
+</div>
 </form>
-
 </body>
-
 </html>

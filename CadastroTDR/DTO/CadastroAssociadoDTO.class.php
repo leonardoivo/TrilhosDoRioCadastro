@@ -24,6 +24,8 @@ public      $cpf;
 public      $interesses; 
 public      $naturalidade;
 public      $idTipoPagamento;
+public      $nomePai;
+public      $nomeMae;
 
 }
 

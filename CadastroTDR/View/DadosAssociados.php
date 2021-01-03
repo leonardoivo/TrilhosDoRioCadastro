@@ -23,6 +23,8 @@ $Naturalidade="";
 $Email="";
 $Telefone="";
 $idTipoPagamento=0;
+$nomePai="";
+$nomeMae="";
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $DadoPagamento = new ManterPagamento();
@@ -47,6 +49,8 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
    $Telefone=$associado->complemento;
    $idTipoPagamento=$associado->idTipoPagamento;
    $id_associado=$associado->id_associado;
+   $nomePai=$associado->nomePai;
+   $nomeMae=$associado->nomeMae;
   }
 
 
@@ -54,15 +58,50 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
 ?>
 
 <!DOCTYPE html>
-<html><head>
-</head><body>
-<table >
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<!-- CSS-->
+   <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<img src="img/titulo01.png" >
+ <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+   <a class="navbar-brand" href="index.php">Home</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+ 
+   <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item active">
+         <a class="nav-link" href="Associados.php" onclick='location.replace("index.php")'>voltar</a>
+       </li>
+       <li class="nav-item">
+         <a class="nav-link" href="Associados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
+       </li>
+     </ul>
+    
+   </div>
+ </nav>
+
+<div class="container">
+<h1>Dados do Associado</h1>
+
+<table class="table">
 <tr>	<td>
 CPF:<? echo $cpfUser; ?></td>
 </tr>
 <tr><td>Nome:<? echo $nome; ?></td><td> Sobrenome: <? echo $sobrenome; ?></td></tr>
 <tr><td>Endereço:<? echo $Endereco; ?></td><td>Numero:<? echo $numero; ?></td><td> Complemento: <? echo $Complemento; ?></td><td>CEP: <? echo $CEP; ?></td></tr>
 <tr><td> Bairro:<? echo $bairro; ?></td><td>Cidade: <? echo $cidade; ?> </td><td>Estado: <? echo $estado; ?></td><td>Pais: <? echo $Pais; ?> </td></tr>
+<tr><td>Nome da mãe:<? echo $nomeMae; ?> </td><td>Nome do pai:<? echo $nomePai; ?></td></tr>
 <tr><td>Data de Nascimento <? echo $DataDeNascimento; ?></td><td> Naturalidade: <? echo $Naturalidade; ?></td></tr>
 <tr><td>Email:<? echo $Email; ?></td><td>Telefone:<? echo $Telefone;?></td></tr>
 <?switch($idTipoPagamento){
@@ -113,6 +152,6 @@ case 5:
 }?>
 </table>
 <a href="Associados.php">Voltar</a>
-
+</div>
 </body>
 </html>

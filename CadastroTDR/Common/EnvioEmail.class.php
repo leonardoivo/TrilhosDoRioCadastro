@@ -11,7 +11,7 @@ private $Rementente;
 private $Destinatario;
 private $mensagem;
 private $assunto;
-public function __construct($Rementente,$Destinatario,$mensagem,$assunto)
+public function __construct($Rementente,$Destinatario,$assunto,$mensagem)
 {
     $this->Rementente=$Rementente;
     $this->Destinatario=$Destinatario;

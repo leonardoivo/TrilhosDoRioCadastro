@@ -38,7 +38,7 @@ public function acesso($login,$senha){
     public function ListaUsuarios(){
         $usuarios = new CrudUsuarios();
         $Lusuarios = $usuarios->ListarUsuarios();
-        foreach($Lusuarios->getUsuarioss() as $k=>$usuario)
+        foreach($Lusuarios->getUsuarios() as $k=>$usuario)
         {
            echo $usuario->id_usuario;
            echo $usuario->cpf;
@@ -47,6 +47,24 @@ public function acesso($login,$senha){
         
         
         }
+
+        public function ObterPaginaCorrente($linhasPorPagina,$numero_pagina){
+            $paginaCorrente=0;
+            $paginaCorrente=($linhasPorPagina * $numero_pagina)-$linhasPorPagina;
+           
+            return  $paginaCorrente;
+
+        }
+
+        public function ObterTotalDePaginas($TotalLinhas,$linhasPorPagina){
+           $totalPagina=0;
+           $totalPagina= ceil($TotalLinhas/$linhasPorPagina);
+
+           return $totalPagina;
+        }
+
+
+
 
    public function ListarPerfil(){
     $perfil =  new CrudPerfil();

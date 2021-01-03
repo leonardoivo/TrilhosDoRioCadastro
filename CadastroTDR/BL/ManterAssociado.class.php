@@ -4,6 +4,7 @@ use TrilhosDorioCadastro\DAL\{CrudCadastroAssociado,CrudOrigemAssociado};
 use TrilhosDorioCadastro\LO\{CadastroAssociadoLO,OrigemAssociadoLO};
 class ManterAssociado{
 
+
 public function CadastrarAssociado($CadAssociadoDTO)
 {
   $cadastrar = new CrudCadastroAssociado();
@@ -35,6 +36,25 @@ public function ListarAssociados()
   return $LlistarGeral;
 
 }
+public function ListarAssociadosComPaginacao($paginaCorrente,$linhasPorPagina)
+{
+  $ListarGeral = new CrudCadastroAssociado();
+  $LlistarGeral = new CadastroAssociadoLO();
+  $LlistarGeral=$ListarGeral->ListarCadastroAssociadosComPaginacao($paginaCorrente,$linhasPorPagina);
+  return $LlistarGeral;
+
+}
+
+public function ListarTotais(){
+$totais=0;
+$ListarTotal = new CrudCadastroAssociado();
+$totais=$ListarTotal->ObterTotalAssociados();
+return $totais;
+}
+
+
+
+
 public function ListarAssociado($nomeassociado){
         $ListarAssociado = new CrudCadastroAssociado();
         $LlistarAssociado= new CadastroAssociadoLO();
