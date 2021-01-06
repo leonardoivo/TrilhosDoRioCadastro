@@ -44,14 +44,27 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
     $pagina='Associados.php';
     $ManterCadastro->EditarAssociado($cadastroDT,$id_associado);
     $Redirecionamento->Redirecionar($pagina);
-   }else{
+   }else if( $ManterCadastro->ConfirmaExistenciaAssociado($cadastroDT->cpf)==false){
     //$pagina='http://localhost/TrilhosDoRioCadastro/CadastroTDR/View/CadDadosBancarios.php';
     $pagina='BoasVindas.html';
     $ManterCadastro->CadastrarAssociado($cadastroDT);
     $enviarEmail = new EnvioEmail($remetente,$cadastroDT->email,'Seja muito bem vindo a Trilhos do Rio',$text);
     $enviarEmail->sendMail();
+    $emailAdm="leonardo.ivo22@gmail.com";
+    $enviarEmail = new EnvioEmail($remetente,$emailAdm,'Um novo associado acaba de se cadastrar no site da Trilhos do Rio',$ManterCadastro->ObterDadosNovoAssociadoEmail($cadastroDT->cpf));
+    $enviarEmail->sendMail();
    //$Redirecionamento->RedirecionarParaTipoPag($pagina,$_POST['cpf']);
     $Redirecionamento->Redirecionar($pagina);
+   }
+   else{
+      $pagina="Cadastro.html";
+    echo "<!DOCTYPE html>";
+   echo "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"refresh\" content=\"5; url=http://example.com/index.php\">";
+   echo "</head><body onload=\"alert('+\"'\"+'usuario ja cadastrado!!'+\"'\"+');\">";
+   echo "<a href=\"http://example.com/index.php\">click!</a>";
+   echo '</body>';
+   echo '</html>';
+   $Redirecionamento->Redirecionar($pagina);
 
    }
 ?>
