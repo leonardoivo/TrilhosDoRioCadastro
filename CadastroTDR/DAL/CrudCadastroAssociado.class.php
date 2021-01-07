@@ -100,7 +100,20 @@ class CrudCadastroAssociado extends Crud{
            return $totais;
      }
 
-
+     public function ConfirmaExistenciaUsuario($cpf){
+        $retorno=false;
+     
+        $this->efetivar=$this->conexao->prepare("select * from cadastroAssociado where cpf=:cpf");
+        $this->efetivar->bindParam("cpf",$cpf);
+        $this->efetivar->execute();
+        $this->efetivar->RowCount();
+        $quantidade=$this->efetivar->RowCount();
+        if($quantidade>0){
+             $retorno=true; 
+           }
+        
+     return $retorno;
+    }
 
 
         public function BuscarAssociado($nomeassociado){

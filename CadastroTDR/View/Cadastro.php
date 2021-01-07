@@ -15,7 +15,10 @@ $id_associado='';
 $text= file_get_contents('CorpoEmail.html');
  $p = $GLOBALS['_'.$_SERVER['REQUEST_METHOD']];
 $editar=isset($_POST['editar'])?$_POST['editar']:false;
+$nomepagina="";
+
 $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
+   $nomepagina=$_POST['nomepagina'];
    $cadastroDT->nome=$_POST['nome'];
    $cadastroDT->sobrenome=$_POST['sobrenome'];
    $cadastroDT->data_De_nascimento=$_POST['dataNascimento'];
@@ -57,14 +60,7 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
     $Redirecionamento->Redirecionar($pagina);
    }
    else{
-      $pagina="Cadastro.html";
-    echo "<!DOCTYPE html>";
-   echo "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><meta http-equiv=\"refresh\" content=\"5; url=http://example.com/index.php\">";
-   echo "</head><body onload=\"alert('+\"'\"+'usuario ja cadastrado!!'+\"'\"+');\">";
-   echo "<a href=\"http://example.com/index.php\">click!</a>";
-   echo '</body>';
-   echo '</html>';
-   $Redirecionamento->Redirecionar($pagina);
-
+    echo "<script>alert('Usuário já cadastrado!');location.href=\"{$nomepagina}\";</script>";
+   
    }
 ?>

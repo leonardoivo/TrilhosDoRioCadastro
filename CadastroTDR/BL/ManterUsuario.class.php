@@ -33,14 +33,12 @@ class ManterUsuario{
 
 
 
-                public function ListaUsuarioNome($nome){
-                  $usuarios = new CrudUsuarios();
-                  $Lusuarios = new UsuariosLO();
-                  $Lusuarios = $usuarios->ListarUsuarioNome($nome);
-                  
-                  return  $Lusuarios;
-                  
-                  }
+ public function ListaUsuarioNome($nome){
+ $usuarios = new CrudUsuarios();
+$Lusuarios = new UsuariosLO();
+$Lusuarios = $usuarios->ListarUsuarioNome($nome);                  
+ return  $Lusuarios;                
+ }
 
                   public function ListaUsuariosComPaginacao($paginaCorrente,$linhasPorPagina){
                     $usuarios = new CrudUsuarios();
