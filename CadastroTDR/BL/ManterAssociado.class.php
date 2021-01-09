@@ -36,6 +36,15 @@ public function ListarAssociados()
   return $LlistarGeral;
 
 }
+public function ListarAsssociadosRecentes()
+{
+  $ListarGeral = new CrudCadastroAssociado();
+  $LlistarGeral = new CadastroAssociadoLO();
+  $LlistarGeral=$ListarGeral->ListarCadastroAssociadosUltimos();
+  return $LlistarGeral;
+
+}
+
 public function ListarAssociadosComPaginacao($paginaCorrente,$linhasPorPagina)
 {
   $ListarGeral = new CrudCadastroAssociado();

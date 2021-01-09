@@ -25,6 +25,7 @@ $Telefone="";
 $idTipoPagamento=0;
 $nomePai="";
 $nomeMae="";
+$interesses="";
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $DadoPagamento = new ManterPagamento();
@@ -51,6 +52,7 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
    $id_associado=$associado->id_associado;
    $nomePai=$associado->nomePai;
    $nomeMae=$associado->nomeMae;
+   $interesses=$associado->interesses;
   }
 
 
@@ -151,6 +153,15 @@ case 5:
    break;
 }?>
 </table>
+<ul>
+<?
+foreach(explode(",",$interesses) as $item){
+
+  echo "<li>".$item."</li>";
+
+}
+?>
+</ul>
 <a href="Associados.php">Voltar</a>
 </div>
 </body>

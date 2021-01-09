@@ -1,12 +1,20 @@
-
-
 <?php
 session_start();
+ob_start();
+use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
+use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
+use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
+require '../StartLoader/autoloader.php';
+
 $usuario=null;
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
-ob_start();
+$Controle = new ControleAcesso();
+$AssociadosLt = new ManterBL();
+$ListAssociados = new CadastroLO();
+$TotaisDeAssociados=$AssociadosLt->ListarTotais();
+
 if($usuario>0){
-$pagina="<!DOCTYPE html>
+$paginaPart1="<!DOCTYPE html>
 <html>
 <head>
 
@@ -41,12 +49,28 @@ $pagina="<!DOCTYPE html>
     </ul>  
   </div>
 </nav>
+<div class=\"container\">
+  <div class=\"row\">
+    <div class=\"col-sm\">";
+echo $paginaPart1;
+echo "<h1>Ultimo associados cadastrados</h1>
+<div class=\"table-responsive\">
 
-</body>
-</html>";
-echo $pagina;
+<table class=\"table table-bordered table-striped \">";
+$ListAssociados=$AssociadosLt->ListarAsssociadosRecentes();
+foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
+    echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\" >".$associado->nome." ".$associado->sobrenome."</a></td>";
+   echo "</tr>";
+  } 	
+$paginaParte2=" </table>
+</div></div>
+<div class=\"col-sm\">
+Total de cadastrados:".$TotaisDeAssociados."</div>
+</div>
+</div></body></html>";
 
-}
+echo $paginaParte2;
+}	
 else if (!isset($usuario))
 {
 header("Location:../login.html");
