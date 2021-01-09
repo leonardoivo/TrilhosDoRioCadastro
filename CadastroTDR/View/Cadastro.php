@@ -61,6 +61,5 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
    }
    else{
     echo "<script>alert('Usuário já cadastrado!');location.href=\"{$nomepagina}\";</script>";
-   
    }
 ?>
