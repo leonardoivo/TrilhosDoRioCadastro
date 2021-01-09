@@ -15,7 +15,10 @@ $id_associado='';
 $text= file_get_contents('CorpoEmail.html');
  $p = $GLOBALS['_'.$_SERVER['REQUEST_METHOD']];
 $editar=isset($_POST['editar'])?$_POST['editar']:false;
+$nomepagina="";
+
 $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
+   $nomepagina=$_POST['nomepagina'];
    $cadastroDT->nome=$_POST['nome'];
    $cadastroDT->sobrenome=$_POST['sobrenome'];
    $cadastroDT->data_De_nascimento=$_POST['dataNascimento'];
@@ -44,14 +47,20 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
     $pagina='Associados.php';
     $ManterCadastro->EditarAssociado($cadastroDT,$id_associado);
     $Redirecionamento->Redirecionar($pagina);
-   }else{
+   }else if( $ManterCadastro->ConfirmaExistenciaAssociado($cadastroDT->cpf)==false){
     //$pagina='http://localhost/TrilhosDoRioCadastro/CadastroTDR/View/CadDadosBancarios.php';
     $pagina='BoasVindas.html';
     $ManterCadastro->CadastrarAssociado($cadastroDT);
     $enviarEmail = new EnvioEmail($remetente,$cadastroDT->email,'Seja muito bem vindo a Trilhos do Rio',$text);
     $enviarEmail->sendMail();
+    $emailAdm="leonardo.ivo22@gmail.com";
+    $enviarEmail = new EnvioEmail($remetente,$emailAdm,'Um novo associado acaba de se cadastrar no site da Trilhos do Rio',$ManterCadastro->ObterDadosNovoAssociadoEmail($cadastroDT->cpf));
+    $enviarEmail->sendMail();
    //$Redirecionamento->RedirecionarParaTipoPag($pagina,$_POST['cpf']);
     $Redirecionamento->Redirecionar($pagina);
-
+   }
+   else{
+    echo "<script>alert('Usuário já cadastrado!');location.href=\"{$nomepagina}\";</script>";
+   
    }
 ?>

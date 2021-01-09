@@ -92,6 +92,42 @@ class CrudCadastroAssociado extends Crud{
             return $CadastroAssociado;
             }
 
+            public function ListarCadastroAssociadosUltimos(){
+    
+                $resultado=$this->conexao->query("SELECT * FROM cadastroAssociado order by id_associado desc limit 10");
+                 $CadastroAssociado = new CadastroAssociadoLO();
+                while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
+                {
+                     $CadastroAssociadoDT= new CadastroAssociadoDTO();
+                    $CadastroAssociadoDT->id_associado=$linha['id_associado'];
+                    $CadastroAssociadoDT->nome=$linha['nome'];
+                    $CadastroAssociadoDT->sobrenome=$linha['sobrenome'];
+                    $CadastroAssociadoDT->data_De_nascimento=$linha['data_De_nascimento'];
+                    $CadastroAssociadoDT->email=$linha['email'];
+                    $CadastroAssociadoDT->id_origem=$linha['id_origem'];     
+                    $CadastroAssociadoDT->endereco=$linha['endereco'];     
+                    $CadastroAssociadoDT->cep=$linha['cep'];     
+                    $CadastroAssociadoDT->Bairro=$linha['Bairro'];     
+                    $CadastroAssociadoDT->Cidade=$linha['Cidade'];     
+                    $CadastroAssociadoDT->Estado=$linha['Estado'];     
+                    $CadastroAssociadoDT->data_De_cadastro=$linha['data_De_cadastro'];     
+                    $CadastroAssociadoDT->pais=$linha['pais'];     
+                    $CadastroAssociadoDT->data_De_desligamento=$linha['data_De_desligamento'];     
+                    $CadastroAssociadoDT->numero=$linha['numero'];     
+                    $CadastroAssociadoDT->complemento=$linha['complemento'];     
+                    $CadastroAssociadoDT->forma_de_doacao=$linha['forma_de_doacao'];     
+                    $CadastroAssociadoDT->cpf=$linha['cpf'];     
+                    $CadastroAssociadoDT->interesses=$linha['interesses'];     
+                    $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];  
+                    $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
+                    $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
+                    $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];   
+    
+                    $CadastroAssociado->add($CadastroAssociadoDT);
+                }
+                return $CadastroAssociado;
+                }
+    
      public function ObterTotalAssociados(){
            $totais=0;
            $resultado=$this->conexao->query("select * from cadastroAssociado order by cpf asc");
@@ -100,7 +136,20 @@ class CrudCadastroAssociado extends Crud{
            return $totais;
      }
 
-
+     public function ConfirmaExistenciaUsuario($cpf){
+        $retorno=false;
+     
+        $this->efetivar=$this->conexao->prepare("select * from cadastroAssociado where cpf=:cpf");
+        $this->efetivar->bindParam("cpf",$cpf);
+        $this->efetivar->execute();
+        $this->efetivar->RowCount();
+        $quantidade=$this->efetivar->RowCount();
+        if($quantidade>0){
+             $retorno=true; 
+           }
+        
+     return $retorno;
+    }
 
 
         public function BuscarAssociado($nomeassociado){
