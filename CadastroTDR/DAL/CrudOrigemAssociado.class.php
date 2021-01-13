@@ -39,14 +39,14 @@ class CrudOrigemAssociado extends Crud{
     
     public function GravarOrigemAssociado(OrigemAssociadoDTO $OrigemAssociadoDT)
     {
-    $this->efetivar=$this->conexao->prepare("insert into OrigemAssociado (nome_OrigemAssociado,id_patrimonio,Descricao,DataDeCriacao) values (:nome_OrigemAssociado,:id_patrimonio,:Descricao,:DataDeCriacao)");
+    $this->efetivar=$this->conexao->prepare("insert into OrigemAssociado (Origem) values (:Origem)");
     $this->efetivar->bindValue("Origem",$OrigemAssociadoDT->Origem);
     $this->efetivar->execute();
     
     }
     
     public function AlterarOrigemAssociado(OrigemAssociadoDTO $OrigemAssociadoDT){
-        $this->efetivar=$this->conexao->prepare("update OrigemAssociado set nome_OrigemAssociado=:nome_OrigemAssociado,id_patrimonio=:id_patrimonio,Descricao=:Descricao,DataDeCriacao=:DataDeCriacao where id_OrigemAssociado=:id_OrigemAssociado");
+        $this->efetivar=$this->conexao->prepare("update OrigemAssociado set Origem:Origem where id_origem=:id_origem");
         $this->efetivar->bindValue("id_origem",$OrigemAssociadoDT->id_origem);
         $this->efetivar->bindValue("Origem",$OrigemAssociadoDT->Origem);
         $this->efetivar->execute();

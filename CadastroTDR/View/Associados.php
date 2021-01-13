@@ -40,6 +40,8 @@ echo "<!DOCTYPE html>
 <meta charset=\"utf-8\" />
 <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /> 
+<link rel=\"shortcut icon\" href=\"img/favicon.png\" />
+
 <!-- CSS-->
 <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">
 <!--Javascript -->
@@ -57,7 +59,7 @@ echo "<!DOCTYPE html>
    <div class=\"collapse navbar-collapse\" id=\"conteudoNavbarSuportado\">
      <ul class=\"navbar-nav mr-auto\">
        <li class=\"nav-item active\">
-         <a class=\"nav-link\" <a href=\"CadastroIn.html\">Cadastrar Associado </a>
+         <a class=\"nav-link\" <a href=\"CadastroIn.php\">Cadastrar Associado </a>
        </li>
        <li class=\"nav-item\">
          <a class=\"nav-link\" href=\"index.php\" onclick='location.replace(\"index.php\")'>voltar</a>

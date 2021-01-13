@@ -1,6 +1,18 @@
+<?php 
+use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,TipoPagamentoLO,OrigemAssociadoLO};
+use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,ManterPagamento};
+require '../StartLoader/autoloader.php';
+$Controle = new ControleAcesso();
+$AssociadosLt = new ManterBL();
+$ListOrigem = new OrigemAssociadoLO();
+$listTipoPag = new TipoPagamentoLO();
+$Pagamento = new ManterPagamento();
+$ListOrigem =$AssociadosLt->ListarOrigens();
+$listTipoPag=$Pagamento->ListarTiposPagamentos();
+
+?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +28,6 @@
     <script src="js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
     <img src="img/titulo01.png">
     <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
@@ -36,7 +47,7 @@
     <div class="container">
         <form name="cadastrar" method="post" action="Cadastro.php" id="Cadastro" onsubmit="validaFormAssociado(); return false;">
             <input type="hidden" name="editar" value="false">
-            <input type="hidden" name="nomepagina" value="CadastroIn.html">
+            <input type="hidden" name="nomepagina" value="CadastroIn.php">
 
             <div class="form-row">
 
@@ -202,6 +213,28 @@
                     </div>
                 </fieldset>
             </div>
+            <div class="form-row">
+      <label for="inputOrigem">Como você nos connheceu?</label> 
+      <select class="form-select" aria-label="Default select example" name="id_origem">
+              <?
+              foreach($ListOrigem->getOrigemAssociados() as $origem){
+              echo " <option value=\"{$origem->id_origem}\">{$origem->Origem}</option>";
+              }             
+              ?>
+              </select>
+      </div>
+      <div class="form-row">
+      <label for="inputDoacoes">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
+           <select class="form-select" aria-label="Default select example" name="tipoPagamento">
+             <?
+             foreach($listTipoPag->getTipoPagamentos() as $tipopag){
+             echo "<option value=\"{$tipopag->idTipoPagamento}\">{$tipopag->nomeTipoPag}</option>";
+            
+             }
+             
+             ?>
+              </select>
+      </div>
             <div class="form-row">
                 <button type="submit" class="btn btn-dark" onsubmit="validaFormAssociado(); return false;">Salvar</button>
             </div>
