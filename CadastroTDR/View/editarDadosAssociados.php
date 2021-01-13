@@ -40,7 +40,7 @@ $listTipoPag=$DadoPagamento->ListarTiposPagamentos();
    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
      <ul class="navbar-nav mr-auto">
      <li class="nav-item active">
-         <a class="nav-link" href="CadastroIn.html" onclick='location.replace("CadastroIn.html")'>Cadastrar Novo Associado</a>
+         <a class="nav-link" href="CadastroIn.php" onclick='location.replace("CadastroIn.html")'>Cadastrar Novo Associado</a>
        </li>
      <li class="nav-item active">
          <a class="nav-link" href="Associados.php" onclick='location.replace("Associados.php")'>voltar</a>
