@@ -1,3 +1,16 @@
+<?php 
+use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,TipoPagamentoLO,OrigemAssociadoLO};
+use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,ManterPagamento};
+require 'StartLoader/autoloader.php';
+$Controle = new ControleAcesso();
+$AssociadosLt = new ManterBL();
+$ListOrigem = new OrigemAssociadoLO();
+$listTipoPag = new TipoPagamentoLO();
+$Pagamento = new ManterPagamento();
+
+$ListOrigem =$AssociadosLt->ListarOrigens();
+$listTipoPag=$Pagamento->ListarTiposPagamentos();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -34,7 +47,7 @@
 <div class="container">
     <form name="cadastrar" method="post" action="View/Cadastro.php" id="Cadastro" onsubmit="validaFormAssociado(); return false;">
         <input type="hidden" name="editar" value="false">
-        <input type="hidden" name="nomepagina" value="Cadastro.html">
+        <input type="hidden" name="nomepagina" value="Cadastro.php">
 
         <div class="form-row">
 
@@ -107,8 +120,6 @@
                 <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Apartamento, hotel, casa, etc.">
             </div>
         </div>
-
-
 
         <div class="form-row">
 
@@ -198,7 +209,31 @@
          </label>
                 </div>
             </fieldset>
-        </div>
+        </div>  <div class="form-row">
+      <label for="inputOrigem">Como você nos connheceu?</label> 
+      <select class="form-select" aria-label="Default select example" name="id_origem">
+              <?
+              foreach($ListOrigem->getOrigemAssociados() as $origem){
+              echo " <option value=\"{$origem->id_origem}\">{$origem->Origem}</option>";
+              }             
+              ?>
+              </select>
+      </div>
+      <div class="form-row">
+      <label for="inputDoacoes">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
+           <select class="form-select" aria-label="Default select example" name="tipoPagamento">
+             <?
+             foreach($listTipoPag->getTipoPagamentos() as $tipopag){
+             echo "<option value=\"{$tipopag->idTipoPagamento}\">{$tipopag->nomeTipoPag}</option>";
+            
+             }
+             
+             ?>
+              </select>
+      </div>
+
+
+
 
         <div class="form-row">
             <button type="submit" class="btn btn-dark" onsubmit="validaFormAssociado(); return false;">Salvar</button>

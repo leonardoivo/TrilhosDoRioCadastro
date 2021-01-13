@@ -1,6 +1,6 @@
 <?php
-use TrilhosDorioCadastro\DTO\{CadastroAssociadoDTO as CadastroDTO,TipoPagamentoDTO};
-use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,TipoPagamentoLO};
+use TrilhosDorioCadastro\DTO\{CadastroAssociadoDTO as CadastroDTO,DadoBancarioJV_DTO,CartaoCreditoDTO,BancoDTO,TipoPagamentoDTO};
+use TrilhosDorioCadastro\LO\{CadastroAssociadoLO as  CadastroLO,DadoBancarioJV_LO,CartaoCreditoLO,BancoLO,TipoPagamentoLO};
 use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,ManterPagamento};
 require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
@@ -8,11 +8,12 @@ $Redirecionamento = new ControleAcesso();
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $DadoPagamento = new ManterPagamento();
+$ListdadoCard = new CartaoCreditoLO();
 $listTipoPag= new TipoPagamentoLO();
+$listBanco= new BancoLO();
 $id_associado=$_REQUEST['id_associado'];
 $idTipoPagamento=0;
 $ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
-$listTipoPag=$DadoPagamento->ListarTiposPagamentos();
 ?>
 <!DOCTYPE html>
 <html>
@@ -140,100 +141,99 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
     <input type="text" class="form-control" name="Pais"   value="<? echo $associado->pais;?>" id="inputPais">
   </div>
 </div>
-<p>Da lista abaixo, selecione a ação que acha mais interessante promovida pela AF Trilhos do Rio*</p>
-
 <div class="form-row">
-    <fieldset>
-      
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" name="interesses[]" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Pesquisa
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" name="interesses[]" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Historia
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox"name="interesses[]"  id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Expedicões
+    </label>
+  </div>
+ </div>
+</div>
 <?
-// foreach(explode(",",$interesses) as $item){
-
-// echo "<li>".$item."</li>";
-
-// }
+  }
+$listTipoPag=$DadoPagamento->ListarTiposPagamentos();
+$meio="";
+echo "<select name=\"tipoPagamento\" onchange=\"this.form.submit()\" onchange=\"this.form.submit()\">";
+foreach($listTipoPag->getTipoPagamentos() as $tipoPag){
 ?>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Caminhadas e Expedições de pesquisa e reconhecimento ferroviário" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Caminhadas e Expedições de pesquisa e reconhecimento ferroviário
-</label>
-        </div>
+    <option value="<? echo $tipoPag->idTipoPagamento ?>" <?=($tipoPag->idTipoPagamento == $idTipoPagamento )?'selected':''?> ><? echo $tipoPag->nomeTipoPag;?></option> 
+<?
+$meio=$tipoPag->idTipoPagamento;
+}
+echo "</select>";
+echo "";
+switch($idTipoPagamento){
+  case 1:
+    echo "sem dados financeiros cadastrados";
+    break;
+  case 2:
+  
+  $listDadoBancario = new DadoBancarioJV_LO();
+  $listDadoBancario= $DadoPagamento->ListarDadosBancariosPorID($id_associado);
+  foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Troca de informações e dados ferroviários" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Troca de informações e dados ferroviários
-</label>
-        </div>
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Leitura de livros e publicações históricas e/ou ferroviárias" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Leitura de livros e publicações históricas e/ou ferroviárias
+    echo "<h3>Debito em conta</h3>";
+    echo "<input type=\"hidden\" name=\"envio\" value=\"{$idTipoPagamento}\">";
 
-</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Ferromodelismo" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Ferromodelismo
-</label>
-        </div>
+    echo "Banco:";
+    $listBanco=$DadoPagamento->ListarTodosOsBancos();
+    
+    echo "<select name=\"banco\"  >";
+    foreach($listBanco->getBancos() as $banco){
+      ?>
+      <option value= "<?echo $banco->idbanco; ?>" <?=($banco->nomebanco == $dadobancarioDT->nomebanco)?'selected':'' ?> ><? echo $banco->nomebanco;?></option>"; 
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Historia" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Ações filantrópicas
+      <?
+    }
+    echo "</select> ";
+    echo"   <fieldset>";
 
-</label>
-        </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Produção de material audiovisual com temática histórico-ferroviária" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Produção de material audiovisual com temática histórico-ferroviária
-
-</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Propostas e sugestões de projetos ferroviários e de mobilidade" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Propostas e sugestões de projetos ferroviários e de mobilidade
-
-</label>
-        </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Propostas e sugestões de preservação e restauração histórico-ferroviária" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Propostas e sugestões de preservação e restauração histórico-ferroviária
-
-</label>
-        </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Outro" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-Outro
-</label>
-        </div>
-    </fieldset>
-</div>
-</div>
-
-<?}?>
-<div class="form-row">
-      <label for="inputDoacoes">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
-           <select class="form-select" aria-label="Default select example" name="tipoPagamento">
-             <?
-             foreach($listTipoPag->getTipoPagamentos() as $tipopag){
-             echo "<option value=\"{$tipopag->idTipoPagamento}\">{$tipopag->nomeTipoPag}</option>";
-            
-             }
-             
-             ?>
-              </select>
-      </div>
+   if($dadobancarioDT->tipoconta){
+    echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" checked >";
+     echo"Poupança<input type=\"radio\" name=\"tipoconta\" id=\"2\" value=\"2\" >";
+   }
+   else{
+     echo"Corrente <input type=\"radio\" name=\"tipoconta\" id=\"1\" value=\"1\" >";
+     echo"Poupança<input type=\"radio\" name=\"tipoconta\" id=\"2\" value=\"2\" checked>";
+   }
+   echo" </fieldset>";
+    echo "Agencia:<input type=\"text\" name=\"agencia\" value=\"{$dadobancarioDT->numeroagencia}\">";
+    echo "Conta:<input type=\"text\" name=\"conta\"  value=\"{$dadobancarioDT->numeroconta}\">";
+    echo "Digito:<input type=\"text\" name=\"digito\" value=\"{$dadobancarioDT->digitoconta}\">";
+  }
+     break;
+  case 3:
+    $ListdadoCard = $DadoPagamento->BuscarCartaoPorAssociado($id_associado);
+    foreach($ListdadoCard->getCartaoCredito() as $dadosCartaoDT){
+      echo "<h3>Cartao de Credito</h3>";
+      echo "bandeira:<input type=\"text\" name=\"bandeira\" value=\"{$dadosCartaoDT->bandeira}\">";
+      echo "numeroCartao:<input type=\"text\" name=\"numeroCartao\" value=\"{$dadosCartaoDT->numeroCartao}\">";
+      echo "Titular:<input type=\"text\" name=\"Titular\" value=\"{$dadosCartaoDT->Titular}\">";
+      echo "dataDeValidade:<input type=\"text\" name=\"dataDeValidade\" value=\"{$dadosCartaoDT->dataDeValidade}\">";
+      echo "codigo:<input type=\"text\" name=\"codigo\" value=\"{$dadosCartaoDT->codigo}\">";
+    }
+   
+     break;
+  case 4:
+     break;
+  case 5:
+     break;
+  }
+?>
    <div class="form-row">
       <button type="submit" class="btn  btn-dark">Confirmar Edição</button>
    </div>

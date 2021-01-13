@@ -6,65 +6,22 @@ require '../StartLoader/autoloader.php';
 //$pagina="CadDadosBancarios.php";
 $Redirecionamento = new ControleAcesso();
 $id_associado=$_REQUEST['id_associado'];
-$cpf=0;
-$cpfUser="";
-$nome="";
-$numero="";
-$bairro="";
-$sobrenome="";
-$Endereco="";
-$Complemento="";
-$CEP="";
-$Pais="";
-$cidade="";
-$estado="";
-$DataDeNascimento="";
-$Naturalidade="";
-$Email="";
 $Telefone="";
 $idTipoPagamento=0;
-$nomePai="";
-$nomeMae="";
 $interesses="";
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $DadoPagamento = new ManterPagamento();
 
 $ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
-foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
-   
-   $cpfUser=$associado->cpf;
-   $nome=$associado->nome;
-   $numero=$associado->numero;
-   $bairro=$associado->Bairro;
-   $sobrenome=$associado->sobrenome;
-   $Endereco=$associado->endereco;
-   $Complemento=$associado->complemento;
-   $CEP=$associado->cep;
-   $Pais=$associado->pais;
-   $cidade=$associado->Cidade;
-   $estado=$associado->Estado;
-   $DataDeNascimento=$associado->data_De_nascimento;
-   $Naturalidade=$associado->naturalidade;
-   $Email=$associado->email;
-   $Telefone=$associado->complemento;
-   $idTipoPagamento=$associado->idTipoPagamento;
-   $id_associado=$associado->id_associado;
-   $nomePai=$associado->nomePai;
-   $nomeMae=$associado->nomeMae;
-   $interesses=$associado->interesses;
-  }
-
-
-
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="shortcut icon" href="img/favicon.png" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1" /> 
 <!-- CSS-->
    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
@@ -92,21 +49,28 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
     
    </div>
  </nav>
-
 <div class="container">
 <h1>Dados do Associado</h1>
-
 <table class="table">
+<?
+foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
+   
+   $idTipoPagamento=$associado->idTipoPagamento;
+   $id_associado=$associado->id_associado;
+   $interesses=$associado->interesses;
+   ?>
 <tr>	<td>
-CPF:<? echo $cpfUser; ?></td>
-</tr>
-<tr><td>Nome:<? echo $nome; ?></td><td> Sobrenome: <? echo $sobrenome; ?></td></tr>
-<tr><td>Endereço:<? echo $Endereco; ?></td><td>Numero:<? echo $numero; ?></td><td> Complemento: <? echo $Complemento; ?></td><td>CEP: <? echo $CEP; ?></td></tr>
-<tr><td> Bairro:<? echo $bairro; ?></td><td>Cidade: <? echo $cidade; ?> </td><td>Estado: <? echo $estado; ?></td><td>Pais: <? echo $Pais; ?> </td></tr>
-<tr><td>Nome da mãe:<? echo $nomeMae; ?> </td><td>Nome do pai:<? echo $nomePai; ?></td></tr>
-<tr><td>Data de Nascimento <? echo $DataDeNascimento; ?></td><td> Naturalidade: <? echo $Naturalidade; ?></td></tr>
-<tr><td>Email:<? echo $Email; ?></td><td>Telefone:<? echo $Telefone;?></td></tr>
-<?switch($idTipoPagamento){
+   CPF:<? echo $associado->cpf; ?></td>
+   </tr>
+   <tr><td>Nome:<? echo $associado->nome; ?></td><td> Sobrenome: <? echo $associado->sobrenome; ?></td></tr>
+   <tr><td>Endereço:<? echo $associado->endereco; ?></td><td>Numero:<? echo $associado->numero; ?></td><td> Complemento: <? echo $associado->complemento; ?></td><td>CEP: <? echo $associado->cep; ?></td></tr>
+   <tr><td> Bairro:<? echo $associado->Bairro; ?></td><td>Cidade: <? echo $associado->Cidade; ?> </td><td>Estado: <? echo $associado->Estado; ?></td><td>Pais: <? echo $associado->pais; ?> </td></tr>
+   <tr><td>Nome da mãe:<? echo $associado->nomeMae; ?> </td><td>Nome do pai:<? echo $associado->nomePai; ?></td></tr>
+   <tr><td>Data de Nascimento <? echo $associado->data_De_nascimento; ?></td><td> Naturalidade: <? echo $associado->naturalidade; ?></td></tr>
+   <tr><td>Email:<? echo $associado->email; ?></td><td>Telefone:<? echo $associado->telefone;?></td></tr>
+   <?
+  }
+switch($idTipoPagamento){
 case 1:
   echo "sem dados financeiros cadastrados";
   break;
