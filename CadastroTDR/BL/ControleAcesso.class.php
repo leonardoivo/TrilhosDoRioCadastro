@@ -6,7 +6,7 @@ use TrilhosDorioCadastro\LO\{PerfilLO,UsuariosLO,AcessoJV_LO};
 class ControleAcesso{
 
 public function Redirecionar($pagina){
-    header("Location: {$pagina}");
+    echo "<script>location.href=\"{$pagina}\";</script>";
 }
 
 public function RedirecionarParaTipoPag($pagina,$cpf){

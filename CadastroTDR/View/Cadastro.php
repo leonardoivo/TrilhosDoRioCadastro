@@ -24,7 +24,7 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
    $cadastroDT->data_De_nascimento=$_POST['dataNascimento'];
    $cadastroDT->email=$_POST['email'];
    $cadastroDT->telefone=$_POST['telefone'];
-   $cadastroDT->id_origem= 1; //A ser preenchido por uma caixa de seleção.
+   $cadastroDT->id_origem= $_POST['id_origem']; //A ser preenchido por uma caixa de seleção.
    $cadastroDT->endereco=$_POST['endereco'];
    $cadastroDT->cep=$_POST['cep'];
    $cadastroDT->Bairro= $_POST['bairro'];
@@ -41,7 +41,7 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
    $cadastroDT->cpf=$_POST['cpf'];
    $cadastroDT->interesses=implode(",", $_POST['interesses']);
    $cadastroDT->naturalidade=$_POST['Naturalidade'];
-   $cadastroDT->idTipoPagamento=1;
+   $cadastroDT->idTipoPagamento=$_POST['tipoPagamento'];
    
    if($editar==true && $id_associado>0){
     $pagina='Associados.php';
