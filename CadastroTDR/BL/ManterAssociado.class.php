@@ -138,62 +138,63 @@ $vetorInteresses['outro']=0;
 $vetorInteresses['teste']=0;
 $listAssociados = new CadastroAssociadoLO();
 $listAssociados = $this->ListarAssociados();
-foreach($listAssociados->getCadastroAssociados as $associadoInteresses){
-  switch($associadoInteresses->interesses){
-       case 'Caminhadas e Expedições de pesquisa e reconhecimento ferroviário':
-         
-        $vetorInteresses['expedicoes']+=1;
-            
+foreach($listAssociados->getCadastroAssociados() as $associadoInteresses){
+
+
+  foreach(explode(",",$associadoInteresses->interesses) as $interesse){
+    switch($interesse){
+      case 'Caminhadas e Expedições de pesquisa e reconhecimento ferroviário':
+        
+       $vetorInteresses['expedicoes']+=1;
+           
+      break;
+     
+      case 'Troca de informações e dados ferroviários':
+      $vetorInteresses['informacoes']+=1;    
+      break;
+      
+      case 'Leitura de livros e publicações históricas e/ou ferroviárias':
+       $vetorInteresses['livrosePublicacoes']+=1;
+      
+      break;
+      case 'Ferromodelismo':
+       $vetorInteresses['ferromodelismo']+=1;
+      
+      break;
+      case 'Ações filantrópicas':
+       $vetorInteresses['filantropia']+=1;
+      
+      break;
+      case 'Produção de material audiovisual com temática histórico-ferroviária':
+       $vetorInteresses['producaoMaterial']+=1;
+      
+
+      break;
+       case 'Propostas e sugestões de projetos ferroviários e de mobilidade':
+         $vetorInteresses['projetos']+=1;
+        
+
+       break;
+       case 'Propostas e sugestões de preservação e restauração histórico-ferroviária':
+         $vetorInteresses['preservacao']+=1;
+        
+       break;
+       case 'Outro':
+         $vetorInteresses['outro']+=1;
+
        break;
       
-       case 'Troca de informações e dados ferroviários':
-       $vetorInteresses['informacoes']+=1;    
-       break;
-       
-       case 'Leitura de livros e publicações históricas e/ou ferroviárias':
-        $vetorInteresses['livrosePublicacoes']+=1;
-       
-       break;
-       case 'Ferromodelismo':
-        $vetorInteresses['ferromodelismo']+=1;
-       
-       break;
-       case 'Ações filantrópicas':
-        $vetorInteresses['filantropia']+=1;
-       
-       break;
-       case 'Produção de material audiovisual com temática histórico-ferroviária':
-        $vetorInteresses['producaoMaterial']+=1;
-       
+       default:
+         $vetorInteresses['teste']+=1;
 
        break;
-        case 'Propostas e sugestões de projetos ferroviários e de mobilidade':
-          $vetorInteresses['projetos']+=1;
-         
-
-        break;
-        case 'Propostas e sugestões de preservação e restauração histórico-ferroviária':
-          $vetorInteresses['preservacao']+=1;
-         
-        break;
-        case 'Outro':
-          $vetorInteresses['outro']+=1;
-
-        break;
-       
-        default:
-          $vetorInteresses['teste']+=1;
-
-        break;
 
 
-     }
-
-
+    }
   }
-
+  
+  }
    return $vetorInteresses;
-
 }
 
  }

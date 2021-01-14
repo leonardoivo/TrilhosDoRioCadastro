@@ -53,7 +53,7 @@ $paginaPart1="<!DOCTYPE html>
 </nav>
 <div class=\"container\">
   <div class=\"row\">
-    <div class=\"col-sm\">";
+    <div class=\"col-sm border border-dark\">";
 echo $paginaPart1;
 echo "<h1>Ultimo associados cadastrados</h1>
 <div class=\"table-responsive\">
@@ -66,12 +66,27 @@ foreach ($ListAssociados->getCadastroAssociados()as $associado) {
   } 	
 $paginaParte2=" </table>
 </div></div>
-<div class=\"col-sm\">
-Total de cadastrados:".$TotaisDeAssociados."</div>
+<div class=\"col-sm border border-dark\">
+Total de cadastrados:";
+$paginaPart3="</div>
 </div>
 </div></body></html>";
-
 echo $paginaParte2;
+echo $TotaisDeAssociados;
+$teste=$AssociadosLt->ObterInteressesAssociado();
+
+
+$arr = array_keys($teste);
+echo "<table><tr>";
+for($i=0;count($teste)>$i;$i++){
+
+  
+   echo "<td>".$teste[$arr[$i]]."</td>";
+}
+echo "</tr></table>";
+
+
+echo $paginaPart3;
 }	
 else if (!isset($usuario))
 {
