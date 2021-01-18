@@ -25,6 +25,7 @@ $ListAssociados=$AssociadosLt->ListarAssociadoID($id_associado);
 <meta name="viewport" content="width=device-width, initial-scale=1" /> 
 <!-- CSS-->
    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+   <link href="css/estilos.css" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -62,7 +63,7 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
 <tr>	<td>
    CPF:<? echo $associado->cpf; ?></td>
    </tr>
-   <tr><td>Nome:<? echo $associado->nome; ?></td><td> Sobrenome: <? echo $associado->sobrenome; ?></td></tr>
+   <tr><td >Nome:<? echo $associado->nome; ?></td><td> Sobrenome: <? echo $associado->sobrenome; ?></td><td> Sexo: <? echo $associado->sexo; ?></td></tr>
    <tr><td>Endereço:<? echo $associado->endereco; ?></td><td>Numero:<? echo $associado->numero; ?></td><td> Complemento: <? echo $associado->complemento; ?></td><td>CEP: <? echo $associado->cep; ?></td></tr>
    <tr><td> Bairro:<? echo $associado->Bairro; ?></td><td>Cidade: <? echo $associado->Cidade; ?> </td><td>Estado: <? echo $associado->Estado; ?></td><td>Pais: <? echo $associado->pais; ?> </td></tr>
    <tr><td>Nome da mãe:<? echo $associado->nomeMae; ?> </td><td>Nome do pai:<? echo $associado->nomePai; ?></td></tr>
@@ -75,40 +76,40 @@ case 1:
   echo "sem dados financeiros cadastrados";
   break;
 case 2:
-
-$listDadoBancario = new DadoBancarioJV_LO();
-$listDadoBancario= $DadoPagamento->ListarDadosBancariosPorID($id_associado);
-foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
+    echo "<th>Debito em conta</th>";
+// $listDadoBancario = new DadoBancarioJV_LO();
+// $listDadoBancario= $DadoPagamento->ListarDadosBancariosPorID($id_associado);
+// foreach($listDadoBancario->getDadosBancario() as $dadobancarioDT){
   
-  echo "<th>Debito em conta</th>";
-  echo "<tr><td>Banco:{$dadobancarioDT->nomebanco} </td>";
-  echo "<tr><td>Código Bancário:{$dadobancarioDT->codigobancario} </td>";
- echo" <td>  <fieldset>";
- if($dadobancarioDT->tipoconta){
-  echo"Corrente";
- }
- else{
-  echo "Poupança";
- }
- echo" </fieldset></td></tr>";
-  echo "<td>Agencia:{$dadobancarioDT->numeroagencia}</td>";
-  echo "<td>Conta:{$dadobancarioDT->numeroconta}</td>";
-  echo "<td>Digito:{$dadobancarioDT->digitoconta}</td></tr>";
+ 
+//   echo "<tr><td>Banco:{$dadobancarioDT->nomebanco} </td>";
+//   echo "<tr><td>Código Bancário:{$dadobancarioDT->codigobancario} </td>";
+//  echo" <td>  <fieldset>";
+//  if($dadobancarioDT->tipoconta){
+//   echo"Corrente";
+//  }
+//  else{
+//   echo "Poupança";
+//  }
+//  echo" </fieldset></td></tr>";
+//   echo "<td>Agencia:{$dadobancarioDT->numeroagencia}</td>";
+//   echo "<td>Conta:{$dadobancarioDT->numeroconta}</td>";
+//   echo "<td>Digito:{$dadobancarioDT->digitoconta}</td></tr>";
 
 
-}
+// }
    break;
 case 3:
-  $ListdadoCard = new CartaoCreditoLO();
-  $ListdadoCard = $DadoPagamento->BuscarCartaoPorAssociado($id_associado);
-  foreach($ListdadoCard->getCartaoCreditos as $dadosCartaoDT){
     echo "<th>Cartao de Credito</th>";
-    echo "<tr><td>bandeira:{$dadosCartaoDT->bandeira}</td>";
-    echo "<td>numeroCartao:{$dadosCartaoDT->numeroCartao}</td>";
-    echo "<td>Titular:{$dadosCartaoDT->Titular}</td>";
-    echo "<td>dataDeValidade:{$dadosCartaoDT->dataDeValidade}</td></tr>";
-    echo "<td>codigo:<input{$dadosCartaoDT->codigo}</td></tr>";    
-  }
+//   $ListdadoCard = new CartaoCreditoLO();
+//   $ListdadoCard = $DadoPagamento->BuscarCartaoPorAssociado($id_associado);
+//   foreach($ListdadoCard->getCartaoCreditos as $dadosCartaoDT){
+//     echo "<tr><td>bandeira:{$dadosCartaoDT->bandeira}</td>";
+//     echo "<td>numeroCartao:{$dadosCartaoDT->numeroCartao}</td>";
+//     echo "<td>Titular:{$dadosCartaoDT->Titular}</td>";
+//     echo "<td>dataDeValidade:{$dadosCartaoDT->dataDeValidade}</td></tr>";
+//     echo "<td>codigo:<input{$dadosCartaoDT->codigo}</td></tr>";    
+//   }
  
    break;
 case 4:

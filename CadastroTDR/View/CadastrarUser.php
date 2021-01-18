@@ -35,7 +35,7 @@
 <div class="container">
 <h1>Cadastro</h1>
 
-<form name="cadastrar" method="post" action="cadastroUser.php" id="Cadastro" onsubmit="validaFormUsuario(); return false;">
+<form name="cadastrar" method="post" action="cadastroUser.php" id="CadastroUser" onsubmit="validaFormUsuario(); return false;">
 <input type="hidden" name="editar" value="false">
 
   <div class="form-row">
