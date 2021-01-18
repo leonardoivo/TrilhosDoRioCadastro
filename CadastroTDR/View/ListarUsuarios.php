@@ -42,6 +42,8 @@ echo "<!DOCTYPE html>
 
 <!-- CSS-->
 <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">
+<link href=\"css/estilos.css\" rel=\"stylesheet\">
+
 <!--Javascript -->
 <script src=\"js/jquery-3.2.1.min.js\"></script>
 <script src=\"js/bootstrap.min.js\"></script>

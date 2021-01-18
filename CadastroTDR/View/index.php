@@ -12,7 +12,6 @@ $Controle = new ControleAcesso();
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
 $TotaisDeAssociados=$AssociadosLt->ListarTotais();
-
 if($usuario>0){
 $paginaPart1="<!DOCTYPE html>
 <html>
@@ -25,10 +24,24 @@ $paginaPart1="<!DOCTYPE html>
 
 <!-- CSS-->
 <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">
+<link href=\"css/estilos.css\" rel=\"stylesheet\">
+
 <!--Javascript -->
 <script src=\"js/jquery-3.2.1.min.js\"></script>
 <script src=\"js/bootstrap.min.js\"></script>
+<script type=\"text/javascript\" src=\"https://www.google.com/jsapi\"></script>
 
+<script type=\"text/javascript\">
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(function(){
+  var json_text = $.ajax({url: \"../Common/GerarGraficos.php\", dataType:\"json\", async: false}).responseText;
+  var json = eval(\"(\" + json_text + \")\");
+  var dados = new google.visualization.DataTable(json.dados);
+
+  var chart = new google.visualization.BarChart(document.getElementById('area_grafico'));
+  chart.draw(dados, json.config);
+});
+</script>
 </head>
 <body>
 <img src=\"img/titulo01.png\" >                          
@@ -53,37 +66,50 @@ $paginaPart1="<!DOCTYPE html>
 </nav>
 <div class=\"container\">
   <div class=\"row\">
-    <div class=\"col-sm border border-dark\">";
+  <div class=\"col\">
+  <h1>Últimos associados cadastrados</h1>
+  </div>
+  <div class=\"col\">
+  <h1>Dados gerais estátisticos</h1>
+  </div>
+  </div>
+  <div class=\"row\">
+    <div class=\"col\">";
 echo $paginaPart1;
-echo "<h1>Ultimo associados cadastrados</h1>
+echo "
 <div class=\"table-responsive\">
-
 <table class=\"table table-bordered table-striped \">";
 $ListAssociados=$AssociadosLt->ListarAsssociadosRecentes();
 foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
-    echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\" >".$associado->nome." ".$associado->sobrenome."</a></td>";
-   echo "</tr>";
+    echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\" >".$associado->nome." ".$associado->sobrenome."</a></td></tr>";
   } 	
 $paginaParte2=" </table>
-</div></div>
-<div class=\"col-sm border border-dark\">
-Total de cadastrados:";
-$paginaPart3="</div>
+  </div>
+</div>
+<div class=\"col\">
+";
+$paginaPart3="
+</div>
 </div>
 </div></body></html>";
 echo $paginaParte2;
-echo $TotaisDeAssociados;
-$teste=$AssociadosLt->ObterInteressesAssociado();
-
+  echo "
+  <div id=\"Qualificacao\">
+ <h4>Total de cadastrados:</h4>
+ <span class=\"TextoTotais\">{$TotaisDeAssociados}</span>
+ </div>";
+echo " <div id=\"area_grafico\"></div>";
+ $teste=$AssociadosLt->ObterInteressesAssociado();
 
 $arr = array_keys($teste);
-echo "<table><tr>";
+echo "<div class=\"table-responsive\"><table class=\"table table-bordered table-striped \">";
 for($i=0;count($teste)>$i;$i++){
+  $valor= $teste[$arr[$i]];
 
-  
-   echo "<td>".$teste[$arr[$i]]."</td>";
+  echo "<tr><td>".$valor[0]."</td>"."<td>".$valor[1]."</td></tr>";
+
 }
-echo "</tr></table>";
+echo "</table></div>";
 
 
 echo $paginaPart3;

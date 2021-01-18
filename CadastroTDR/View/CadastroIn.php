@@ -21,12 +21,20 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
 
     <!-- CSS-->
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+    <link href="css/estilos.css" rel="stylesheet">
 
     <script src="js/BuscaEndereco.js"></script>
     <script src="js/validacoes.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+    <script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6Lej6i0aAAAAAPxrkkVYcowflq4iedQLrDi7J0me'
+        });
+      };
+    </script>
 </head>
 <body>
     <img src="img/titulo01.png">
@@ -52,71 +60,84 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
             <div class="form-row">
 
                 <div class="form-group col-md-2">
-                    <label for="inputCPF">CPF</label>
+                    <label for="inputCPF"  class="Subtitulos">CPF</label>
                     <input type="text" class="form-control" id="cpf" name="cpf" onkeypress='return SomenteNumero(event)'>
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputNome">Nome</label>
+                    <label for="inputNome" class="Subtitulos">Nome</label>
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" name="nome">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputSobrenome">Sobrenome</label>
+                    <label for="inputSobrenome" class="Subtitulos">Sobrenome</label>
                     <input type="text" class="form-control" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label for="inputDataNasciment">Data de Nascimento</label>
+                    <label for="inputDataNasciment" class="Subtitulos">Data de Nascimento</label>
                     <input type="date" class="form-control" name="dataNascimento" id="dataNascimento">
                 </div>
             </div>
             <div class="form-row">
+               <div class="form-group col-md-6">
+                         <label for="inputSexo"  class="Subtitulos">Sexo:</label>
+                     <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="sexo" value="M"id="gridCheck">
+                         <label class="form-check-label" for="gridCheck">Masculino</label>
+                      </div>
+                       <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="sexo" value="F" id="gridCheck">
+                          <label class="form-check-label" for="gridCheck">Feminino</label>
+                      </div>
+                 </div>
+            </div>
+            <div class="form-row">
 
                 <div class="form-group col-md-1">
-                    <label for="inputNaturalidade">Naturalidade</label>
+                    <label for="inputNaturalidade" class="Subtitulos">Naturalidade</label>
                     <input type="text" class="form-control" name="Naturalidade" id="Naturalidade">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
+                    <label for="inputEmail4" class="Subtitulos">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label for="inputTelefone">Telefone</label>
+                    <label for="inputTelefone" class="Subtitulos">Telefone</label>
                     <input type="text" class="form-control" name="telefone" id="telefone" onkeypress='return SomenteNumero(event)'>
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputMae">Nome da mãe</label>
+                    <label for="inputMae" class="Subtitulos">Nome da mãe</label>
                     <input type="text" class="form-control" id="mae" name="mae" placeholder="Nome da mãe">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputMae">Nome do Pai</label>
+                    <label for="inputMae" class="Subtitulos">Nome do Pai</label>
                     <input type="text" class="form-control" id="pai" name="pai" placeholder="Nome do pai">
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label for="inputCEP">CEP</label>
+                    <label for="inputCEP" class="Subtitulos">CEP</label>
                     <input type="text" class="form-control" id="cep" name="cep" onblur="pesquisacep(this.value);" onkeypress='return SomenteNumero(event)'>
                 </div>
                 <div class="form-group  col-md-6">
-                    <label for="inputAddress">Endereço</label>
+                    <label for="inputAddress" class="Subtitulos">Endereço</label>
                     <input type="text" class="form-control" id="endereco" name="endereco">
                 </div>
 
                 <div class="form-group col-md-1">
-                    <label for="inputNumero">Numero</label>
+                    <label for="inputNumero" class="Subtitulos">Numero</label>
                     <input type="text" class="form-control" name="numero" id="numero" onkeypress='return SomenteNumero(event)'>
                 </div>
                 <div class="form-group col-md-1">
-                    <label for="inputComplemento">Complemento</label>
+                    <label for="inputComplemento" class="Subtitulos">Complemento</label>
                     <input type="text" class="form-control" name="Complemento" id="Complemento" onkeypress='return SomenteNumero(event)'>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputBairro">Bairro</label>
+                    <label for="inputBairro" class="Subtitulos">Bairro</label>
                     <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Apartamento, hotel, casa, etc.">
                 </div>
             </div>
@@ -126,17 +147,17 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
             <div class="form-row">
 
                 <div class="form-group col-md-6">
-                    <label for="inputCity">Cidade</label>
+                    <label for="inputCity" class="Subtitulos">Cidade</label>
                     <input type="text" class="form-control" name="cidade" id="cidade">
                 </div>
 
                 <div class="form-group col-md-1">
-                    <label for="inputEstado">Estado</label>
+                    <label for="inputEstado" class="Subtitulos">Estado</label>
                     <input type="text" id="uf" name="uf" class="form-control">
                 </div>
 
                 <div class="form-group col-md-2">
-                    <label for="inputPais">Pais</label>
+                    <label for="inputPais" class="Subtitulos">Pais</label>
                     <input type="text" class="form-control" name="Pais" id="Pais">
                 </div>
 
@@ -213,32 +234,55 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
                     </div>
                 </fieldset>
             </div>
-            <div class="form-row">
-      <label for="inputOrigem">Como você nos connheceu?</label> 
-      <select class="form-select" aria-label="Default select example" name="id_origem">
-              <?
-              foreach($ListOrigem->getOrigemAssociados() as $origem){
-              echo " <option value=\"{$origem->id_origem}\">{$origem->Origem}</option>";
-              }             
-              ?>
-              </select>
-      </div>
-      <div class="form-row">
-      <label for="inputDoacoes">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
-           <select class="form-select" aria-label="Default select example" name="tipoPagamento">
-             <?
-             foreach($listTipoPag->getTipoPagamentos() as $tipopag){
-             echo "<option value=\"{$tipopag->idTipoPagamento}\">{$tipopag->nomeTipoPag}</option>";
+       <div class="form-group">
+      
+            <div class="form-row"> <fieldset>
+
+                <label for="inputOrigem" class="Subtitulos">Como você nos connheceu?</label> 
+                   <select class="form-select" aria-label="Default select example" name="id_origem">
+                     <?
+                       foreach($ListOrigem->getOrigemAssociados() as $origem){
+                       echo " <option value=\"{$origem->id_origem}\">{$origem->Origem}</option>";
+                      }             
+                     ?>
+                  </select>
+                  </fieldset>
+
+          </div>
+          <div class="form-row"><fieldset>
+
+                 <label for="inputDoacoes" class="Subtitulos">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
+                 <select class="form-select" aria-label="Default select example" name="tipoPagamento">
+                    <?
+                      foreach($listTipoPag->getTipoPagamentos() as $tipopag){
+                      echo "<option value=\"{$tipopag->idTipoPagamento}\">{$tipopag->nomeTipoPag}</option>";
             
-             }
+                      }
              
-             ?>
-              </select>
+                     ?>
+                </select>                  </fieldset>
+
+           </div>
       </div>
-            <div class="form-row">
-                <button type="submit" class="btn btn-dark" onsubmit="validaFormAssociado(); return false;">Salvar</button>
+
+            <div class="form-group">
+            <!-- <div class="g-recaptcha" data-sitekey="6Lej6i0aAAAAAPxrkkVYcowflq4iedQLrDi7J0me"></div>
+            </div> -->
+
+            <div class="form-group col-md-6">
+                 <div id="html_element"></div>
+                </div>
+
+               <div class="form-group col-md-6">
+                  <button type="submit" class="btn btn-dark" onsubmit="validaFormAssociado(); return false;">Salvar</button>
+               </div>
             </div>
+            
+            
         </form>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
     </div>
 
 
