@@ -26,7 +26,7 @@ class CrudOrigemAssociado extends Crud{
          $OrigemAssociado = new OrigemAssociadoLO();
         while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
         {
-             $OrigemAssociadoDT= new OrigemAssociadoDTO();
+            $OrigemAssociadoDT= new OrigemAssociadoDTO();
             $OrigemAssociadoDT->id_origem=$linha['id_origem'];
             $OrigemAssociadoDT->Origem=$linha['Origem'];
             $OrigemAssociado->add($OrigemAssociadoDT);
@@ -35,7 +35,21 @@ class CrudOrigemAssociado extends Crud{
         return $OrigemAssociado;
         }
     
-    
+    public function ListarTotaisOrigensAssoc(){
+      $totaisOrigens =  array();
+      $totaisOrigens['totais']=0;
+      $totaisOrigens['NomeOrigem']="";
+      
+      $resultado= $this->conexao->query("select count(cadAssoc.id_origem) totais ,orgAssoc.Origem NomeOrigem from cadastroAssociado cadAssoc
+       inner join OrigemAssociado orgAssoc on cadAssoc.id_origem=orgAssoc.id_origem GROUP BY orgAssoc.Origem; ");
+      while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+  
+        $totaisOrigens['totais']=$linha['totais'];
+        $totaisOrigens['NomeOrigem']=$linha['NomeOrigem'];
+
+      }
+      return $totaisOrigens;
+    }
     
     public function GravarOrigemAssociado(OrigemAssociadoDTO $OrigemAssociadoDT)
     {

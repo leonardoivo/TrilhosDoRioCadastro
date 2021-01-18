@@ -42,7 +42,8 @@ $id_associado=isset($_POST['id_associado'])?$_POST['id_associado']:0;
    $cadastroDT->interesses=implode(",", $_POST['interesses']);
    $cadastroDT->naturalidade=$_POST['Naturalidade'];
    $cadastroDT->idTipoPagamento=$_POST['tipoPagamento'];
-   
+   $cadastroDT->sexo=$_POST['sexo'];
+
    if($editar==true && $id_associado>0){
     $pagina='Associados.php';
     $ManterCadastro->EditarAssociado($cadastroDT,$id_associado);
