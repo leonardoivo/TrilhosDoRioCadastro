@@ -23,6 +23,7 @@ $listTipoPag=$DadoPagamento->ListarTiposPagamentos();
 <link rel="shortcut icon" href="img/favicon.png" />
 <!-- CSS-->
    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+   <link href="css/estilos.css" rel="stylesheet">
 
     <script src="js/BuscaEndereco.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
@@ -54,6 +55,7 @@ $listTipoPag=$DadoPagamento->ListarTiposPagamentos();
     <h2>Alterar Associado</h2>
 <div class="container">
 <form name="cadastrar" method="post" action="Cadastro.php"  id="Cadastro" onsubmit="validaFormAssociado(); return false;">
+<input type="hidden" name="nomepagina" value="editarDadosAssociados.php">
 
 
 <?
@@ -61,59 +63,94 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
   
    $idTipoPagamento=$associado->idTipoPagamento;
    $id_associado=$associado->id_associado;
+   $interesses=$associado->interesses;
    ?>
 <input type="hidden" name="id_associado" value="<? echo $id_associado;?>">
 <input type="hidden" name="editar" value="true">
   <div class="form-row">
   <div class="form-group col-md-2">
-    <label for="inputCPF">CPF</label>
+    <label for="inputCPF" class="Subtitulos">CPF</label>
     <input type="text" class="form-control" id="cpf"  value="<? echo $associado->cpf;?>" name="cpf">
   </div>
   <div class="form-group col-md-6">
-    <label for="inputNome">Nome</label>
+    <label for="inputNome" class="Subtitulos">Nome</label>
     <input type="text" class="form-control" id="inputNome" name="nome" value="<? echo $associado->nome;?>" placeholder="Nome" name="nome">
   </div>
     <div class="form-group col-md-6">
-    <label for="inputSobrenome">Sobrenome</label>
+    <label for="inputSobrenome" class="Subtitulos">Sobrenome</label>
     <input type="text" class="form-control" id="inputSobrenome"  name="sobrenome" value="<? echo $associado->sobrenome;?>" placeholder="Sobrenome">
   </div>
    <div class="form-group col-md-2">
-    <label for="inputDataNascimento">Data de Nascimento</label>
+    <label for="inputDataNascimento" class="Subtitulos">Data de Nascimento</label>
     <input type="date" class="form-control" name="dataNascimento" value="<? echo $associado->data_De_nascimento;?>" id="inputDataNascimento">
   </div>
    </div>
+   <div class="form-row">
+               <div class="form-group col-md-6">
+                         <label for="inputSexo" class="Subtitulos">Sexo:</label>
+                         <?if($associado->sexo=="M"){?>
+                     <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="sexo" value="M"id="gridCheck" checked>
+                         <label class="form-check-label" for="gridCheck">Masculino</label>
+                      </div>
+                       <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="sexo" value="F" id="gridCheck">
+                          <label class="form-check-label" for="gridCheck">Feminino</label>
+                      </div>
+                      <?}else if($associado->sexo=="F"){?>
+                      <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="sexo" value="M"id="gridCheck">
+                         <label class="form-check-label" for="gridCheck">Masculino</label>
+                      </div>
+                       <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="sexo" value="F" id="gridCheck" checked>
+                          <label class="form-check-label" for="gridCheck">Feminino</label>
+                      </div>
+                      <?}else{?>
+                        <div class="form-check form-check-inline">
+                         <input class="form-check-input" type="radio" name="sexo" value="M"id="gridCheck">
+                         <label class="form-check-label" for="gridCheck">Masculino</label>
+                      </div>
+                       <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="sexo" value="F" id="gridCheck" >
+                          <label class="form-check-label" for="gridCheck">Feminino</label>
+                      </div>
+                   <?}?>
+
+                 </div>
+         </div>
      <div class="form-row">
 
     <div class="form-group col-md-1">
-    <label for="inputNaturalidade">Naturalidade</label>
+    <label for="inputNaturalidade" class="Subtitulos" class="Subtitulos">Naturalidade</label>
     <input type="text" class="form-control"  name="Naturalidade" value="<? echo $associado->naturalidade;?>" id="inputNaturalidade">
   </div>
   <div class="form-group col-md-6">
-    <label for="inputEmail4">Email</label>
+    <label for="inputEmail4" class="Subtitulos">Email</label>
     <input type="email" class="form-control" id="inputEmail4" name="email" value="<? echo $associado->email?>" placeholder="Email">
   </div>
    <div class="form-group col-md-2">
-    <label for="inputTelefone">Telefone</label>
+    <label for="inputTelefone" class="Subtitulos">Telefone</label>
     <input type="text" class="form-control" name="telefone" value="<? echo $associado->telefone;?>" id="inputTelefone">
   </div>
   <div class="form-group col-md-6">
-    <label for="inputMae">Nome da mãe</label>
+    <label for="inputMae" class="Subtitulos">Nome da mãe</label>
     <input type="text" class="form-control" id="inputMae" name="mae" placeholder="Nome da mãe" value="<? echo $associado->nomeMae;?>">
   </div>
   <div class="form-group col-md-6">
-    <label for="inputMae">Nome do Pai</label>
+    <label for="inputMae" class="Subtitulos">Nome do Pai</label>
     <input type="text" class="form-control" id="inputPai" name="pai" placeholder="Nome do pai" value="<? echo $associado->nomePai;?>">
   </div>
   <div class="form-group col-md-2">
-    <label for="inputCEP">CEP</label>
+    <label for="inputCEP" class="Subtitulos">CEP</label>
     <input type="text" class="form-control" id="inputCEP" name="cep"  value="<? echo $associado->cep;?>" onblur="pesquisacep(this.value);">
   </div>
 <div class="form-group  col-md-6">
-  <label for="inputAddress">Endereço</label>
+  <label for="inputAddress" class="Subtitulos">Endereço</label>
   <input type="text" class="form-control" id="endereco" value="<? echo $associado->endereco;?>" name="endereco">
 </div>
 <div class="form-group col-md-1">
-    <label for="inputNumero">Numero</label>
+    <label for="inputNumero" class="Subtitulos">Numero</label>
     <input type="text" class="form-control"  name="numero" value="<? echo $associado->numero;?>" id="inputNumero">
 </div>
 <div class="form-group col-md-1">
@@ -122,21 +159,21 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
  </div>
 </div>  
 <div class="form-group col-md-6">
-  <label for="inputBairro">Bairro</label>
+  <label for="inputBairro" class="Subtitulos">Bairro</label>
   <input type="text" class="form-control" id="bairro" name="bairro" value="<? echo $associado->Bairro;?>">
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
-    <label for="inputCity">Cidade</label>
+    <label for="inputCity" class="Subtitulos">Cidade</label>
     <input type="text" class="form-control" name="cidade" value="<? echo $associado->Cidade;?>" id="cidade">
   </div>
   <div class="form-group col-md-1">
-    <label for="inputEstado">Estado</label>
+    <label for="inputEstado" class="Subtitulos">Estado</label>
    <input type="text" id="uf" name="uf" value="<? echo $associado->Estado;?>" class="form-control">
 
   </div> 
   <div class="form-group col-md-2">
-    <label for="inputPais">Pais</label>
+    <label for="inputPais" class="Subtitulos">Pais</label>
     <input type="text" class="form-control" name="Pais"   value="<? echo $associado->pais;?>" id="inputPais">
   </div>
 </div>
@@ -146,14 +183,31 @@ foreach ($ListAssociados->getCadastroAssociados()as $k => $associado) {
     <fieldset>
       
 <?
-// foreach(explode(",",$interesses) as $item){
+$interesse = array();
+$checked_arr = array();
+ foreach(explode(",",$interesses) as $item){
 
-// echo "<li>".$item."</li>";
+ //echo "<li>".$item."</li>";
 
+array_push($interesse,$item);
+
+
+}
+
+// foreach($interesse as $language){
+
+//   $checked = "";
+//   if(in_array($language,$checked_arr)){
+//     $checked = "checked";
+//   }
+//   echo '<input type="checkbox" name="interesses[]" value="'.$language.'" '.$checked.' > '.$language.' <br/>';
 // }
+
+
+
 ?>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Caminhadas e Expedições de pesquisa e reconhecimento ferroviário" id="gridCheck">
+            <input class="form-check-input" type="checkbox" name="interesses[]" value="Caminhadas e Expedições de pesquisa e reconhecimento ferroviário"  id="gridCheck">
             <label class="form-check-label" for="gridCheck">
 Caminhadas e Expedições de pesquisa e reconhecimento ferroviário
 </label>
@@ -196,7 +250,7 @@ Produção de material audiovisual com temática histórico-ferroviária
 </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="interesses[]" value="Propostas e sugestões de projetos ferroviários e de mobilidade" id="gridCheck">
+            <input class="form-check-input" type="checkbox" name="interesses[]" value="Propostas e sugestões de projetos ferroviários e de mobilidade"  id="gridCheck">
             <label class="form-check-label" for="gridCheck">
 Propostas e sugestões de projetos ferroviários e de mobilidade
 
@@ -223,7 +277,7 @@ Outro
 
 <?}?>
 <div class="form-row">
-      <label for="inputDoacoes">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
+      <label for="inputDoacoes" class="Subtitulos">Se puder, contribua conosco para manutenção do nosso trabalho e luta:</label>
            <select class="form-select" aria-label="Default select example" name="tipoPagamento">
              <?
              foreach($listTipoPag->getTipoPagamentos() as $tipopag){

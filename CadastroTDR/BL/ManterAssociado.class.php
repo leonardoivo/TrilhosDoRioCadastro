@@ -1,6 +1,6 @@
 <?php
 namespace TrilhosDorioCadastro\BL{
-use TrilhosDorioCadastro\DAL\{CrudCadastroAssociado,CrudOrigemAssociado};
+use TrilhosDorioCadastro\DAL\{CrudCadastroAssociado,CrudOrigemAssociado,CrudTipoPagamento};
 use TrilhosDorioCadastro\LO\{CadastroAssociadoLO,OrigemAssociadoLO};
 class ManterAssociado{
 
@@ -105,12 +105,13 @@ public function ObterDadosNovoAssociadoEmail($cpf){
 foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
   $HtmlEmailParte2="<tr><td>
 CPF:{$associado->cpf}</td></tr>
-<tr><td>Nome:{$associado->nome}</td><td> Sobrenome: {$associado->sobrenome}</td></tr>
+<tr><td>Nome:{$associado->nome}</td><td> Sobrenome: {$associado->sobrenome}</td><td> Sexo: {$associado->sexo}</td>
+</tr>
 <tr><td>Endereço:{$associado->endereco}</td><td>Numero:{$associado->numero}</td><td> Complemento: {$associado->complemento}</td><td>CEP:{$associado->cep}</td></tr>
 <tr><td> Bairro:{$associado->Bairro}</td><td>Cidade: {$associado->Cidade} </td><td>Estado:{$associado->Estado}</td><td>Pais:{$associado->pais}</td></tr>
 <tr><td>Nome da mãe:{$associado->nomePai}</td><td>Nome do pai:{$associado->nomePai}</td></tr>
 <tr><td>Data de Nascimento: {$associado->data_De_nascimento}</td><td> Naturalidade:{$associado->naturalidade}</td></tr>
-<tr><td>Email:{$associado->email}</td><td>Telefone:{$associado->complemento}</td></tr>";
+<tr><td>Email:{$associado->email}</td><td>Telefone:{$associado->telefone}</td></tr>";
   }
   $HtmlEmailParte3="</table></body></html>";
 
@@ -124,76 +125,152 @@ $ListOrigem = $Origem->ListarOrigemAssociado();
 return $ListOrigem;
 }
 
-public function ObterInteressesAssociado(){
-$vetorInteresses = array();
-$vetorInteresses['expedicoes']=0;
-$vetorInteresses['informacoes']=0;
-$vetorInteresses['livrosePublicacoes']=0;
-$vetorInteresses['ferromodelismo']=0;
-$vetorInteresses['filantropia']=0;
-$vetorInteresses['producaoMaterial']=0;
-$vetorInteresses['projetos']=0;
-$vetorInteresses['preservacao']=0;
-$vetorInteresses['outro']=0;
-$vetorInteresses['teste']=0;
-$listAssociados = new CadastroAssociadoLO();
-$listAssociados = $this->ListarAssociados();
-foreach($listAssociados->getCadastroAssociados as $associadoInteresses){
-  switch($associadoInteresses->interesses){
-       case 'Caminhadas e Expedições de pesquisa e reconhecimento ferroviário':
-         
-        $vetorInteresses['expedicoes']+=1;
-            
-       break;
-      
-       case 'Troca de informações e dados ferroviários':
-       $vetorInteresses['informacoes']+=1;    
-       break;
-       
-       case 'Leitura de livros e publicações históricas e/ou ferroviárias':
-        $vetorInteresses['livrosePublicacoes']+=1;
-       
-       break;
-       case 'Ferromodelismo':
-        $vetorInteresses['ferromodelismo']+=1;
-       
-       break;
-       case 'Ações filantrópicas':
-        $vetorInteresses['filantropia']+=1;
-       
-       break;
-       case 'Produção de material audiovisual com temática histórico-ferroviária':
-        $vetorInteresses['producaoMaterial']+=1;
-       
+public function ObterTotaisPorOrigens(){
+$totaisOrigens = array();
+$totaisOrigens['totais']=0;
+$totaisOrigens['NomeOrigem']="";
+$obterTotaisOrign = new CrudOrigemAssociado();
+foreach ($obterTotaisOrign->ListarTotaisOrigensAssoc() as $linha){
+  $totaisOrigens['totais']=$linha['totais'];
+  $totaisOrigens['NomeOrigem']=$linha['NomeOrigem'];
+}
 
-       break;
-        case 'Propostas e sugestões de projetos ferroviários e de mobilidade':
-          $vetorInteresses['projetos']+=1;
-         
+return $totaisOrigens;
+}
 
-        break;
-        case 'Propostas e sugestões de preservação e restauração histórico-ferroviária':
-          $vetorInteresses['preservacao']+=1;
-         
-        break;
-        case 'Outro':
-          $vetorInteresses['outro']+=1;
+public function ObterTotaisPorOrigensJson(){
+  $totaisOrigens = array();
+  $totaisOrigens['totais']=0;
+  $totaisOrigens['NomeOrigem']="";
+  $obterTotaisOrign = new CrudOrigemAssociado();
+  foreach ($obterTotaisOrign->ListarTotaisOrigensAssoc() as $linha){
+    $totaisOrigens['totais']=$linha['totais'];
+    $totaisOrigens['NomeOrigem']=$linha['NomeOrigem'];
+  }
+  
+  return $totaisOrigens;
+  }
 
-        break;
-       
-        default:
-          $vetorInteresses['teste']+=1;
+public function ObterTotaisTipoMeioPag()
+{
+  $totaisMeiosPag = array();
+     $totaisMeiosPag["totais"]=0;
+     $totaisMeiosPag["meiosPag"]="";
+     $obterTotaisMeiosPag = new CrudTipoPagamento();
 
-        break;
+     foreach($obterTotaisMeiosPag->ListarTotaisPorMeiosPag() as $linha){
+        $totaisMeiosPag["totais"]=$linha['totais'];
+        $totaisMeiosPag["meiosPag"]=$linha['meiosPag'];
+     }
+
+     return $totaisMeiosPag;
+}
+
+
+public function ObterTotaisTipoMeioPagJson()
+{
+  $totaisMeiosPag = array(
+    'dados' => array(
+        'cols' => array(
+            array('type' => 'string', 'label' => 'meiosPag'),
+            array('type' => 'number', 'label' => 'totais'),
+        ),  
+        'rows' => array()
+    ),
+    'config' => array(
+        'title' => 'Total de meios de pagamentos',
+        'width' => 470,
+        'height' => 400
+    )
+);
+  
+     $obterTotaisMeiosPag = new CrudTipoPagamento();
+
+     foreach($obterTotaisMeiosPag->ListarTotaisPorMeiosPag() as $linha){
+        $totaisMeiosPag['dados']['rows'][] = array('c' => array( array('v' => $linha['meiosPag']),
+        array('v' => (int)$linha['totais']) 
+        ));
 
 
      }
+     return $totaisMeiosPag;
+    
+}
 
 
+
+public function ObterInteressesAssociado(){
+  $vetorInteresses = array(
+    'expedicoes'=>array('Caminhadas e Expedições de pesquisa e reconhecimento ferroviário',0),
+    'informacoes'=>array('Troca de informações e dados ferroviários',0),
+    'livrosePublicacoes'=>array('Leitura de livros e publicações históricas e/ou ferroviárias',0),
+    'ferromodelismo'=>array('Ferromodelismo',0),
+    'filantropia'=>array('Ações filantrópicas',0),
+    'producaoMaterial'=>array('Produção de material audiovisual com temática histórico-ferroviária',0),
+    'projetos'=>array('Propostas e sugestões de projetos ferroviários e de mobilidade',0),
+    'preservacao'=>array('Propostas e sugestões de preservação e restauração histórico-ferroviária',0),
+    'outro'=>array('Outros',0),
+    'teste'=>array('TESTE',0)
+    );
+$listAssociados = new CadastroAssociadoLO();
+$listAssociados = $this->ListarAssociados();
+foreach($listAssociados->getCadastroAssociados() as $associadoInteresses){
+
+
+  foreach(explode(",",$associadoInteresses->interesses) as $interesse){
+    switch($interesse){
+      case 'Caminhadas e Expedições de pesquisa e reconhecimento ferroviário':
+        
+       $vetorInteresses['expedicoes'][1]+=1;
+           
+      break;
+     
+      case 'Troca de informações e dados ferroviários':
+      $vetorInteresses['informacoes'][1]+=1;    
+      break;
+      
+      case 'Leitura de livros e publicações históricas e/ou ferroviárias':
+       $vetorInteresses['livrosePublicacoes'][1]+=1;
+      
+      break;
+      case 'Ferromodelismo':
+       $vetorInteresses['ferromodelismo'][1]+=1;
+      
+      break;
+      case 'Ações filantrópicas':
+       $vetorInteresses['filantropia'][1]+=1;
+      
+      break;
+      case 'Produção de material audiovisual com temática histórico-ferroviária':
+       $vetorInteresses['producaoMaterial'][1]+=1;
+      
+
+      break;
+       case 'Propostas e sugestões de projetos ferroviários e de mobilidade':
+         $vetorInteresses['projetos'][1]+=1;
+        
+
+       break;
+       case 'Propostas e sugestões de preservação e restauração histórico-ferroviária':
+         $vetorInteresses['preservacao'][1]+=1;
+        
+       break;
+       case 'Outro':
+         $vetorInteresses['outro'][1]+=1;
+
+       break;
+      
+       default:
+         $vetorInteresses['teste'][1]+=1;
+
+       break;
+
+
+    }
   }
-
+  
+  }
    return $vetorInteresses;
-
 }
 
  }

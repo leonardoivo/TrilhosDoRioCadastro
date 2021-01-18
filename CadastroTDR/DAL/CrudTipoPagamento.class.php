@@ -36,7 +36,26 @@ class CrudTipoPagamento extends Crud{
         return $TipoPagamento;
         }
     
-    
+    public function ListarTotaisPorMeiosPag(){
+     $totaisMeiosPag = array();
+    //  $totaisMeiosPag["totais"]=0;
+    //  $totaisMeiosPag["meiosPag"]="";
+     $resultado = $this->conexao->query("select count(cadAssoc.idTipoPagamento) totais ,TipPag.nomeTipoPag meiosPag from cadastroAssociado cadAssoc
+     inner join TipoPagamento TipPag on cadAssoc.idTipoPagamento=TipPag.idTipoPagamento
+     GROUP BY TipPag.nomeTipoPag");
+     while($linha=$resultado->fetch(PDO::FETCH_ASSOC)){
+       // $totaisMeiosPag["totais"]["meiosPag"] = array('totais'=>$linha['totais'],'meiosPag'=>$linha['meiosPag']);
+
+        array_push($totaisMeiosPag, array('totais'=>$linha['totais'],'meiosPag'=>$linha['meiosPag']));
+
+    //     $totaisMeiosPag["totais"]=$linha['totais'];
+    //  $totaisMeiosPag["meiosPag"]=$linha['meiosPag'];
+
+     }
+
+     return $totaisMeiosPag;
+    }
+
     
     public function GravarTipoPagamento(TipoPagamentoDTO $TipoPagamentoDT)
     {
