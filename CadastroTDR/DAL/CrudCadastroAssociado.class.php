@@ -50,7 +50,7 @@ class CrudCadastroAssociado extends Crud{
             $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
             $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
             $CadastroAssociadoDT->nomeMae=$linha['nomeMae']; 
-
+            $CadastroAssociadoDT->sexo=$linha['sexo']; 
             $CadastroAssociado->add($CadastroAssociadoDT);
         }
         return $CadastroAssociado;
@@ -86,7 +86,7 @@ class CrudCadastroAssociado extends Crud{
                 $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
                 $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
                 $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];   
-
+                $CadastroAssociadoDT->sexo=$linha['sexo']; 
                 $CadastroAssociado->add($CadastroAssociadoDT);
             }
             return $CadastroAssociado;
@@ -122,7 +122,7 @@ class CrudCadastroAssociado extends Crud{
                     $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
                     $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
                     $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];   
-    
+                    $CadastroAssociadoDT->sexo=$linha['sexo']; 
                     $CadastroAssociado->add($CadastroAssociadoDT);
                 }
                 return $CadastroAssociado;
@@ -181,7 +181,7 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
                $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
                $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];   
-
+               $CadastroAssociadoDT->sexo=$linha['sexo']; 
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
            return $CadastroAssociado;
@@ -214,11 +214,12 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->forma_de_doacao=$linha['forma_de_doacao'];     
                $CadastroAssociadoDT->cpf=$linha['cpf'];     
                $CadastroAssociadoDT->interesses=$linha['interesses'];     
-               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];    
+               $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];
+               $CadastroAssociadoDT->telefone=$linha['telefone'];   
                $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
                $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
                $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];   
-
+               $CadastroAssociadoDT->sexo=$linha['sexo']; 
 
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
@@ -269,11 +270,11 @@ class CrudCadastroAssociado extends Crud{
                $CadastroAssociadoDT->cpf=$linha['cpf'];     
                $CadastroAssociadoDT->interesses=$linha['interesses'];     
                $CadastroAssociadoDT->naturalidade=$linha['naturalidade'];   
-               $CadastroAssociadoDT->naturalidade=$linha['telefone'];    
+               $CadastroAssociadoDT->telefone=$linha['telefone'];    
                $CadastroAssociadoDT->idTipoPagamento=$linha['idTipoPagamento'];  
                $CadastroAssociadoDT->nomePai=$linha['nomePai']; 
                $CadastroAssociadoDT->nomeMae=$linha['nomeMae'];     
-
+               $CadastroAssociadoDT->sexo=$linha['sexo']; 
                $CadastroAssociado->add($CadastroAssociadoDT);
            }
            return $CadastroAssociado;
@@ -284,8 +285,8 @@ class CrudCadastroAssociado extends Crud{
     public function GravarCadastroAssociado(CadastroAssociadoDTO $CadastroAssociadoDT)
     {
        
-            $insertParte1="insert into cadastroAssociado (nome,sobrenome,data_De_nascimento,email,telefone,id_origem, endereco, cep, Bairro, Cidade, Estado,data_De_cadastro,pais,data_De_desligamento,forma_de_doacao, numero,complemento,cpf,interesses,naturalidade,idTipoPagamento,nomeMae,nomePai)";
-            $insertParte2="values (:nome,:sobrenome,:data_De_nascimento,:email,:telefone,:id_origem,:endereco,:cep,:Bairro,:Cidade,:Estado,:data_De_cadastro,:pais,:data_De_desligamento,:forma_de_doacao,:numero,:complemento,:cpf,:interesses,:naturalidade,:idTipoPagamento,:nomeMae,:nomePai)";
+            $insertParte1="insert into cadastroAssociado (nome,sobrenome,data_De_nascimento,email,telefone,id_origem, endereco, cep, Bairro, Cidade, Estado,data_De_cadastro,pais,data_De_desligamento,forma_de_doacao, numero,complemento,cpf,interesses,naturalidade,idTipoPagamento,nomeMae,nomePai,sexo)";
+            $insertParte2="values (:nome,:sobrenome,:data_De_nascimento,:email,:telefone,:id_origem,:endereco,:cep,:Bairro,:Cidade,:Estado,:data_De_cadastro,:pais,:data_De_desligamento,:forma_de_doacao,:numero,:complemento,:cpf,:interesses,:naturalidade,:idTipoPagamento,:nomeMae,:nomePai,:sexo)";
             $insertJuncao=$insertParte1.$insertParte2;   
                
            $this->efetivar=$this->conexao->prepare($insertJuncao);  
@@ -312,6 +313,7 @@ class CrudCadastroAssociado extends Crud{
            $this->efetivar->bindParam("idTipoPagamento", $CadastroAssociadoDT->idTipoPagamento); 
            $this->efetivar->bindParam("nomeMae", $CadastroAssociadoDT->nomeMae); 
            $this->efetivar->bindParam("nomePai", $CadastroAssociadoDT->nomePai); 
+           $this->efetivar->bindParam("sexo", $CadastroAssociadoDT->sexo);
            $this->efetivar->execute();
            //echo "\nPDOStatement::errorInfo():\n";
            $arr = $this->efetivar->errorInfo();
@@ -322,7 +324,7 @@ class CrudCadastroAssociado extends Crud{
     }
     
     public function AlterarCadastroAssociado(CadastroAssociadoDTO $CadastroAssociadoDT,$id_associado){
-        $this->efetivar=$this->conexao->prepare("UPDATE cadastroAssociado SET nome=:nome,sobrenome=:sobrenome,data_De_nascimento=:data_De_nascimento,email=:email,telefone=:telefone,id_origem=:id_origem,endereco=:endereco,cep=:cep,Bairro=:Bairro,Cidade=:Cidade,Estado=:Estado,data_De_cadastro=:data_De_cadastro,pais=:pais,data_De_desligamento=:data_De_desligamento,forma_de_doacao=:forma_de_doacao,numero=:numero,complemento=:complemento,cpf=:cpf,interesses=:interesses,naturalidade=:naturalidade,idTipoPagamento=:idTipoPagamento,nomePai=:nomePai,nomeMae=:nomeMae WHERE id_associado=:id_associado");
+        $this->efetivar=$this->conexao->prepare("UPDATE cadastroAssociado SET nome=:nome,sobrenome=:sobrenome,data_De_nascimento=:data_De_nascimento,email=:email,telefone=:telefone,id_origem=:id_origem,endereco=:endereco,cep=:cep,Bairro=:Bairro,Cidade=:Cidade,Estado=:Estado,data_De_cadastro=:data_De_cadastro,pais=:pais,data_De_desligamento=:data_De_desligamento,forma_de_doacao=:forma_de_doacao,numero=:numero,complemento=:complemento,cpf=:cpf,interesses=:interesses,naturalidade=:naturalidade,idTipoPagamento=:idTipoPagamento,nomePai=:nomePai,nomeMae=:nomeMae,sexo=:sexo WHERE id_associado=:id_associado");
         $this->efetivar->bindParam("id_associado",$id_associado);
         $this->efetivar->bindParam("nome", $CadastroAssociadoDT->nome);
         $this->efetivar->bindParam("sobrenome", $CadastroAssociadoDT->sobrenome);
@@ -347,6 +349,7 @@ class CrudCadastroAssociado extends Crud{
         $this->efetivar->bindParam("idTipoPagamento", $CadastroAssociadoDT->idTipoPagamento); 
         $this->efetivar->bindParam("nomeMae", $CadastroAssociadoDT->nomeMae); 
         $this->efetivar->bindParam("nomePai", $CadastroAssociadoDT->nomePai); 
+        $this->efetivar->bindParam("sexo", $CadastroAssociadoDT->sexo);
         $this->efetivar->execute();
         echo "\nPDOStatement::errorInfo():\n";
            $arr = $this->efetivar->errorInfo();

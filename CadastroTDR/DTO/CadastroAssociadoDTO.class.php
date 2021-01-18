@@ -26,6 +26,7 @@ public      $naturalidade;
 public      $idTipoPagamento;
 public      $nomePai;
 public      $nomeMae;
+public      $sexo;
 
 }
 

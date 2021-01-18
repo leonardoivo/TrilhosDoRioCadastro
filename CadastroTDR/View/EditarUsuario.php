@@ -21,6 +21,7 @@ $ListUsuarios=$UsuariosLt->ListaUsuarioPorID($id_usuario);
 
 <!-- CSS-->
    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css" />
+   <link href="css/estilos.css" rel="stylesheet">
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -57,10 +58,10 @@ foreach ($ListUsuarios->getUsuarios()as  $usuario) {
    <input type="hidden" name="id_usuario" value="<? echo $id_usuario;?>">
    <div class="form-row">
    <div class="form-group col-md-2">
-       <label for="inputCPF">ID do usuário:<? echo $id_usuario;?> </label>
+       <label for="inputCPF" class="Subtitulos">ID do usuário:<? echo $id_usuario;?> </label>
      </div>
      <div class="form-group col-md-2">
-       <label for="inputCPF">CPF</label>
+       <label for="inputCPF" class="Subtitulos">CPF</label>
        <input type="text" class="form-control" id="cpf" value="<? echo $usuario->cpf;?>" name="cpf"  onkeypress='return SomenteNumero(event)'>
      </div>
      <div class="form-group col-md-2">
@@ -69,39 +70,39 @@ foreach ($ListUsuarios->getUsuarios()as  $usuario) {
      </div>
  
      <div class="form-group col-md-6">
-       <label for="inputNome">Nome</label>
+       <label for="inputNome" class="Subtitulos">Nome</label>
        <input type="text" class="form-control" id="inputNome" name="nome" value="<? echo $usuario->nome;?>"placeholder="Nome" >
      </div>
  
      <div class="form-group col-md-6">
-       <label for="inputSobrenome">Sobrenome</label>
+       <label for="inputSobrenome" class="Subtitulos">Sobrenome</label>
        <input type="text" class="form-control" id="inputSobrenome"  name="sobrenome" value="<? echo $usuario->sobrenome;?>" placeholder="Sobrenome">
      </div>
      <div class="form-group col-md-1">
-       <label for="inputSituacao">Situação</label>
+       <label for="inputSituacao" class="Subtitulos">Situação</label>
        <input type="text" class="form-control"  name="situacao" value="<? echo $usuario->situacao;?>" id="inputSituacao">
       </div>   
  </div>
   <div class="form-row"> 
  
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
+        <label for="inputEmail4" class="Subtitulos">Email</label>
         <input type="email" class="form-control" id="inputEmail4" name="email" value="<? echo $usuario->email?>" placeholder="Email">
       </div>
  
       <div class="form-group col-md-2">
-       <label for="inputCelular">Celular</label>
+       <label for="inputCelular" class="Subtitulos">Celular</label>
        <input type="text" class="form-control" name="celular" value="<? echo $usuario->celular;?>" id="inputCelular"  onkeypress='return SomenteNumero(event)'>
       </div>
  
      
       <div class="form-group col-md-6">
-         <label for="senha">Senha</label>
+         <label for="senha" class="Subtitulos">Senha</label>
          <input type="password" class="form-control" id="senha" name="senha" value="<? echo $usuario->senha;?>" placeholder="senha">
       </div>
  
       <div class="form-group col-md-6">
-         <label for="re-senha">Re-senha</label>
+         <label for="re-senha" class="Subtitulos">Re-senha</label>
          <input type="password" class="form-control" id="re-senha" name="re-senha" placeholder="re-senha">
       </div>
  
