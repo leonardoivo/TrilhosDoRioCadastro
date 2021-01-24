@@ -9,7 +9,7 @@ $InteressadosLt = new ManterBL();
 $ListInteressados = new CadastroLO();
 $id_associado=$_REQUEST['id_associado'];
 $idTipoPagamento=0;
-$ListInteressados=$InteressadosLt->ListarInteressadoID($id_associado);
+$ListInteressados=$InteressadosLt->ListarInteressadosID($id_associado);
 ?>
 <!DOCTYPE html>
 <html>

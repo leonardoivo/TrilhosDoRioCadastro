@@ -12,7 +12,7 @@ $interesses="";
 $InteressadosLt = new ManterBL();
 $ListInteressados = new InteressadosLO();
 
-$ListInteressados=$InteressadosLt->ListarInteressadoID($id_interessado);
+$ListInteressados=$InteressadosLt->ListarInteressadosID($id_interessado);
 ?>
 <!DOCTYPE html>
 <html>

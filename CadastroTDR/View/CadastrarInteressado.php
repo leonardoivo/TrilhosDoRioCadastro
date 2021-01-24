@@ -27,16 +27,16 @@ $id_interessado=isset($_POST['id_interessado'])?$_POST['id_interessado']:0;
 
    if($editar==true && $id_interessado>0){
     $pagina='Interessados.php';
-    $ManterCadastro->EditarInteressado($interessadoDT,$id_interessado);
+    $ManterCadastro->EditarInteressados($interessadoDT,$id_interessado);
     $Redirecionamento->Redirecionar($pagina);
-   }else if( $ManterCadastro->ConfirmaExistenciaInteressado($interessadoDT->cpf)==false){
+   }else if( $ManterCadastro->ConfirmaExistenciaInteressados($interessadoDT->nome,$interessadoDT->sobrenome)==false){
     //$pagina='http://localhost/TrilhosDoRioCadastro/CadastroTDR/View/CadDadosBancarios.php';
     $pagina='BoasVindas.html';
-    $ManterCadastro->CadastrarInteressado($interessadoDT);
+    $ManterCadastro->CadastrarInteressados($interessadoDT);
     $enviarEmail = new EnvioEmail($remetente,$interessadoDT->email,'Seja muito bem vindo a Trilhos do Rio',$text);
     $enviarEmail->sendMail();
     $emailAdm="leonardo.ivo22@gmail.com";
-    $enviarEmail = new EnvioEmail($remetente,$emailAdm,'Um novo interessado acaba de se cadastrar no site da Trilhos do Rio',$ManterCadastro->ObterDadosNovointeressadoEmail($interessadoDT->cpf));
+    $enviarEmail = new EnvioEmail($remetente,$emailAdm,'Um novo interessado acaba de se cadastrar no site da Trilhos do Rio',$ManterCadastro->ObterDadosNovoInteressadosNomeSobrenome($interessadoDT->nome,$interessadoDT->sobrenome));
     $enviarEmail->sendMail();
    //$Redirecionamento->RedirecionarParaTipoPag($pagina,$_POST['cpf']);
     $Redirecionamento->Redirecionar($pagina);

@@ -77,11 +77,20 @@ public function ListarInteressados($nomeInteressados){
 
   }
 
-  public function ListarInteressadosPorCPF($cpf){
+  public function ListarInteressadosPorEmail($email){
     $ListarInteressados = new CrudInteressados();
     $LlistarInteressados= new InteressadosLO();
-    $LlistarInteressados=$ListarInteressados->BuscarInteressadosCPF($cpf);
+    $LlistarInteressados=$ListarInteressados->BuscarInteressadosEmail($email);
   return $LlistarInteressados;
+
+}
+
+
+public function ListarInteressadosPorNomeSobrenome($nome,$sobrenome){
+  $ListarInteressados = new CrudInteressados();
+  $LlistarInteressados= new InteressadosLO();
+  $LlistarInteressados=$ListarInteressados->BuscarInteressadosNomeSobrenome($nome,$sobrenome);
+return $LlistarInteressados;
 
 }
 
@@ -93,24 +102,19 @@ return $LlistarInteressados;
 
 }
 
-public function ObterDadosNovoInteressadosEmail($cpf){
-  $ListInteressadoss = new InteressadosLO();
-  $ListInteressadoss= $this->ListarInteressadosPorCPF($cpf);
+public function ObterDadosNovoInteressadosNomeSobrenome($nome,$sobrenome){
+  $ListInteressados = new InteressadosLO();
+  $ListInteressados= $this->ListarInteressadosPorNomeSobrenome($nome,$sobrenome);
   $HtmlEmailParte1=""; 
   $HtmlEmailParte2="";
   $HtmlEmailParte3="";
   $HtmlEmailFinal="";
   $HtmlEmailParte1="<!DOCTYPE html>
-  <html><head></head><body><h1>Dados do Interessados</h1><p>Segue os dados no novo Interessados:</p><table>";
-foreach ($ListInteressadoss->getInteressadoss()as $Interessados) {   
+  <html><head></head><body><h1>Dados do Interessado</h1><p>Segue os dados no novo Interessado:</p><table>";
+foreach ($ListInteressados->getInteressados()as $Interessados) {   
   $HtmlEmailParte2="<tr><td>
 CPF:{$Interessados->cpf}</td></tr>
-<tr><td>Nome:{$Interessados->nome}</td><td> Sobrenome: {$Interessados->sobrenome}</td><td> Sexo: {$Interessados->sexo}</td>
-</tr>
-<tr><td>Endereço:{$Interessados->endereco}</td><td>Numero:{$Interessados->numero}</td><td> Complemento: {$Interessados->complemento}</td><td>CEP:{$Interessados->cep}</td></tr>
-<tr><td> Bairro:{$Interessados->Bairro}</td><td>Cidade: {$Interessados->Cidade} </td><td>Estado:{$Interessados->Estado}</td><td>Pais:{$Interessados->pais}</td></tr>
-<tr><td>Nome da mãe:{$Interessados->nomePai}</td><td>Nome do pai:{$Interessados->nomePai}</td></tr>
-<tr><td>Data de Nascimento: {$Interessados->data_De_nascimento}</td><td> Naturalidade:{$Interessados->naturalidade}</td></tr>
+<tr><td>Nome:{$Interessados->nome}</td><td> Sobrenome: {$Interessados->sobrenome}</td></tr>
 <tr><td>Email:{$Interessados->email}</td><td>Telefone:{$Interessados->telefone}</td></tr>";
   }
   $HtmlEmailParte3="</table></body></html>";
