@@ -2,7 +2,7 @@
 namespace TrilhosDorioCadastro\BL{
 use TrilhosDorioCadastro\DAL\{CrudInteressados,CrudOrigemInteressados,CrudTipoPagamento};
 use TrilhosDorioCadastro\LO\{InteressadosLO,OrigemInteressadosLO};
-class ManterInteressados{
+class ManterInteressado{
 
 
 public function CadastrarInteressados($CadInteressadosDTO)
