@@ -133,7 +133,7 @@ function validaFormInteressado() {
 
     //se nao tiver erros
     if (!erro) {
-        $('#Cadastro').submit();
+        $('#Interessado').submit();
     }
 };
 
