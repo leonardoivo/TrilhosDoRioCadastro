@@ -13,20 +13,20 @@ function  __construct()
 public function add(InteressadosDTO $Interessados)
     {
         //$this->Interessadoss->offsetSet($Interessados->getTitulo(),$Interessados); //Função porfora77
-        $this->Interessadoss->append($Interessados); //adiciona um indice automatico
+        $this->Interessados->append($Interessados); //adiciona um indice automatico
     }
     public function getInteressados(){
 
-        return $this->Interessadoss;
+        return $this->Interessados;
     }
     public function del(InteressadosDTO $Interessados)
     {
-        $this->Interessadoss->offsetUnset($Interessados);
+        $this->Interessados->offsetUnset($Interessados);
     }
 
     public function find(InteressadosDTO $Interessados)
     {
-        return $this->Interessadoss->offsetExists($Interessados);
+        return $this->Interessados->offsetExists($Interessados);
     }
 
 }
