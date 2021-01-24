@@ -4,7 +4,7 @@ namespace TrilhosDorioCadastro\LO
 use \ArrayObject;
 use TrilhosDorioCadastro\DTO\InteressadosDTO;
 class InteressadosLO{
-private $Interessadoss;
+private $Interessados;
 
 function  __construct()
 {
