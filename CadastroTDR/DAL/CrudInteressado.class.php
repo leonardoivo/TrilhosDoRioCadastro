@@ -20,7 +20,7 @@ class CrudInteressados extends Crud{
        
     }
     
-    public function ListarInteressadoss(){
+    public function ListarInteressados(){
     
         $resultado=$this->conexao->query("select * from interessados order by id_interessado asc");
          $Interessados = new InteressadosLO();
@@ -38,7 +38,7 @@ class CrudInteressados extends Crud{
         return $Interessados;
         }
     
-        public function ListarInteressadossComPaginacao($paginaCorrente,$linhasPorPagina){
+        public function ListarInteressadosComPaginacao($paginaCorrente,$linhasPorPagina){
     
             $resultado=$this->conexao->query("select * from interessados order by cpf id_interessado limit $paginaCorrente,$linhasPorPagina");
              $Interessados = new InteressadosLO();
@@ -56,7 +56,7 @@ class CrudInteressados extends Crud{
             return $Interessados;
             }
 
-            public function ListarInteressadossUltimos(){
+            public function ListarInteressadosUltimos(){
     
                 $resultado=$this->conexao->query("SELECT * FROM interessados order by id_interessado desc limit 10");
                  $Interessados = new InteressadosLO();

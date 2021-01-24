@@ -28,28 +28,35 @@ $id_Interessados = $ListarInteressados->BuscarIDInteressadosEmail($email);
 return $id_Interessados;
 
 }
-public function ListarInteressadoss()
+public function ListarInteressados()
 {
   $ListarGeral = new CrudInteressados();
   $LlistarGeral = new InteressadosLO();
-  $LlistarGeral=$ListarGeral->ListarInteressadoss();
+  $LlistarGeral=$ListarGeral->ListarInteressados();
   return $LlistarGeral;
+
+}
+public function ListarInteressadosPorNome($nomeInteressado){
+  $ListarInteressados = new CrudInteressados();
+  $LlistarInteressados= new InteressadosLO();
+  $LlistarInteressados=$ListarInteressados->BuscarInteressados($nomeInteressado);
+return $LlistarInteressados;
 
 }
 public function ListarAsssociadosRecentes()
 {
   $ListarGeral = new CrudInteressados();
   $LlistarGeral = new InteressadosLO();
-  $LlistarGeral=$ListarGeral->ListarInteressadossUltimos();
+  $LlistarGeral=$ListarGeral->ListarInteressadosUltimos();
   return $LlistarGeral;
 
 }
 
-public function ListarInteressadossComPaginacao($paginaCorrente,$linhasPorPagina)
+public function ListarInteressadosComPaginacao($paginaCorrente,$linhasPorPagina)
 {
   $ListarGeral = new CrudInteressados();
   $LlistarGeral = new InteressadosLO();
-  $LlistarGeral=$ListarGeral->ListarInteressadossComPaginacao($paginaCorrente,$linhasPorPagina);
+  $LlistarGeral=$ListarGeral->ListarInteressadosComPaginacao($paginaCorrente,$linhasPorPagina);
   return $LlistarGeral;
 
 }
@@ -69,7 +76,7 @@ public function ConfirmaExistenciaInteressados($nome,$sobrenome){
 }
 
 
-public function ListarInteressados($nomeInteressados){
+public function ListarInteressadoss($nomeInteressados){
         $ListarInteressados = new CrudInteressados();
         $LlistarInteressados= new InteressadosLO();
         $LlistarInteressados=$ListarInteressados->BuscarInteressados($nomeInteressados);
@@ -172,7 +179,7 @@ public function ObterInteressesInteressados(){
     'teste'=>array('TESTE',0)
     );
 $listInteressadoss = new InteressadosLO();
-$listInteressadoss = $this->ListarInteressadoss();
+$listInteressadoss = $this->ListarInteressados();
 foreach($listInteressadoss->getInteressados() as $InteressadosInteresses){
 
 
