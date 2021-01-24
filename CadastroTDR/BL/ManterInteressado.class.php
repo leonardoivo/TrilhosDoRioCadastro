@@ -43,7 +43,7 @@ public function ListarInteressadosPorNome($nomeInteressado){
 return $LlistarInteressados;
 
 }
-public function ListarAsssociadosRecentes()
+public function ListarInteressadosRecentes()
 {
   $ListarGeral = new CrudInteressados();
   $LlistarGeral = new InteressadosLO();
@@ -119,8 +119,7 @@ public function ObterDadosNovoInteressadosNomeSobrenome($nome,$sobrenome){
   $HtmlEmailParte1="<!DOCTYPE html>
   <html><head></head><body><h1>Dados do Interessado</h1><p>Segue os dados no novo Interessado:</p><table>";
 foreach ($ListInteressados->getInteressados()as $Interessados) {   
-  $HtmlEmailParte2="<tr><td>
-CPF:{$Interessados->cpf}</td></tr>
+  $HtmlEmailParte2="
 <tr><td>Nome:{$Interessados->nome}</td><td> Sobrenome: {$Interessados->sobrenome}</td></tr>
 <tr><td>Email:{$Interessados->email}</td><td>Telefone:{$Interessados->telefone}</td></tr>";
   }
@@ -165,7 +164,7 @@ public function ObterTotaisTipoMeioPagJson()
 
 
 
-public function ObterInteressesInteressados(){
+public function ObterInteressesDosInteressados(){
   $vetorInteresses = array(
     'expedicoes'=>array('Caminhadas e Expedições de pesquisa e reconhecimento ferroviário',0),
     'informacoes'=>array('Troca de informações e dados ferroviários',0),

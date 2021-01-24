@@ -53,7 +53,7 @@ $listTipoPag=$Pagamento->ListarTiposPagamentos();
 </nav>
 <h2>Cadastro de Associado - Trilhos do Rio</h2>
 <div class="container">
-    <form name="cadastrar" method="post" action="View/CadastrarInteressado.php" id="Cadastro" onsubmit="validaFormAssociado(); return false;">
+    <form name="cadastrar" method="post" action="View/CadastrarInteressado.php" id="Interessado" onsubmit="validaFormInteressado(); return false;">
         <input type="hidden" name="editar" value="false">
         <input type="hidden" name="nomepagina" value="Interessado.php">
 

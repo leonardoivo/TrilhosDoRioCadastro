@@ -2,14 +2,14 @@
 session_start();
 ob_start();
 use TrilhosDorioCadastro\DTO\InteressadosDTO as CadastroDTO;
-use TrilhosDorioCadastro\LO\InteressadoLO as  CadastroLO;
+use TrilhosDorioCadastro\LO\InteressadosLO;
 use TrilhosDorioCadastro\BL\{ManterInteressado as ManterBL,ControleAcesso};
 require '../StartLoader/autoloader.php';
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
 //$pagina="CadDadosBancarios.php";
 $Controle = new ControleAcesso();
 $InteressadosLt = new ManterBL();
-$ListInteressados = new CadastroLO();
+$ListInteressados = new InteressadosLO();
 $TotalLinhas=0;
 $linhasPorPagina=10;
 $paginaCorrente=0;
@@ -31,7 +31,7 @@ $paginaCorrente=$Controle->ObterPaginaCorrente($linhasPorPagina,$numero_pagina);
 if(isset($usuario))
 {
 if($id_interessado!=0 && $exclusao==true){
-    $InteressadosLt->ExcluirInteressado($id_interessado);
+    $InteressadosLt->ExcluirInteressados($id_interessado);
 }
 echo "<!DOCTYPE html>
 <html>
@@ -81,11 +81,11 @@ echo "<div class=\"container\">
 
 <table class=\"table table-bordered table-striped \">";
 $ListInteressados=$InteressadosLt->ListarInteressadosComPaginacao($paginaCorrente,$linhasPorPagina);
-foreach ($ListInteressados->getCadastroInteressados()as $interessado) {   
-    echo "<tr><td> <a href=\"DadosInteressados.php?id_interessado=".$interessado->id_interessado."\" >".$interessado->nome." ".$interessado->sobrenome."</a></td>";
+foreach ($ListInteressados->getInteressados()as $interessado) {   
+    echo "<tr><td> <a href=\"DadosInteressado.php?id_interessado=".$interessado->id_interessado."\" >".$interessado->nome." ".$interessado->sobrenome."</a></td>";
 //         // if(VerAcesso($usuario,$link)==true){
-         echo "<td> <a href=\"editarDadosInteressados.php?id_interessado=". $interessado->id_interessado."\" >Editar</a></td>";
-         echo " <td> <a href=\"Interessados.php?id_interessado=".$interessado->id_interessado."& exclusao=true\" > Apagar</a></td>";
+         echo "<td> <a href=\"EditarDadosInteressado.php?id_interessado=". $interessado->id_interessado."\" >Editar</a></td>";
+         echo " <td> <a href=\"ListarInteressados.php?id_interessado=".$interessado->id_interessado."& exclusao=true\" > Apagar</a></td>";
          //          //}
    echo "</tr>";
   } 	

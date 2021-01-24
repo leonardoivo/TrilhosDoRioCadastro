@@ -1,17 +1,17 @@
 <?php
 session_start();
 ob_start();
-use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
-use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
-use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
+use TrilhosDorioCadastro\DTO\InteressadosDTO as CadastroDTO;
+use TrilhosDorioCadastro\LO\InteressadosLO as  CadastroLO;
+use TrilhosDorioCadastro\BL\{ManterInteressado as ManterBL,ControleAcesso};
 require '../StartLoader/autoloader.php';
 
 $usuario=null;
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
 $Controle = new ControleAcesso();
-$AssociadosLt = new ManterBL();
-$ListAssociados = new CadastroLO();
-$TotaisDeAssociados=$AssociadosLt->ListarTotais();
+$InteressadosLt = new ManterBL();
+$ListInteressados = new CadastroLO();
+$TotaisDeInteressados=$InteressadosLt->ListarTotais();
 if($usuario>0){
 $paginaPart1="<!DOCTYPE html>
 <html>
@@ -53,8 +53,11 @@ google.setOnLoadCallback(function(){
   <div class=\"collapse navbar-collapse\" id=\"navTeste\">
     <ul class=\"navbar-nav mr-auto\">
       <li class=\"nav-item active\">
-        <a class=\"nav-link\" href=\"Associados.php\">Ver Associados </a>
+        <a class=\"nav-link\" href=\"Associados.php\">Associados </a>
       </li>
+      <li class=\"nav-item active\">
+      <a class=\"nav-link\" href=\"ListarInteressados.php\">Interessados </a>
+    </li>
       <li class=\"nav-item\">
         <a class=\"nav-link\"href=\"ListarUsuarios.php\">Usuarios</a>
       </li>
@@ -79,9 +82,9 @@ echo $paginaPart1;
 echo "
 <div class=\"table-responsive\">
 <table class=\"table table-bordered table-striped \">";
-$ListAssociados=$AssociadosLt->ListarAsssociadosRecentes();
-foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
-    echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\" >".$associado->nome." ".$associado->sobrenome."</a></td></tr>";
+$ListInteressados=$InteressadosLt->ListarInteressadosRecentes();
+foreach ($ListInteressados->getInteressados()as $interessado) {   
+    echo "<tr><td> <a href=\"DadosInteressado.php?id_interessado=".$interessado->id_interessado."\" >".$interessado->nome." ".$interessado->sobrenome."</a></td></tr>";
   } 	
 $paginaParte2=" </table>
   </div>
@@ -96,10 +99,10 @@ echo $paginaParte2;
   echo "
   <div id=\"Qualificacao\">
  <h4>Total de cadastrados:</h4>
- <span class=\"TextoTotais\">{$TotaisDeAssociados}</span>
+ <span class=\"TextoTotais\">{$TotaisDeInteressados}</span>
  </div>";
-echo " <div id=\"area_grafico\"></div>";
- $teste=$AssociadosLt->ObterInteressesAssociado();
+//echo " <div id=\"area_grafico\"></div>";
+ $teste=$InteressadosLt->ObterInteressesDosInteressados();
 
 $arr = array_keys($teste);
 echo "<div class=\"table-responsive\"><table class=\"table table-bordered table-striped \">";

@@ -40,10 +40,10 @@ $ListInteressados=$InteressadosLt->ListarInteressadosID($id_interessado);
    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
      <ul class="navbar-nav mr-auto">
        <li class="nav-item active">
-         <a class="nav-link" href="Interessados.php" onclick='location.replace("index.php")'>voltar</a>
+         <a class="nav-link" href="ListarInteressados.php" onclick='location.replace("index.php")'>voltar</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="Interessados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
+         <a class="nav-link" href="ListarInteressados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
        </li>
      </ul>
     
@@ -53,17 +53,14 @@ $ListInteressados=$InteressadosLt->ListarInteressadosID($id_interessado);
 <h1>Dados do Interessado</h1>
 <table class="table">
 <?
-foreach ($ListInteressados->getInteressadoInteressados()as $k => $associado) {
+foreach ($ListInteressados->getInteressados()as $interessado) {
    
-   $idTipoPagamento=$associado->idTipoPagamento;
-   $id_interessado=$associado->id_interessado;
-   $interesses=$associado->interesses;
+   $id_interessado=$interessado->id_interessado;
+   $interesses=$interessado->interesses;
    ?>
-<tr>	<td>
-   CPF:<? echo $associado->cpf; ?></td>
-   </tr>
-   <tr><td >Nome:<? echo $associado->nome; ?></td><td> Sobrenome: <? echo $associado->sobrenome; ?></td></tr>
-   <tr><td>Email:<? echo $associado->email; ?></td><td>Telefone:<? echo $associado->telefone;?></td></tr>
+
+   <tr><td >Nome:<? echo $interessado->nome; ?></td><td> Sobrenome: <? echo $interessado->sobrenome; ?></td></tr>
+   <tr><td>Email:<? echo $interessado->email; ?></td><td>Telefone:<? echo $interessado->telefone;?></td></tr>
    <?
   }
 ?>
@@ -75,7 +72,7 @@ foreach(explode(",",$interesses) as $item){
 }
 ?>
 </ul>
-<a href="Interessados.php">Voltar</a>
+<a href="ListarInteressados.php">Voltar</a>
 </div>
 </body>
 </html>

@@ -7,7 +7,7 @@ use \ArrayObject;
 use \PDO;
 
 class CrudInteressados extends Crud{
-    public $id_Interessados=0;
+    public $id_interessado=0;
     public $nome_Interessados="";
     private $conexao;
     private $efetivar;
@@ -27,7 +27,7 @@ class CrudInteressados extends Crud{
         while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
         {
              $InteressadosDT= new InteressadosDTO();
-            $InteressadosDT->id_Interessados=$linha['id_interessado'];
+            $InteressadosDT->id_interessado=$linha['id_interessado'];
             $InteressadosDT->nome=$linha['nome'];
             $InteressadosDT->sobrenome=$linha['sobrenome'];
             $InteressadosDT->email=$linha['email'];
@@ -40,12 +40,12 @@ class CrudInteressados extends Crud{
     
         public function ListarInteressadosComPaginacao($paginaCorrente,$linhasPorPagina){
     
-            $resultado=$this->conexao->query("select * from interessados order by cpf id_interessado limit $paginaCorrente,$linhasPorPagina");
+            $resultado=$this->conexao->query("select * from interessados order by id_interessado limit $paginaCorrente,$linhasPorPagina");
              $Interessados = new InteressadosLO();
             while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
             {
                  $InteressadosDT= new InteressadosDTO();
-                $InteressadosDT->id_Interessados=$linha['id_interessado'];
+                $InteressadosDT->id_interessado=$linha['id_interessado'];
                 $InteressadosDT->nome=$linha['nome'];
                 $InteressadosDT->sobrenome=$linha['sobrenome'];
                 $InteressadosDT->telefone=$linha['telefone'];   
@@ -63,7 +63,7 @@ class CrudInteressados extends Crud{
                 while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
                 {
                      $InteressadosDT= new InteressadosDTO();
-                    $InteressadosDT->id_Interessados=$linha['id_interessado'];
+                    $InteressadosDT->id_interessado=$linha['id_interessado'];
                     $InteressadosDT->nome=$linha['nome'];
                     $InteressadosDT->sobrenome=$linha['sobrenome'];
                     $InteressadosDT->email=$linha['email'];
@@ -76,7 +76,7 @@ class CrudInteressados extends Crud{
     
      public function ObterTotalInteressados(){
            $totais=0;
-           $resultado=$this->conexao->query("select * from interessado order by id_interessado asc");
+           $resultado=$this->conexao->query("select * from interessados order by id_interessado asc");
            $resultado->execute();
            $totais=$resultado->rowCount();     
            return $totais;
@@ -85,7 +85,7 @@ class CrudInteressados extends Crud{
      public function ConfirmaExistenciaInteressado($nome,$sobrenome){
         $retorno=false;
      
-        $this->efetivar=$this->conexao->prepare("select * from interessados where nome=:nome and sobrenome:sobrenome");
+        $this->efetivar=$this->conexao->prepare("select * from interessados where nome=:nome and sobrenome=:sobrenome");
         $this->efetivar->bindParam("nome",$nome);
         $this->efetivar->bindParam("sobrenome",$sobrenome);
         $this->efetivar->execute();
@@ -105,7 +105,7 @@ class CrudInteressados extends Crud{
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
                 $InteressadosDT= new InteressadosDTO();
-               $InteressadosDT->id_Interessados=$linha['id_interessado'];
+               $InteressadosDT->id_interessado=$linha['id_interessado'];
                $InteressadosDT->nome=$linha['nome'];
                $InteressadosDT->sobrenome=$linha['sobrenome'];
                $InteressadosDT->email=$linha['email'];
@@ -119,12 +119,13 @@ class CrudInteressados extends Crud{
         }
         
         public function BuscarInteressadosNomeSobrenome($nome,$sobrenome){
-            $resultado=$this->conexao->query("select * from interessados where where nome={$nome} and sobrenome={$sobrenome}");
+        $teste= "select * from interessados where  nome='{$nome}' and sobrenome='{$sobrenome}'";
+            $resultado=$this->conexao->query("select * from interessados where nome='{$nome}' and sobrenome='{$sobrenome}'");
             $Interessados = new InteressadosLO();
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
                 $InteressadosDT= new InteressadosDTO();
-               $InteressadosDT->id_Interessados=$linha['id_interessado'];
+               $InteressadosDT->id_interessado=$linha['id_interessado'];
                $InteressadosDT->nome=$linha['nome'];
                $InteressadosDT->sobrenome=$linha['sobrenome'];
                $InteressadosDT->email=$linha['email'];
@@ -144,7 +145,7 @@ class CrudInteressados extends Crud{
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
                 $InteressadosDT= new InteressadosDTO();
-               $InteressadosDT->id_Interessados=$linha['id_interessado'];
+               $InteressadosDT->id_interessado=$linha['id_interessado'];
                $InteressadosDT->nome=$linha['nome'];
                $InteressadosDT->sobrenome=$linha['sobrenome'];
                $InteressadosDT->email=$linha['email'];
@@ -159,29 +160,29 @@ class CrudInteressados extends Crud{
         }
 
         public function BuscarIDInteressadosEmail($email){
-            $resultado=$this->conexao->query("select * from Interessados where cpf={$email}");
+            $resultado=$this->conexao->query("select * from interessados where cpf={$email}");
             $Interessados = new InteressadosLO();
             
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
                 $InteressadosDT= new InteressadosDTO();
-               $this->id_Interessados=$linha['id_interessado'];
+               $this->id_interessado=$linha['id_interessado'];
               // $Interessados->add($InteressadosDT);
            }
-           return  $this->id_Interessados;
+           return  $this->id_interessado;
            
     
         }
 
         
 
-        public function BuscarInteressadosPorID($id_interessados){
-            $resultado=$this->conexao->query("select * from interessados where id_interessados={$id_interessados}");
+        public function BuscarInteressadosPorID($id_interessado){
+            $resultado=$this->conexao->query("select * from interessados where id_interessado={$id_interessado}");
             $Interessados = new InteressadosLO();
            while($linha=$resultado->fetch(PDO::FETCH_ASSOC))
            {
                 $InteressadosDT= new InteressadosDTO();
-               $InteressadosDT->id_Interessados=$linha['id_interessado'];
+               $InteressadosDT->id_interessado=$linha['id_interessado'];
                $InteressadosDT->nome=$linha['nome'];
                $InteressadosDT->sobrenome=$linha['sobrenome'];
                $InteressadosDT->email=$linha['email'];
@@ -197,7 +198,7 @@ class CrudInteressados extends Crud{
     public function GravarInteressados(InteressadosDTO $InteressadosDT)
     {
        
-            $insertParte1="insert into Interessados (nome,sobrenome,email,telefone,interesses)";
+            $insertParte1="insert into interessados (nome,sobrenome,email,telefone,interesses)";
             $insertParte2="values (:nome,:sobrenome,:email,:telefone,:interesses)";
             $insertJuncao=$insertParte1.$insertParte2;   
                
@@ -216,9 +217,9 @@ class CrudInteressados extends Crud{
 
     }
     
-    public function AlterarInteressados(InteressadosDTO $InteressadosDT,$id_Interessados){
-        $this->efetivar=$this->conexao->prepare("UPDATE Interessados SET nome=:nome,sobrenome=:sobrenome,email=:email,telefone=:telefone,interesses=:interesses WHERE id_Interessados=:id_Interessados");
-        $this->efetivar->bindParam("id_Interessados",$id_Interessados);
+    public function AlterarInteressados(InteressadosDTO $InteressadosDT,$id_interessado){
+        $this->efetivar=$this->conexao->prepare("UPDATE interessados SET nome=:nome,sobrenome=:sobrenome,email=:email,telefone=:telefone,interesses=:interesses WHERE id_interessado=:id_interessado");
+        $this->efetivar->bindParam("id_interessado",$id_interessado);
         $this->efetivar->bindParam("nome", $InteressadosDT->nome);
         $this->efetivar->bindParam("sobrenome", $InteressadosDT->sobrenome);
         $this->efetivar->bindParam("email", $InteressadosDT->email);
@@ -231,10 +232,10 @@ class CrudInteressados extends Crud{
     
     }
     
-    public function ExcluirInteressados($id_Interessados){
+    public function ExcluirInteressados($id_interessado){
     
-        $this->efetivar=$this->conexao->prepare("delete from Interessados where id_Interessados=?");
-        $this->efetivar->bindValue(1,$id_Interessados);
+        $this->efetivar=$this->conexao->prepare("delete from interessados where id_interessado=?");
+        $this->efetivar->bindValue(1,$id_interessado);
         $this->efetivar->execute();
         // echo "\nPDOStatement::errorInfo():\n";
         // $arr = $this->efetivar->errorInfo();
