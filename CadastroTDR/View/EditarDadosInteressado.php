@@ -7,9 +7,9 @@ require '../StartLoader/autoloader.php';
 $Redirecionamento = new ControleAcesso();
 $InteressadosLt = new ManterBL();
 $ListInteressados = new CadastroLO();
-$id_associado=$_REQUEST['id_associado'];
+$id_interessado=$_REQUEST['id_interessado'];
 $idTipoPagamento=0;
-$ListInteressados=$InteressadosLt->ListarInteressadosID($id_associado);
+$ListInteressados=$InteressadosLt->ListarInteressadosID($id_interessado);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,13 +38,13 @@ $ListInteressados=$InteressadosLt->ListarInteressadosID($id_associado);
    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
      <ul class="navbar-nav mr-auto">
      <li class="nav-item active">
-         <a class="nav-link" href="CadastroIn.php" onclick='location.replace("CadastroIn.html")'>Cadastrar Novo Interessado</a>
+         <a class="nav-link" href="CadInteressadosIn.php" onclick='location.replace("CadastroIn.html")'>Incluir Novo Interessado</a>
        </li>
      <li class="nav-item active">
-         <a class="nav-link" href="Interessados.php" onclick='location.replace("Interessados.php")'>voltar</a>
+         <a class="nav-link" href="ListarInteressados.php" onclick='location.replace("Interessados.php")'>voltar</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="Interessados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
+         <a class="nav-link" href="EditarInteressados.php?saida=1" onclick='location.replace("../login.html")'>Sair</a>
        </li>   
      </ul>   
    </div>
@@ -56,30 +56,30 @@ $ListInteressados=$InteressadosLt->ListarInteressadosID($id_associado);
 
 
 <?
-foreach ($ListInteressados->getCadastroInteressados()as $k => $associado) {
+foreach ($ListInteressados->getInteressados()as $k => $interessado) {
   
-   $id_associado=$associado->id_associado;
-   $interesses=$associado->interesses;
+   $id_interessado=$interessado->id_interessado;
+   $interesses=$interessado->interesses;
    ?>
-<input type="hidden" name="id_associado" value="<? echo $id_associado;?>">
+<input type="hidden" name="id_interessado" value="<? echo $id_interessado;?>">
 <input type="hidden" name="editar" value="true">
   <div class="form-row">
  
   <div class="form-group col-md-6">
     <label for="inputNome" class="Subtitulos">Nome</label>
-    <input type="text" class="form-control" id="inputNome" name="nome" value="<? echo $associado->nome;?>" placeholder="Nome" name="nome">
+    <input type="text" class="form-control" id="inputNome" name="nome" value="<? echo $interessado->nome;?>" placeholder="Nome" name="nome">
   </div>
     <div class="form-group col-md-6">
     <label for="inputSobrenome" class="Subtitulos">Sobrenome</label>
-    <input type="text" class="form-control" id="inputSobrenome"  name="sobrenome" value="<? echo $associado->sobrenome;?>" placeholder="Sobrenome">
+    <input type="text" class="form-control" id="inputSobrenome"  name="sobrenome" value="<? echo $interessado->sobrenome;?>" placeholder="Sobrenome">
   </div>
   <div class="form-group col-md-6">
     <label for="inputEmail4" class="Subtitulos">Email</label>
-    <input type="email" class="form-control" id="inputEmail4" name="email" value="<? echo $associado->email?>" placeholder="Email">
+    <input type="email" class="form-control" id="inputEmail4" name="email" value="<? echo $interessado->email?>" placeholder="Email">
   </div>
    <div class="form-group col-md-2">
     <label for="inputTelefone" class="Subtitulos">Telefone</label>
-    <input type="text" class="form-control" name="telefone" value="<? echo $associado->telefone;?>" id="inputTelefone">
+    <input type="text" class="form-control" name="telefone" value="<? echo $interessado->telefone;?>" id="inputTelefone">
   </div>
   </div>
 <p>Da lista abaixo, selecione a ação que acha mais interessante promovida pela AF Trilhos do Rio*</p>
