@@ -4,6 +4,12 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
 p {
     font-weight: bold;
 }
