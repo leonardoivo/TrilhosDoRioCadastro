@@ -1,27 +1,27 @@
 function validaFormAssociado() {
     erro = false;
     if ($('#nome').val() == '') {
-        alert('Voc� precisa preencher o campo Nome');
+        alert('Você precisa preencher o campo Nome');
         erro = true;
     }
     if ($('#email').val() == '') {
-        alert('Voc� precisa preencher o campo E-mail');
+        alert('Você precisa preencher o campo E-mail');
         erro = true;
     }
     if ($('#sobrenome').val() == '') {
-        alert('Voc� precisa preencher o campo sobrenome');
+        alert('Você precisa preencher o campo sobrenome');
         erro = true;
     }
     if ($('#cpf').val() == '') {
-        alert('Voc� precisa preencher o campo cpf');
+        alert('Você precisa preencher o campo cpf');
         erro = true;
     }
     if ($('#cep').val() == '') {
-        alert('Voc� precisa preencher o campo cep');
+        alert('Você precisa preencher o campo cep');
         erro = true;
     }
     if ($('#telefone').val() == '') {
-        alert('Voc� precisa preencher o campo telefone');
+        alert('Você precisa preencher o campo telefone');
         erro = true;
     }
     if ($('#pai').val() == '') {
@@ -33,7 +33,7 @@ function validaFormAssociado() {
         erro = false;
     }
     if ($('#endereco').val() == '') {
-        alert('Voc� precisa preencher o campo endereco');
+        alert('Você precisa preencher o campo endereco');
         erro = true;
     }
     if ($('#numero').val() == '') {
@@ -45,15 +45,15 @@ function validaFormAssociado() {
         erro = true;
     }
     if ($('#bairro').val() == '') {
-        alert('Voc� precisa preencher o campo bairro');
+        alert('Você precisa preencher o campo bairro');
         erro = true;
     }
     if ($('#cidade').val() == '') {
-        alert('Voc� precisa preencher o campo cidade');
+        alert('Você precisa preencher o campo cidade');
         erro = true;
     }
     if ($('#Pais').val() == '') {
-        alert('Voc� precisa preencher o campo Pais');
+        alert('Você precisa preencher o campo Pais');
         erro = true;
     }
 
@@ -63,40 +63,42 @@ function validaFormAssociado() {
     }
 };
 
+
+
 function validaFormUsuario() {
     erro = false;
     if ($('#nome').val() == '') {
-        alert('Voc� precisa preencher o campo Nome');
+        alert('Você precisa preencher o campo Nome');
         erro = true;
     }
     if ($('#login').val() == '') {
-        alert('Voc� precisa preencher o campo Login');
+        alert('Você precisa preencher o campo Login');
         erro = true;
     }
     if ($('#email').val() == '') {
-        alert('Voc� precisa preencher o campo E-mail');
+        alert('Você precisa preencher o campo E-mail');
         erro = true;
     }
     if ($('#sobrenome').val() == '') {
-        alert('Voc� precisa preencher o campo sobrenome');
+        alert('Você precisa preencher o campo sobrenome');
         erro = true;
     }
     if ($('#cpf').val() == '') {
-        alert('Voc� precisa preencher o campo cpf');
+        alert('Você precisa preencher o campo cpf');
         erro = true;
     }
 
     if ($('#celular').val() == '') {
-        alert('Voc� precisa preencher o campo celular');
+        alert('Você precisa preencher o campo celular');
         erro = true;
     }
 
     if ($('#senha').val() == '') {
-        alert('Voc� precisa preencher o campo senha');
+        alert('Você precisa preencher o campo senha');
         erro = true;
     }
     if ($('#re-senha').val() == '') {
-        alert('Voc� precisa preencher o campo senha no campo seguinte');
+        alert('Você precisa preencher o campo senha no campo seguinte');
         erro = true;
     }
     if ($('#senha').val() != $('#re-senha').val()) {
@@ -109,6 +111,31 @@ function validaFormUsuario() {
     }
 };
 
+function validaFormInteressado() {
+    erro = false;
+    if ($('#nome').val() == '') {
+        alert('Você precisa preencher o campo Nome');
+        erro = true;
+    }
+    if ($('#email').val() == '') {
+        alert('Você precisa preencher o campo E-mail');
+        erro = true;
+    }
+    if ($('#sobrenome').val() == '') {
+        alert('Você precisa preencher o campo sobrenome');
+        erro = true;
+    }
+
+    if ($('#telefone').val() == '') {
+        alert('Você precisa preencher o campo telefone');
+        erro = true;
+    }
+
+    //se nao tiver erros
+    if (!erro) {
+        $('#Interessado').submit();
+    }
+};
 
 
 
