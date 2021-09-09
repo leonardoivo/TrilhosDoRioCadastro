@@ -4,7 +4,7 @@ namespace TrilhosDorioCadastro\BL {
 
 
 
-    class Paginacao 
+    class Paginacao
     {
         public $totalLinhas;
         public $linhasPorPagina;
