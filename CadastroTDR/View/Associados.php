@@ -19,7 +19,7 @@ $pg->avanco=0;
 $pg->retorno=0;
 $pg->paginaAtual=0;
 
-
+//teste
 
 $id_associado= isset($_REQUEST['id_associado'])?$_REQUEST['id_associado']:0;
 $exclusao = isset($_REQUEST['exclusao'])?$_REQUEST['exclusao']:false;
