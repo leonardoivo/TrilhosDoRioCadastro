@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html> 
+<head> 
+<title>Menu Circular</title> 
+<meta http-equiv="content-Type" content="text/html; charset=ISO-8859-1" /> 
+<style type="text/css"> 
+div#menucirc {
+width: 220px;
+height: 220px;
+margin: 5em auto;
+padding: 0;
+background: #fff url('background.jpg') no-repeat center 0;
+}
+div#menucirc h2 {
+position: absolute;
+width: 150px;
+height: 35px;
+margin: 60px 0 0 45px;
+padding: 10px 0 0 0;
+text-align: left;
+font-size: 1.5em;
+z-index: 0;
+text-indent: 45px;
+}
+div#menucirc h2 span {
+display: block;
+text-indent: 0;
+font-size: .8em;
+width: 90px;
+border-top: 2px solid #abe9ab;
+margin: 5px 0 0 25px;
+padding: 5px 0 0 0;
+color: #666;
+text-align: center;
+}
+div#menucirc h2.home {
+	background: url('home.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.tutos {
+	background: url('tutos.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.files {
+	background: url('files.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.search {
+	background: url('search.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.mail {
+	background: url('mail.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.id {
+	background: url('id.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.write {
+	background: url('write.gif') no-repeat left -45px;
+}
+ 
+div#menucirc h2.logout {
+	background: url('logout.gif') no-repeat left -45px;
+}
+ul#menu {
+margin: 50px auto;
+height: 220px;
+padding: 0;
+width: 220px;
+height: 220px;
+list-style: none;
+list-style-type: none;
+position: relative;
+}
+ul#menu li {
+width: 45px;
+height: 45px;
+margin: 0;
+padding: 0;
+display: block;
+list-style: none;
+list-style-type: none;
+position: absolute;
+z-index: 2;
+font-size: 8pt;
+font-family: verdana, arial, tahoma, serif;
+}
+ul#menu a.menitem:link, ul#menu a.menitem:visited {
+background-position: left bottom;
+opacity: .7;
+}
+ul#menu a.menitem:hover, ul#menu a.menitem:active {
+background-position: left top;
+background-color: transparent;
+opacity: .9;
+}
+ul#menu li a.menactive {
+background-position: left top;
+background-color: transparent;
+opacity: 1;
+}
+ul#menu li a.menactive:hover {
+opacity: 1;
+}
+ul#menu li a.menitem span, ul#menu li a.menitem strong, ul#menu li a.menactive span, ul#menu li a.menactive strong {
+display: none;
+}
+ul#menu li a.menitem:hover strong {
+display: block;
+text-align: left;
+position: absolute;
+width: 100px;
+border-bottom: 1px solid #ffdb5e;
+padding: 2px 0 2px 0;
+margin: 0 0 0 5px;
+color: #333;
+left: 50px;
+top: 0;
+z-index: 2;
+}
+ul#menu li a.menitem:hover span {
+display: block;
+position: absolute;
+width: 120px;
+text-align: left;
+border: 1px solid #ffe897;
+background-color: #ffefb7;
+padding: 20px 2px 2px 2px;
+color: #333;
+left: 50px;
+top: 0;
+z-index: 1;
+opacity: .9;
+}
+ul#menu a {
+	border: 0;
+	position: absolute;
+	width: 45px;
+	height: 45px;
+}
+#home {
+	top: -20px;
+	left: 95px;
+	background-image: url('home.gif');
+}
+#tutos {
+	top: 20px;
+	left: 170px;
+	background-image: url('tutos.gif');
+}
+#files {
+	top: 90px;
+	left: 200px;
+	background-image: url('files.gif');
+}
+#search {
+	top: 155px;
+	left: 170px;
+	background-image: url('search.gif');
+}
+#mail {
+	top: 195px;
+	left: 95px;
+	background-image: url('mail.gif');
+}
+#id {
+	top: 155px;
+	left: 10px;
+	background-image: url('id.gif');
+}
+#write {
+	top: 90px;
+	left: -20px;
+	background-image: url('write.gif');
+}
+#logout {
+	top: 20px;
+	left: 10px;
+	background-image: url('logout.gif');
+}
+</style> 
+</head> 
+ 
+<body> 
+	<div id="menucirc"> 
+	<h2 class="mail">Email <span>Contato</span></h2> 
+	<ul id="menu"> 
+		<li><a href="#" id="home" class="menitem"><strong>Home</strong> <span>Página principal.</span></a></li> 
+		<li><a href="#" id="tutos" class="menitem"><strong>Tutoriais</strong> <span>Tutoriais</span></a></li> 
+		<li><a href="#" id="files" class="menitem"><strong>Arquivos</strong> <span>Arquivos.</span></a></li> 
+		<li><a href="#" id="search" class="menitem"><strong>Buscar</strong> <span>Buscar.</span></a></li> 
+		<li><a href="#" id="mail" class="menactive"><strong>Email</strong> <span>Email.</span></a></li> 
+		<li><a href="#" id="id" class="menitem"><strong>Minha conta</strong> <span>Minha conta.</span></a></li> 
+		<li><a href="#" id="write" class="menitem"><strong>Mensagem</strong> <span>Mensagem.</span></a></li> 
+		<li><a href="#" id="logout" class="menitem"><strong>Sair</strong> <span>Sair do sistema.</span></a></li> 
+	</ul> 
+</div> 
+</body> 
+</html>

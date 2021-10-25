@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Campos de texto arredondados</title> 
+<style type="text/css"> 
+#formulario1 form, #formulario1 input, #formulario1 fieldset {
+margin:0;
+padding:0;
+border:none;
+}
+#formulario1 legenda span {
+position:absolute;
+top:-999em;
+left:0;
+}
+#formulario1 label.round {
+float:left;
+clear:left;
+background:url(campos_arredondados.gif) no-repeat 0 0;
+padding:0 0 0 10px;
+height:27px;
+margin:0 0 10px 0;
+}
+#formulario1 .round input {
+background:transparent;
+padding:5px;
+float:left;
+height:17px;
+}
+#formulario1 .round span {
+background:url(campos_arredondados.gif) no-repeat 100% 0;
+padding:0 10px 0 0;
+height:27px;
+float:left;
+}
+.round input:focus {
+outline:none;
+color:red
+}
+#campo1 {
+width:150px
+}
+#campo2 {
+width:350px
+}
+#campo3 {
+width:100px
+}
+</style> 
+</head> 
+<body> 
+<h1>Campos de formulários com cantos arredondados</h1> 
+<form id="formulario1" method="post" action=""> 
+	<fieldset> 
+	<label class="round" for="campo1"> <span> 
+	<input type="text" name="campo1" id="campo1" value="Texto do campo" /> 
+	</span> </label> 
+	<label class="round" for="campo2"> <span> 
+	<input type="text" name="campo2" id="campo2" /> 
+	</span> </label> 
+	<label class="round" for="campo3"> <span> 
+	<input type="text" name="campo3" id="campo3" /> 
+	</span> </label> 
+	</fieldset> 
+</form> 
+</body> 
+</html> 

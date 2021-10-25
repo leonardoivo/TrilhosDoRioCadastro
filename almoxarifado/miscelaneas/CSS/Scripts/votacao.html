@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Votacao</title> 
+<style type="text/css"> 
+#elemento1 {
+margin:0 auto; 
+width:500px
+}
+ul.rating {
+float:left
+}
+* {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+ul.rating, {
+	background:url(votacao_estrela.png) bottom;
+	height:28px;
+	width:150px;
+	overflow:hidden;
+}
+ul.rating li, li{
+	display:inline
+}
+.rating a, a {
+	display:block;
+	width:30px;
+	height:28px;
+	float:left;
+	text-indent:-9999px;
+	position:relative;
+}
+.rating a:hover, a:hover {
+	background:url(votacao_estrela1.png) center;
+	width:150px;
+	margin-left:-92px;
+	position:static;
+}
+.rating a:active, a:active {
+	background-position:top;
+}
+</style> 
+</head> 
+<body> 
+<div id="elemento1"> O que você acha do produto tal?<br />Dê sua opinião e nos ajude a melhorar cada vez mais o nosso serviço!<br /><br />
+Vote:<ul class="rating">
+        <li><a href="#" title="Uma Estrela">Uma Estrela</a></li> 
+        <li><a href="#" title="Duas Estrelas">Duas Estrelas</a></li> 
+        <li><a href="#" title="Três estrelas">Três Estrelas</a></li> 
+        <li><a href="#" title="Quatro Estrelas">Quatro Estrelas</a></li> 
+        <li><a href="#" title="Cinco Estrelas">Cinco Estrelas</a></li> 
+</ul>    
+</div> 
+</body> 
+</html>

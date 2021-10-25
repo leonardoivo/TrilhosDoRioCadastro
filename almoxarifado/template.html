@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+<script src="BuscaEndereco.js"></script>
+<style type="text/css">
+body{
+margin:0;
+padding:0;
+border:0;
+overflow:hidden;
+height:100%;
+max-height:100;
+}
+
+
+#framecontentRight,#framecontentLeft{
+position:absolute;
+top:0;
+left:0;
+width:200px;
+height:100%;
+background-color:navy;
+color:white;
+}
+#framecontentRight{
+left:auto;
+right:0;
+width:150px;
+overflow:hidden;
+background-color:navy;
+color:white;
+
+}
+#maincontent{
+position:fixed;
+top:0;
+right:200px;
+right:150px;
+botton:0;
+overflow:auto;
+background:#ffff;
+
+
+
+
+}
+.innertube{
+margin:15px;
+
+}
+</style>
+</head>
+<body>
+  <div id="framecontentRight">
+     <div class="innertube">
+     <p>teste</p>
+
+   </div>
+</div>
+
+<div id="framecontentLeft">
+     <div class="innertube">
+       <p>teste</p>
+
+    </div>
+
+</div>
+
+<div id="maincontent">
+
+   <div class="innertube">
+    teste
+
+   </div>
+
+</div>
+
+</body>
+<html>

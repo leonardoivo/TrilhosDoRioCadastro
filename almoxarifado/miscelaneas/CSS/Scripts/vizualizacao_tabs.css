@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+html,body {
+height:100%;
+}
+
+#contentBox {
+width:500px; 
+height:20px;
+}
+
+#contentBox ul {
+margin:0px; 
+padding:0px; 
+position:relative; 
+width:100%;
+}
+
+#contentBox ul li {
+display:inline; 
+float:left; 
+background-color:#ff00ff;
+margin-right:10px;
+}
+
+.titleCell {
+width:75px;
+height:20px; 
+position:relative; z-index:1000; 
+margin:0px; padding:0px;  
+cursor:pointer;
+}
+
+.titleCell strong {
+font-size:14px;
+position:absolute; z-index:1000;
+width:73px;  height:18px; 
+text-align:center; 
+border:#000 solid; border-width:1px;
+}
+
+#contentBox ul ul {
+position:absolute; left:0px;
+display:none; 
+z-index:100;
+}
+
+#contentBox ul ul li {
+border:#000 solid; 
+border-width:1px; 
+width:500px; 
+background-color:#FFF; 
+padding:10px;
+}
+
+#contentBox ul li:hover ul {
+display:block; top:-1px; !important; top:19px;
+}
+
+#contentBox ul li:hover .titleCell strong {
+border-left:#000 solid; 
+border-right:#000 solid; 
+border-top:#000 solid; 
+border-bottom:#fff solid; 
+border-width:1px;
+background-color:#FFF; 
+}

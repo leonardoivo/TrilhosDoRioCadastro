@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> teste de jquery</title>
+<style type="text/css" media="all">
+	h1 {color:#090;}
+</style>
+<script type="text/javascript" >
+window.onload=function()
+{
+document.getElementById('btn-vermelha').onclick=mudaCor;
+	
+	};
+function mudaCor() {
+	document.getElementById('cor').style.color='#ff0000';
+};	
+	
+</script>
+</head>
+<body>
+	<h1 id="cor" > teste</h1>
+	<!--<button type="button" onclick="document.getElementById('cor').style.color='#ff0000';">
+		vermelha
+	</button>-->
+	<button type="button" id="btn-vermelha" >Vermelha</button>
+</body>
+</html>

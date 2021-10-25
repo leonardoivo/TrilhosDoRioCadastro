@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"> 
+	<head> 
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+		<title>Formulários visualmente agradáveis</title> 
+		<link href="formularios_bonitos.css" rel="stylesheet" type="text/css" /> 
+	</head> 
+<body> 
+	<div id="content"> 
+		<form> 
+			<p><strong>Atenção:</strong> Campos marcados com <span class="required">*</span> são obrigatórios</p> 
+			<fieldset id="infopessoal"> 
+				<legend><span>Informacoes pessoais</span></legend> 
+				<ol> 
+					<li>
+					  <label for="nome" title="Seu nome" class="required">Primeiro nome<span></span></label> 
+						<input name="nome" type="text" id="nome" />	
+				    </li> 
+					<li> 
+						<label for="sobrenome" title="Sobrenome" class="required">Sobrenome<span></span></label>	
+						<input type="text" id="sobrenome" name="sobrenome" /> 
+				    </li> 
+					<li> 
+						<label for="email" title="Informa seu email" class="required">Email<span>*</span></label> 
+						<input type="text" id="email" name="email" /> 
+				    </li> 
+					<li> 
+						<label for="ocupacao" title="Choose your ocupacao" class="required">Ocupação<span>*</span></label> 
+						<input class="radio" type="radio" id="ocupacao" name="ocupacao" value="Designer" /> Designer
+						<input class="radio" type="radio" id="ocupacao" name="ocupacao" value="Developer" /> 
+						Programador
+						<input class="radio" type="radio" id="ocupacao" name="ocupacao" value="Manager" /> 
+						Gerente</li> 
+				</ol> 
+			</fieldset> 
+			<fieldset id="endereco"> 
+				<legend><span>endereco</span></legend> 
+				<ol> 
+					<li> 
+						<label for="endereco" title="Informe seu endereço" class="required">Endereço<span>*</span></label> 
+						<input type="text" id="endereco" name="endereco" /> 
+				    </li> 
+					<li> 
+						<label for="bairro" title="Informe seu bairro"></label> 
+						<input type="text" id="bairro" name="bairro" /> 
+				    </li> 
+					<li> 
+						<label for="cidade" title="Informe sua cidade" class="required">Cidade<span>*</span></label> 
+						<input type="text" id="cidade" name="cidade" /> 
+				    </li> 
+					<li> 
+						<label for="Pais" title="Informe seu país" class="required">País<span></span></label> 
+						<input type="text" id="Pais" name="Pais" /> 
+				    </li> 
+					<li> 
+						<label for="cep" title="cep" class="required">CEP<span></span></label> 
+						<input type="text" id="cep" name="cep" /> 
+				    </li> 
+					<li> 
+						<label for="fone" title="Informa seu Telefone">Telefone</label> 
+						<input type="text" id="fone" name="fone" /> 
+				    </li> 
+				</ol> 
+			</fieldset> 
+			<fieldset id="detalhesconta"> 
+				<legend><span>detalhes da sua conta</span></legend> 
+				<ol> 
+					<li> 
+						<label for="usuario" title="Escolha um nome de usuário" class="required">Usuário desejado<span>*</span></label> 
+						<input type="text" id="usuario" name="usuario" /> 
+				    </li> 
+					<li> 
+						<label for="password" title="Escolha uma senha" class="required">Senha<span>*</span></label> 
+						<input type="password" id="password" name="password" /> 
+				    </li> 
+					<li> 
+						<label for="verpassword" title="Re-digite sua senha" class="required">Re-digite sua senha<span>*</span></label> 
+						<input type="password" id="verpassword" name="verpassword" /> 
+				    </li> 
+				</ol> 
+			</fieldset> 
+			<fieldset id="submitform"> 
+				<input type="submit" value="Cadastrar" />
+				</label> 
+			</fieldset> 
+		</form> 
+		<p>&nbsp;</p> 
+	</div> 
+
+</body> 
+</html> 
