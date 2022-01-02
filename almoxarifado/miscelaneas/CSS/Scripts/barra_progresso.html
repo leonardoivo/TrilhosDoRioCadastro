@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Barra de progresso</title>
+<style>
+.barra { 
+position: relative;
+width: 200px; 
+border: 1px solid #ff0000; 
+padding: 2px; 
+}
+.barra .bar { 
+display: block;
+position: relative;
+background: #D32525; 
+text-align: center; 
+color: #ffffff; 
+height: 2em; 
+line-height: 2em;            
+}
+.barra .bar span { 
+position: absolute; 
+left: 1em; 
+}
+</style>
+</head>
+
+<body>
+<div class="barra">
+    <strong class="bar" style="width: 62%;">62%</strong>
+</div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Menu Horizontal</title>
+<style type="text/css">
+#menuhorizontal{
+padding: 0;
+width: 100%;
+border-top: 5px solid #8A2B2B; 
+background: transparent;
+}
+#menuhorizontal ul{
+margin:0;
+margin-left: 40px; 
+padding: 0;
+list-style: none;
+}
+#menuhorizontal li{
+display: inline;
+margin: 0 2px 0 0;
+padding: 0;
+text-transform:uppercase;
+}
+#menuhorizontal a{
+float: left;
+display: block;
+font: bold 11px Arial;
+color: white;
+text-decoration: none;
+margin: 0 1px 0 0;
+padding: 5px 10px;
+background-color: #734A4A; 
+border-top: 1px solid white;
+}
+#menuhorizontal a:hover{
+background-color: #8A2B2B; 
+color: white;
+}
+#menuhorizontal #current a{
+background-color: #8A2B2B; 
+color: white;
+border-color: #8A2B2B;  
+}
+background-color: lightyellow;
+}
+</style>
+</head>
+
+<body>
+<div id="menuhorizontal">
+<ul>
+<li style="margin-left: 1px"><a href="link1" title="Home">Home</a></li>
+<li><a href="link2" title="Outro link">Outro link</a></li>
+<li id="current"><a href="link3" title="Estou aqui">Estou aqui</a></li>
+<li><a href="link4" title="Exemplo">Exemplo</a></li>	
+<li><a href="texto" title="texto">texto</a></li>	
+</ul>
+</div>
+</body>
+</html>

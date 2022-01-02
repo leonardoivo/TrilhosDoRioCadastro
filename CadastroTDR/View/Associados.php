@@ -3,30 +3,32 @@ session_start();
 ob_start();
 use TrilhosDorioCadastro\DTO\CadastroAssociadoDTO as CadastroDTO;
 use TrilhosDorioCadastro\LO\CadastroAssociadoLO as  CadastroLO;
-use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso};
+use TrilhosDorioCadastro\BL\{ManterAssociado as ManterBL,ControleAcesso,Paginacao};
 require '../StartLoader/autoloader.php';
 $usuario=isset($_SESSION["usuario"])?$_SESSION["usuario"]:null;
 //$pagina="CadDadosBancarios.php";
 $Controle = new ControleAcesso();
 $AssociadosLt = new ManterBL();
 $ListAssociados = new CadastroLO();
-$TotalLinhas=0;
-$linhasPorPagina=10;
-$paginaCorrente=0;
-$totalPaginas=0;
-$incremento=0;
-$decremento = 0;
-$avanco=0;
-$retorno=0;
-$paginaAtual=0;
+$pg = new Paginacao();
+
+$pg->linhasPorPagina=10;
+$pg->incremento=0;
+$pg->decremento = 0;
+$pg->avanco=0;
+$pg->retorno=0;
+$pg->paginaAtual=0;
+
+//teste
+
 $id_associado= isset($_REQUEST['id_associado'])?$_REQUEST['id_associado']:0;
 $exclusao = isset($_REQUEST['exclusao'])?$_REQUEST['exclusao']:false;
-$numero_pagina =(isset($_GET['pagina']))? $_GET['pagina'] : 1; 
+$pg->numero_pagina =(isset($_GET['pagina']))? $_GET['pagina'] : 1; 
 
 
-$TotalLinhas=$AssociadosLt->ListarTotais();
-$totalPaginas=$Controle->ObterTotalDePaginas($TotalLinhas,$linhasPorPagina);
-$paginaCorrente=$Controle->ObterPaginaCorrente($linhasPorPagina,$numero_pagina);
+$pg->totalLinhas=$AssociadosLt->ListarTotais();
+$pg->totalPaginas=$pg->ObterTotalDePaginas($pg->totalLinhas,$pg->linhasPorPagina);
+$pg->paginaCorrente=$pg->ObterPaginaCorrente($pg->linhasPorPagina,$pg->numero_pagina);
 
 if(isset($usuario))
 {
@@ -40,8 +42,12 @@ echo "<!DOCTYPE html>
 <meta charset=\"utf-8\" />
 <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />
 <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" /> 
+<link rel=\"shortcut icon\" href=\"img/favicon.png\" />
+
 <!-- CSS-->
 <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">
+<link href=\"css/estilos.css\" rel=\"stylesheet\">
+
 <!--Javascript -->
 <script src=\"js/jquery-3.2.1.min.js\"></script>
 <script src=\"js/bootstrap.min.js\"></script>
@@ -57,7 +63,7 @@ echo "<!DOCTYPE html>
    <div class=\"collapse navbar-collapse\" id=\"conteudoNavbarSuportado\">
      <ul class=\"navbar-nav mr-auto\">
        <li class=\"nav-item active\">
-         <a class=\"nav-link\" <a href=\"CadastroIn.html\">Cadastrar Associado </a>
+         <a class=\"nav-link\" <a href=\"CadastroIn.php\">Cadastrar Associado </a>
        </li>
        <li class=\"nav-item\">
          <a class=\"nav-link\" href=\"index.php\" onclick='location.replace(\"index.php\")'>voltar</a>
@@ -76,7 +82,7 @@ echo "<div class=\"container\">
 <div class=\"table-responsive\">
 
 <table class=\"table table-bordered table-striped \">";
-$ListAssociados=$AssociadosLt->ListarAssociadosComPaginacao($paginaCorrente,$linhasPorPagina);
+$ListAssociados=$AssociadosLt->ListarAssociadosComPaginacao($pg->paginaCorrente,$pg->linhasPorPagina);
 foreach ($ListAssociados->getCadastroAssociados()as $associado) {   
     echo "<tr><td> <a href=\"DadosAssociados.php?id_associado=".$associado->id_associado."\" >".$associado->nome." ".$associado->sobrenome."</a></td>";
 //         // if(VerAcesso($usuario,$link)==true){
@@ -88,23 +94,24 @@ foreach ($ListAssociados->getCadastroAssociados()as $associado) {
   echo "</table>
   </div>
   ";
-  $incremento=$numero_pagina+1;
-  $decremento = $numero_pagina-1;
-  $avanco=($incremento>$totalPaginas)?1:$incremento;
-  $retorno=(1>$decremento)?1:$decremento;
+ 
+  $pg->incremento();
+  $pg->decremento();
+  $pg->Avancar();
+  $pg->Retornar();
 
   echo "<nav aria-label=\"Navegação de página exemplo\">
  <ul class=\"pagination\">
    <li class=\"page-item\">
-     <a class=\"page-link\" href='Associados.php?pagina=".$retorno."' aria-label=\"Anterior\">
+     <a class=\"page-link\" href='Associados.php?pagina=".$pg->retorno."' aria-label=\"Anterior\">
        <span aria-hidden=\"true\">&laquo;</span>
        <span class=\"sr-only\">Anterior</span>
      </a>
    </li>";
-   for ($i=1;1+$totalPaginas>$i;$i++)
+   for ($i=1;1+$pg->totalPaginas>$i;$i++)
    {
      // $paginaAtual=$i;
-      $ativo = ($i == $numero_pagina) ? 'numativo' : '';
+      $ativo = ($i == $pg->numero_pagina) ? 'numativo' : '';
       // echo "<a href='Associados.php?pagina=".$i."' class='numero ".$ativo."'> ".$i." </a>";
       if($ativo=='numativo'){
         echo  " <li class=\"page-item active\">
@@ -122,7 +129,7 @@ foreach ($ListAssociados->getCadastroAssociados()as $associado) {
       }
       echo"<li class=\"page-item\">";  
    }
-  echo "<a class=\"page-link\" href='Associados.php?pagina=".$avanco."' aria-label=\"Próximo\">
+  echo "<a class=\"page-link\" href='Associados.php?pagina=".$pg->avanco."' aria-label=\"Próximo\">
        <span aria-hidden=\"true\">&raquo;</span>
        <span class=\"sr-only\">Próximo</span>
      </a>

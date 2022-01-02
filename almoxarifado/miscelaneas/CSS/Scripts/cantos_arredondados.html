@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Cantos arredondados</title>
+<style>
+.rounded:after {
+  display: block;
+  line-height: 0.1;
+  font-size: 1px;
+  content:  url(bottom-left.png);
+  margin: 0 0 -1px 0;
+  height: 30px;
+  background: white;
+  background: transparent url(bottom-right.png) scroll no-repeat bottom right ;
+  padding: 0;
+}
+.rounded:before {
+  background: transparent url(top-right.png) scroll no-repeat top right;
+  margin-bottom: -20px;
+  height: 30px;
+  display: block;
+  border: none;
+  content: url(top-left.png);
+  padding: 0;
+  line-height: 0.1;
+  font-size: 1px;
+}
+body {
+    background: white;
+    font-size: 0.84em;
+    width: 75%;
+    margin:  0 auto;
+    padding: 0 1em;
+    }    
+.rounded * {
+    padding-left: 16px;
+    padding-right: 16px;
+    } 
+.rounded {
+    margin: 1em;
+    padding: 0;
+  }
+p { 
+    font-family: Arial, Tahoma  , sans-serif;
+    font-size: 1em;
+    padding-top: 0;
+    margin: 1em 0;
+    line-height: 1.5;
+    }
+blockquote {
+   background: #666666;
+   color: white;
+   margin-right: -1px;
+}
+#corners img {
+  margin: 1em;
+  border: 1px solid black;
+  padding: 0;
+  background: #a0a0a0;
+} 
+p.footer {
+  margin: 1em;
+  padding: 0.5em;
+  text-align: center;
+  border: 1px solid black;
+}
+</style>
+
+</head>
+
+<body>
+<blockquote class="rounded"> 
+<p>O degrau de uma escada não serve simplesmente para que alguém permaneça em cima dele, destina-se a sustentar o pé de um homem pelo tempo suficiente para que ele coloque o outro um pouco mais alto.</p> 
+<p class="quotee">&#8212; Thomas Huxley</p>
+</blockquote> 
+</body>
+</html>

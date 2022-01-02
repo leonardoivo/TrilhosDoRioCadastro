@@ -1,0 +1,10 @@
+<?php
+$host="localhost";
+$database="TrilhosDoRioCadastro";
+//$tabela="usuarios";
+$login_db="root";
+//$senha_db="usbw";
+$senha_db="784512";
+$link=mysqli_connect($host,$login_db,$senha_db);
+$db=mysqli_select_db($link,$database);
+?>

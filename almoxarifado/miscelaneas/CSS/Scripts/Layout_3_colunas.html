@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Layout 3 Colunas</title>
+<style type="text/css">
+
+body{
+margin: 0;
+padding: 0;
+border: 0;
+overflow: hidden;
+height: 100%; 
+max-height: 100%; 
+}
+
+#framecontentLeft, #framecontentRight{
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 200px; 
+height: 100%;
+overflow: hidden; 
+background-color: #cccccc;
+color: white;
+}
+
+#framecontentRight{
+left: auto;
+right: 0; 
+width: 150px;
+overflow: hidden; 
+background-color: #cccccc;
+color: white;
+}
+
+#maincontent{
+position: fixed; 
+top: 0;
+left: 200px; 
+right: 150px; 
+bottom: 0;
+overflow: auto; 
+background: #fff;
+}
+
+.innertube{
+	margin: 15px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+* html body{ /*IE6 hack*/
+padding: 0 150px 0 200px; 
+}
+
+* html #maincontent{ /*IE6 hack*/
+height: 100%; 
+width: 100%; 
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="framecontentLeft">
+<div class="innertube">
+
+<h1>Coluna esquerda</h1>
+<h3>Conteúdos</h3>
+
+</div>
+</div>
+
+<div id="framecontentRight">
+<div class="innertube">
+
+<h3>Coluna direita</h3>
+
+</div>
+</div>
+
+
+<div id="maincontent">
+<div class="innertube">
+
+<h1>Exemplo</h1>
+
+<p style="text-align: center">Meu TEXTO centralizado</p>
+<p style="text-align: center">Coluna central de conte&uacute;do<a href="http://www.dynamicdrive.com/style/"></a></p>
+</div>
+</div>
+
+
+</body>
+</html>
